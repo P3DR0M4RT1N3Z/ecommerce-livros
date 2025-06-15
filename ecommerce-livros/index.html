@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Livraria Aurora – Sua Loja de Livros Online</title>
+  <meta name="description" content="Descubra livros incríveis, recomendações personalizadas e ofertas exclusivas na Livraria Aurora. Seu universo literário começa aqui.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+          <li><a href="minha-conta.html">Minha Conta</a></li>
+          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+      <form class="search-bar" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Buscar livros, autores, gêneros...">
+        <button type="submit">🔍</button>
+        <ul id="suggestions"></ul>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h2>Bem-vindo à Livraria Aurora</h2>
+          <p>Explore um universo de histórias, descubra novos autores e encontre seu próximo livro favorito.</p>
+          <a href="catalogo.html" class="btn-primary">Ver Catálogo</a>
+        </div>
+        <img src="images/hero-books.png" alt="Livros em destaque" class="hero-img">
+      </div>
+    </section>
+
+    <section class="recomendados">
+      <div class="container">
+        <h2>Recomendados para você</h2>
+        <div id="recomendacoes" class="livros-grid">
+          <!-- Recomendações via JS -->
+        </div>
+      </div>
+    </section>
+
+    <section class="destaques">
+      <div class="container">
+        <h2>Destaques da Semana</h2>
+        <div class="livros-grid">
+          <div class="livro-card">
+            <img src="images/livro1.jpg" alt="Capa Livro 1">
+            <div class="info">
+              <h3>O Sol é Para Todos</h3>
+              <p class="autor">Harper Lee</p>
+              <p class="preco">R$ 39,90</p>
+              <button class="btn-wishlist">♡</button>
+            </div>
+          </div>
+          <div class="livro-card">
+            <img src="images/livro2.jpg" alt="Capa Livro 2">
+            <div class="info">
+              <h3>1984</h3>
+              <p class="autor">George Orwell</p>
+              <p class="preco">R$ 29,90</p>
+              <button class="btn-wishlist">♡</button>
+            </div>
+          </div>
+          <div class="livro-card">
+            <img src="images/livro3.jpg" alt="Capa Livro 3">
+            <div class="info">
+              <h3>Pequeno Príncipe</h3>
+              <p class="autor">Antoine de Saint-Exupéry</p>
+              <p class="preco">R$ 24,90</p>
+              <button class="btn-wishlist">♡</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="surprise-box">
+      <div class="container">
+        <h2>Caixa Surpresa Literária</h2>
+        <p>Assine e receba uma seleção exclusiva de livros surpresa todo mês!</p>
+        <a href="#" class="btn-secondary">Quero minha caixa!</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="js/busca.js"></script>
+  <script src="js/recomendacoes.js"></script>
+</body>
+</html>

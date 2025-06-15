@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Carrinho de Compras</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="wishlist.html">Lista de Desejos</a></li>
+                <li><a href="minha-conta.html">Minha Conta</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="carrinho">
+            <h2>Itens no Carrinho</h2>
+            <div id="lista-carrinho">
+                <!-- Os itens do carrinho serão inseridos aqui via JavaScript -->
+            </div>
+            <div id="total">
+                <h3>Total: R$ <span id="valor-total">0.00</span></h3>
+            </div>
+            <button id="finalizar-compra">Finalizar Compra</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/carrinho.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Livro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Livro</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="carrinho.html">Carrinho</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="minha-conta.html">Minha Conta</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="produto-detalhes">
+            <div class="imagem-livro">
+                <img src="images/capa-livro.jpg" alt="Capa do Livro" id="imagem-livro">
+            </div>
+            <div class="informacoes-livro">
+                <h2 id="titulo-livro">Título do Livro</h2>
+                <p id="autor-livro">Autor: Nome do Autor</p>
+                <p id="sinopse-livro">Sinopse: Esta é uma breve descrição do livro.</p>
+                <p id="ficha-tecnica-livro">Ficha Técnica: Informações adicionais sobre o livro.</p>
+                <p id="preco-livro">Preço: R$ 29,90</p>
+                <p id="disponibilidade-livro">Disponibilidade: Em Estoque</p>
+                <div class="avaliacoes-livro">
+                    <p>Avaliações:</p>
+                    <span class="estrela">★</span>
+                    <span class="estrela">★</span>
+                    <span class="estrela">★</span>
+                    <span class="estrela">☆</span>
+                    <span class="estrela">☆</span>
+                </div>
+                <div class="quantidade">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" name="quantidade" min="1" value="1">
+                </div>
+                <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/carrinho.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+/* Estilo global para o site de e-commerce de livros */
+
+/* Paleta de cores */
+:root {
+  --cor-bg: #f8f6f2;
+  --cor-primaria: #7b5e57;
+  --cor-secundaria: #e9cba7;
+  --cor-destaque: #b5838d;
+  --cor-texto: #2d2d2d;
+  --cor-link: #7b5e57;
+  --cor-btn: #b5838d;
+  --cor-btn-hover: #7b5e57;
+  --cor-card: #fff;
+  --cor-wishlist: #e29578;
+  --sombra: 0 2px 8px rgba(123,94,87,0.08);
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo do corpo */
+body {
+  background: var(--cor-bg);
+  color: var(--cor-texto);
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Container principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Cabeçalho */
+.main-header {
+  background: var(--cor-card);
+  box-shadow: var(--sombra);
+  padding: 1.2rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--cor-primaria);
+  letter-spacing: 2px;
+  margin-bottom: 0.2rem;
+}
+
+/* Navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  color: var(--cor-link);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--cor-destaque);
+}
+
+/* Link do carrinho */
+.cart-link {
+  position: relative;
+}
+
+#cart-count {
+  background: var(--cor-destaque);
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.2em 0.6em;
+  font-size: 0.9em;
+  position: absolute;
+  top: -10px;
+  right: -18px;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+  margin-top: 1rem;
+  display: flex;
+  position: relative;
+  max-width: 400px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.7em 1em;
+  border: 1px solid #ddd;
+  border-radius: 2em 0 0 2em;
+  font-size: 1em;
+  outline: none;
+}
+
+.search-bar button {
+  background: var(--cor-btn);
+  color: #fff;
+  border: none;
+  border-radius: 0 2em 2em 0;
+  padding: 0 1.2em;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-bar button:hover {
+  background: var(--cor-btn-hover);
+}
+
+/* Sugestões de pesquisa */
+#suggestions {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 0 0 8px 8px;
+  box-shadow: var(--sombra);
+  z-index: 20;
+  list-style: none;
+  display: none;
+}
+
+#suggestions li {
+  padding: 0.7em 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#suggestions li:hover {
+  background: var(--cor-secundaria);
+}
+
+/* Estilo do herói */
+.hero {
+  background: linear-gradient(90deg, var(--cor-secundaria) 60%, var(--cor-bg) 100%);
+  padding: 3rem 0 2rem 0;
+  display: flex;
+  align-items: center;
+  min-height: 320px;
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--cor-primaria);
+  margin-bottom: 0.7rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-img {
+  width: 260px;
+  margin-left: 2rem;
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-10px);}
+}
+
+/* Botões primário e secundário */
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 0.8em 2em;
+  border-radius: 2em;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  font-size: 1.1em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--cor-btn);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--cor-btn-hover);
+}
+
+.btn-secondary {
+  background: var(--cor-card);
+  color: var(--cor-primaria);
+  border: 2px solid var(--cor-btn);
+}
+
+.btn-secondary:hover {
+  background: var(--cor-btn);
+  color: #fff;
+}
+
+/* Estilo das seções */
+section {
+  margin: 2.5rem 0;
+}
+
+/* Grid de livros */
+.livros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* Estilo do card do livro */
+.livro-card {
+  background: var(--cor-card);
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.livro-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(123,94,87,0.13);
+}
+
+.livro-card img {
+  width: 100%;
+  max-width: 160px;
+  margin: 1.2rem auto 0.5rem auto;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px rgba(123,94,87,0.10);
+}
+
+.livro-card .info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.livro-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cor-primaria);
+  margin-bottom: 0.3rem;
+}
+
+.livro-card .autor {
+  font-size: 0.95em;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.livro-card .preco {
+  font-size: 1.1em;
+  color: var(--cor-destaque);
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+}
+
+/* Estilo do botão de wishlist */
+.btn-wishlist {
+  background: none;
+  border: none;
+  color: var(--cor-wishlist);
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-wishlist:hover {
+  color: var(--cor-destaque);
+}
+
+/* Estilo da caixa surpresa */
+.surprise-box {
+  background: var(--cor-secundaria);
+  border-radius: 1.2rem;
+  padding: 2rem 0;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: var(--sombra);
+}
+
+.surprise-box h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cor-primaria);
+  margin-bottom: 0.5rem;
+}
+
+.surprise-box p {
+  margin-bottom: 1.2rem;
+  font-size: 1.1em;
+}
+
+/* Estilo do rodapé */
+footer {
+  background: var(--cor-card);
+  color: #888;
+  text-align: center;
+  padding: 1.2rem 0;
+  font-size: 0.95em;
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 800px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  .hero-img {
+    margin: 2rem 0 0 0;
+    width: 180px;
+  }
+  nav ul {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 0.7rem;
+  }
+  .livros-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-header {
+    padding: 0.7rem 0;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Livros</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/filtros.js" defer></script>
+    <script src="js/busca.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Catálogo de Livros</h1>
+        <input type="text" id="search" placeholder="Buscar livros...">
+    </header>
+    
+    <nav>
+        <h2>Filtros</h2>
+        <form id="filter-form">
+            <label for="genre">Gênero:</label>
+            <select id="genre">
+                <option value="">Todos</option>
+                <option value="ficcao">Ficção</option>
+                <option value="nao-ficcao">Não Ficção</option>
+                <option value="fantasia">Fantasia</option>
+                <option value="romance">Romance</option>
+            </select>
+
+            <label for="author">Autor:</label>
+            <input type="text" id="author" placeholder="Autor">
+
+            <label for="price">Preço:</label>
+            <input type="number" id="price-min" placeholder="Mínimo">
+            <input type="number" id="price-max" placeholder="Máximo">
+
+            <label for="rating">Avaliação:</label>
+            <select id="rating">
+                <option value="">Todas</option>
+                <option value="5">5 Estrelas</option>
+                <option value="4">4 Estrelas</option>
+                <option value="3">3 Estrelas</option>
+                <option value="2">2 Estrelas</option>
+                <option value="1">1 Estrela</option>
+            </select>
+
+            <button type="submit">Aplicar Filtros</button>
+        </form>
+    </nav>
+
+    <main id="book-catalog">
+        <h2>Livros Disponíveis</h2>
+        <div class="book-card">
+            <img src="images/livro1.jpg" alt="Capa do Livro 1">
+            <h3>Título do Livro 1</h3>
+            <p>Autor: Autor 1</p>
+            <p>Preço: R$ 29,90</p>
+            <p>Avaliação: ★★★★☆</p>
+            <button>Adicionar ao Carrinho</button>
+        </div>
+        <div class="book-card">
+            <img src="images/livro2.jpg" alt="Capa do Livro 2">
+            <h3>Título do Livro 2</h3>
+            <p>Autor: Autor 2</p>
+            <p>Preço: R$ 39,90</p>
+            <p>Avaliação: ★★★★★</p>
+            <button>Adicionar ao Carrinho</button>
+        </div>
+        <!-- Adicione mais cards de livros conforme necessário -->
+    </main>
+
+    <footer>
+        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
