@@ -11,7 +11,7 @@
 <body>
   <header class="main-header">
     <div class="container">
-      <h1 class="logo">Livraria Aurora</h1>
+      <h1 class="logo">Livraria StoreBooks</h1>
       <nav>
         <ul>
           <li><a href="catalogo.html">Catálogo</a></li>
@@ -32,7 +32,7 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h2>Bem-vindo à Livraria Aurora</h2>
+          <h2>Bem-vindo à Livraria StoreBooks</h2>
           <p>Explore um universo de histórias, descubra novos autores e encontre seu próximo livro favorito.</p>
           <a href="catalogo.html" class="btn-primary">Ver Catálogo</a>
         </div>
@@ -49,37 +49,32 @@
       </div>
     </section>
 
-    <section class="destaques">
+    <!-- Destaques da semana -->
+    <section class="destaques-semana">
       <div class="container">
         <h2>Destaques da Semana</h2>
         <div class="livros-grid">
           <div class="livro-card">
-            <img src="images/livro1.jpg" alt="Capa Livro 1">
+            <img src="images/livro4.jpg" alt="Capa Livro 4">
             <div class="info">
-              <h3>O Sol é Para Todos</h3>
-              <p class="autor">Harper Lee</p>
-              <p class="preco">R$ 39,90</p>
-              <button class="btn-wishlist">♡</button>
+              <h3>Dom Casmurro</h3>
+              <p class="autor">Machado de Assis</p>
+              <p class="preco">R$ 19,90</p>
+              <button class="btn-add-carrinho" data-id="4">Adicionar ao Carrinho</button>
+              <button class="btn-wishlist" data-id="4" title="Adicionar à Wishlist">♡</button>
             </div>
           </div>
           <div class="livro-card">
-            <img src="images/livro2.jpg" alt="Capa Livro 2">
+            <img src="images/livro5.jpg" alt="Capa Livro 5">
             <div class="info">
-              <h3>1984</h3>
-              <p class="autor">George Orwell</p>
-              <p class="preco">R$ 29,90</p>
-              <button class="btn-wishlist">♡</button>
+              <h3>Orgulho e Preconceito</h3>
+              <p class="autor">Jane Austen</p>
+              <p class="preco">R$ 34,90</p>
+              <button class="btn-add-carrinho" data-id="5">Adicionar ao Carrinho</button>
+              <button class="btn-wishlist" data-id="5" title="Adicionar à Wishlist">♡</button>
             </div>
           </div>
-          <div class="livro-card">
-            <img src="images/livro3.jpg" alt="Capa Livro 3">
-            <div class="info">
-              <h3>Pequeno Príncipe</h3>
-              <p class="autor">Antoine de Saint-Exupéry</p>
-              <p class="preco">R$ 24,90</p>
-              <button class="btn-wishlist">♡</button>
-            </div>
-          </div>
+          <!-- Adicione mais livros conforme necessário -->
         </div>
       </div>
     </section>
@@ -95,11 +90,157 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+      <p>&copy; 2025 Livraria StoreBooks. Todos os direitos reservados.</p>
     </div>
   </footer>
 
   <script src="js/busca.js"></script>
   <script src="js/recomendacoes.js"></script>
+  <script>
+    // Exemplo de livros mockados (pode ser substituído por dados reais)
+    const livros = [
+      {
+        id: 1,
+        titulo: "O Sol é Para Todos",
+        autor: "Harper Lee",
+        preco: 39.90,
+        imagem: "images/livro1.jpg"
+      },
+      {
+        id: 2,
+        titulo: "1984",
+        autor: "George Orwell",
+        preco: 29.90,
+        imagem: "images/livro2.jpg"
+      },
+      {
+        id: 3,
+        titulo: "Pequeno Príncipe",
+        autor: "Antoine de Saint-Exupéry",
+        preco: 24.90,
+        imagem: "images/livro3.jpg"
+      },
+      {
+        id: 4,
+        titulo: "Dom Casmurro",
+        autor: "Machado de Assis",
+        preco: 19.90,
+        imagem: "images/livro4.jpg"
+      },
+      {
+        id: 5,
+        titulo: "Orgulho e Preconceito",
+        autor: "Jane Austen",
+        preco: 34.90,
+        imagem: "images/livro5.jpg"
+      }
+    ];
+
+    // Carrinho e wishlist simulados no localStorage
+    function getCarrinho() {
+      return JSON.parse(localStorage.getItem('carrinho')) || [];
+    }
+    function setCarrinho(carrinho) {
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }
+    function getWishlist() {
+      return JSON.parse(localStorage.getItem('wishlist')) || [];
+    }
+    function setWishlist(wishlist) {
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }
+
+    // Atualiza contador do carrinho
+    function atualizarContadorCarrinho() {
+      const carrinho = getCarrinho();
+      const total = carrinho.reduce((s, item) => s + item.qtd, 0);
+      const span = document.getElementById('cart-count');
+      if (span) span.textContent = total;
+    }
+
+    // Adiciona ao carrinho
+    function adicionarAoCarrinho(id) {
+      let carrinho = getCarrinho();
+      const livro = livros.find(l => l.id === id);
+      const idx = carrinho.findIndex(item => item.id === id);
+      if (idx > -1) {
+        carrinho[idx].qtd++;
+      } else {
+        carrinho.push({ ...livro, qtd: 1 });
+      }
+      setCarrinho(carrinho);
+      atualizarContadorCarrinho();
+      alert('Livro adicionado ao carrinho!');
+    }
+
+    // Adiciona à wishlist
+    function adicionarWishlist(id, btn) {
+      let wishlist = getWishlist();
+      if (!wishlist.includes(id)) {
+        wishlist.push(id);
+        setWishlist(wishlist);
+        btn.classList.add('wishlist-ativo');
+        btn.textContent = '♥';
+        alert('Livro adicionado à Wishlist!');
+      } else {
+        wishlist = wishlist.filter(livroId => livroId !== id);
+        setWishlist(wishlist);
+        btn.classList.remove('wishlist-ativo');
+        btn.textContent = '♡';
+        alert('Livro removido da Wishlist!');
+      }
+    }
+
+    // Inicializa botões dos cards
+    function inicializarBotoesLivros() {
+      document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
+        btn.onclick = function() {
+          const id = parseInt(this.dataset.id);
+          adicionarAoCarrinho(id);
+        };
+      });
+      document.querySelectorAll('.btn-wishlist').forEach(btn => {
+        btn.onclick = function() {
+          const id = parseInt(this.dataset.id);
+          adicionarWishlist(id, this);
+        };
+        // Estado visual inicial
+        const id = parseInt(btn.dataset.id);
+        if (getWishlist().includes(id)) {
+          btn.classList.add('wishlist-ativo');
+          btn.textContent = '♥';
+        }
+      });
+    }
+
+    // Exemplo de renderização dinâmica dos cards (opcional)
+    function renderLivrosHome() {
+      const grid = document.querySelector('.livros-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      livros.forEach(livro => {
+        const card = document.createElement('div');
+        card.className = 'livro-card';
+        card.innerHTML = `
+          <img src="${livro.imagem}" alt="Capa ${livro.titulo}">
+          <div class="info">
+            <h3>${livro.titulo}</h3>
+            <p class="autor">${livro.autor}</p>
+            <p class="preco">R$ ${livro.preco.toFixed(2).replace('.', ',')}</p>
+            <button class="btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
+            <button class="btn-wishlist" data-id="${livro.id}" title="Adicionar à Wishlist">♡</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', () => {
+      renderLivrosHome(); // Se quiser renderização dinâmica
+      inicializarBotoesLivros();
+      atualizarContadorCarrinho();
+    });
+  </script>
 </body>
 </html>
