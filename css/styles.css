@@ -155,11 +155,25 @@ nav a:hover {
   display: flex;
   align-items: center;
   min-height: 320px;
+  text-align: left;
 }
 
 .hero-content {
   max-width: 500px;
+  text-align: left;
+  margin-left: 0;
+  align-items: flex-start;
 }
+
+@media (max-width: 800px) {
+  .hero {
+    text-align: left;
+  }
+  .hero-content {
+    text-align: left;
+    margin-left: 0;
+    align-items: flex-start;
+  }}
 
 .hero h2 {
   font-family: 'Playfair Display', serif;
