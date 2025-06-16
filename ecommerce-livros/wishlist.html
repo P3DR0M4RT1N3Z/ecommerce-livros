@@ -1,39 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Desejos - E-commerce de Livros</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wishlist – Livraria Aurora</title>
+  <meta name="description" content="Veja sua lista de desejos na Livraria Aurora. Salve livros para comprar depois!">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Minha Lista de Desejos</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="carrinho.html">Carrinho</a></li>
-                <li><a href="minha-conta.html">Minha Conta</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section id="wishlist">
-            <h2>Livros Salvos</h2>
-            <div id="wishlist-items">
-                <!-- Os itens da lista de desejos serão inseridos aqui via JavaScript -->
+  <main>
+    <section class="wishlist-section">
+      <div class="container">
+        <h2>Minha Wishlist</h2>
+        <div class="wishlist-grid">
+          <!-- Exemplo de livro na wishlist -->
+          <div class="wishlist-card">
+            <img src="images/livro1.jpg" alt="O Sol é Para Todos">
+            <div class="wishlist-info">
+              <h3>O Sol é Para Todos</h3>
+              <p class="autor">Harper Lee</p>
+              <p class="preco">R$ 39,90</p>
+              <div class="wishlist-actions">
+                <button class="btn-primary">Adicionar ao Carrinho</button>
+                <button class="btn-remove" title="Remover da Wishlist">✕</button>
+              </div>
             </div>
-            <p id="empty-message" style="display: none;">Sua lista de desejos está vazia.</p>
-        </section>
-    </main>
+          </div>
+          <div class="wishlist-card">
+            <img src="images/livro2.jpg" alt="1984">
+            <div class="wishlist-info">
+              <h3>1984</h3>
+              <p class="autor">George Orwell</p>
+              <p class="preco">R$ 29,90</p>
+              <div class="wishlist-actions">
+                <button class="btn-primary">Adicionar ao Carrinho</button>
+                <button class="btn-remove" title="Remover da Wishlist">✕</button>
+              </div>
+            </div>
+          </div>
+          <!-- Caso a lista esteja vazia -->
+          <!-- <div class="wishlist-vazia">
+            Sua lista de desejos está vazia. Explore o <a href="catalogo.html">catálogo</a> e salve seus livros favoritos!
+          </div> -->
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="js/wishlist.js"></script>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
