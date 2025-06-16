@@ -1592,3 +1592,231 @@ section {
     height: 100px;
   }
 }
+
+/* --- Carrinho --- */
+
+.carrinho-section {
+  padding: 2.5rem 0 1.5rem 0;
+}
+
+.carrinho-flex {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.carrinho-lista {
+  flex: 2 1 400px;
+  background: var(--cor-card);
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  padding: 2rem 2rem 1.5rem 2rem;
+}
+
+.carrinho-lista h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cor-primaria);
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.carrinho-itens {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.carrinho-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #faf9f6;
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(123,94,87,0.06);
+  padding: 1rem 1.2rem;
+  position: relative;
+}
+
+.carrinho-item img {
+  width: 70px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px rgba(123,94,87,0.10);
+}
+
+.carrinho-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.carrinho-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cor-primaria);
+  margin-bottom: 0.2rem;
+}
+
+.carrinho-info .autor {
+  font-size: 0.95em;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.carrinho-qtd {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.3em;
+}
+
+.carrinho-qtd input[type="number"] {
+  width: 48px;
+  padding: 0.4em;
+  border-radius: 1em;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  background: #fff;
+  text-align: center;
+}
+
+.qtd-btn {
+  background: var(--cor-secundaria);
+  color: var(--cor-primaria);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.qtd-btn:hover {
+  background: var(--cor-destaque);
+  color: #fff;
+}
+
+.carrinho-preco {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5em;
+  min-width: 90px;
+}
+
+.carrinho-preco span {
+  font-size: 1.1em;
+  color: var(--cor-destaque);
+  font-weight: bold;
+}
+
+.btn-remove {
+  background: #fff;
+  color: #e29578;
+  border: 1.5px solid #e29578;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-remove:hover {
+  background: #e29578;
+  color: #fff;
+}
+
+.carrinho-vazio {
+  background: var(--cor-secundaria);
+  color: var(--cor-primaria);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.carrinho-vazio a {
+  color: var(--cor-destaque);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.carrinho-resumo {
+  flex: 1 1 260px;
+  background: var(--cor-card);
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  padding: 2rem 1.2rem 1.5rem 1.2rem;
+  margin-bottom: 2rem;
+  min-width: 260px;
+}
+
+.carrinho-resumo h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cor-primaria);
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.resumo-linhas {
+  margin-bottom: 1.2rem;
+}
+
+.resumo-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+.resumo-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--cor-primaria);
+  border-top: 1px solid #eee;
+  padding-top: 1em;
+}
+
+.preco-total {
+  color: var(--cor-destaque);
+  font-size: 1.3em;
+}
+
+.btn-finalizar {
+  width: 100%;
+  font-size: 1.1em;
+  margin-top: 1.2em;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .carrinho-flex {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .carrinho-resumo {
+    min-width: 0;
+    margin-bottom: 0;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .carrinho-lista,
+  .carrinho-resumo {
+    padding: 1.2rem 0.5rem;
+  }
+  .carrinho-item img {
+    width: 50px;
+    height: 70px;
+  }
+}

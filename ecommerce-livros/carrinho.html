@@ -1,41 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho de Compras</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carrinho – Livraria Aurora</title>
+  <meta name="description" content="Veja e gerencie os livros do seu carrinho na Livraria Aurora.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Carrinho de Compras</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="wishlist.html">Lista de Desejos</a></li>
-                <li><a href="minha-conta.html">Minha Conta</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section id="carrinho">
-            <h2>Itens no Carrinho</h2>
-            <div id="lista-carrinho">
-                <!-- Os itens do carrinho serão inseridos aqui via JavaScript -->
+  <main>
+    <section class="carrinho-section">
+      <div class="container carrinho-flex">
+        <section class="carrinho-lista">
+          <h2>Meu Carrinho</h2>
+          <div class="carrinho-itens">
+            <!-- Exemplo de item no carrinho -->
+            <div class="carrinho-item">
+              <img src="images/livro1.jpg" alt="O Sol é Para Todos">
+              <div class="carrinho-info">
+                <h3>O Sol é Para Todos</h3>
+                <p class="autor">Harper Lee</p>
+                <div class="carrinho-qtd">
+                  <button class="qtd-btn">-</button>
+                  <input type="number" value="1" min="1">
+                  <button class="qtd-btn">+</button>
+                </div>
+              </div>
+              <div class="carrinho-preco">
+                <span>R$ 39,90</span>
+                <button class="btn-remove" title="Remover do carrinho">✕</button>
+              </div>
             </div>
-            <div id="total">
-                <h3>Total: R$ <span id="valor-total">0.00</span></h3>
+            <div class="carrinho-item">
+              <img src="images/livro2.jpg" alt="1984">
+              <div class="carrinho-info">
+                <h3>1984</h3>
+                <p class="autor">George Orwell</p>
+                <div class="carrinho-qtd">
+                  <button class="qtd-btn">-</button>
+                  <input type="number" value="2" min="1">
+                  <button class="qtd-btn">+</button>
+                </div>
+              </div>
+              <div class="carrinho-preco">
+                <span>R$ 59,80</span>
+                <button class="btn-remove" title="Remover do carrinho">✕</button>
+              </div>
             </div>
-            <button id="finalizar-compra">Finalizar Compra</button>
+            <!-- Caso o carrinho esteja vazio -->
+            <!-- <div class="carrinho-vazio">
+              Seu carrinho está vazio. <a href="catalogo.html">Explore o catálogo</a>!
+            </div> -->
+          </div>
         </section>
-    </main>
+        <aside class="carrinho-resumo">
+          <h2>Resumo</h2>
+          <div class="resumo-linhas">
+            <div class="resumo-linha">
+              <span>Subtotal</span>
+              <span>R$ 99,70</span>
+            </div>
+            <div class="resumo-linha">
+              <span>Frete</span>
+              <span>R$ 10,00</span>
+            </div>
+            <div class="resumo-total">
+              <span>Total</span>
+              <span class="preco-total">R$ 109,70</span>
+            </div>
+          </div>
+          <a href="checkout.html" class="btn-primary btn-finalizar">Finalizar Compra</a>
+        </aside>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="js/carrinho.js"></script>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
