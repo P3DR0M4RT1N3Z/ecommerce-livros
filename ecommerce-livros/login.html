@@ -1,36 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - E-commerce de Livros</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login – Livraria Aurora</title>
+  <meta name="description" content="Acesse sua conta na Livraria Aurora para acompanhar pedidos, wishlist e ofertas exclusivas.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Login</h1>
-    </header>
-    <main>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
-            </div>
-            <button type="submit">Entrar</button>
-            <div class="social-login">
-                <button type="button" class="google-login">Login com Google</button>
-                <button type="button" class="facebook-login">Login com Facebook</button>
-            </div>
-        </form>
-        <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
-    </main>
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
-    <script src="js/busca.js"></script>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="login-section">
+      <div class="container">
+        <div class="login-card">
+          <h2>Entrar na sua conta</h2>
+          <form class="login-form" autocomplete="off">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required minlength="6" placeholder="Sua senha">
+
+            <button type="submit" class="btn-primary">Entrar</button>
+          </form>
+          <div class="ou">ou</div>
+          <div class="social-login">
+            <button class="btn-social google">Entrar com Google</button>
+            <button class="btn-social facebook">Entrar com Facebook</button>
+          </div>
+          <p class="login-link">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>

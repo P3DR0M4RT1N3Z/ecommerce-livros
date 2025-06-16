@@ -947,3 +947,140 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Login --- */
+
+.login-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  background: linear-gradient(120deg, var(--cor-secundaria) 60%, var(--cor-bg) 100%);
+  padding: 3rem 0;
+}
+
+.login-card {
+  background: var(--cor-card);
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  text-align: center;
+}
+
+.login-card h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cor-primaria);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form label {
+  text-align: left;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 0.2rem;
+  font-size: 1em;
+}
+
+.login-form input {
+  padding: 0.8em 1em;
+  border: 1px solid #ddd;
+  border-radius: 2em;
+  font-size: 1em;
+  background: #faf9f6;
+  transition: border 0.2s;
+}
+
+.login-form input:focus {
+  border: 1.5px solid var(--cor-destaque);
+  outline: none;
+}
+
+.login-form .btn-primary {
+  margin-top: 0.5rem;
+}
+
+.ou {
+  margin: 1.5rem 0 1rem 0;
+  color: #aaa;
+  font-size: 1em;
+  position: relative;
+}
+
+.ou::before, .ou::after {
+  content: "";
+  display: inline-block;
+  width: 40%;
+  height: 1px;
+  background: #eee;
+  vertical-align: middle;
+  margin: 0 0.5em;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  border: none;
+  border-radius: 2em;
+  padding: 0.7em 1em;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-social.google {
+  background: #fff;
+  color: #db4437;
+  border: 1.5px solid #db4437;
+}
+
+.btn-social.google:hover {
+  background: #db4437;
+  color: #fff;
+}
+
+.btn-social.facebook {
+  background: #fff;
+  color: #4267B2;
+  border: 1.5px solid #4267B2;
+}
+
+.btn-social.facebook:hover {
+  background: #4267B2;
+  color: #fff;
+}
+
+.login-link {
+  margin-top: 0.7rem;
+  font-size: 1em;
+}
+
+.login-link a {
+  color: var(--cor-destaque);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    padding: 1.5rem 0.7rem;
+  }
+}
