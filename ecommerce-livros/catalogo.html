@@ -1,75 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Livros</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/filtros.js" defer></script>
-    <script src="js/busca.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de Livros – Livraria Aurora</title>
+  <meta name="description" content="Explore o catálogo completo da Livraria Aurora. Filtre por gênero, autor, preço, avaliação e mais.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Catálogo de Livros</h1>
-        <input type="text" id="search" placeholder="Buscar livros...">
-    </header>
-    
-    <nav>
-        <h2>Filtros</h2>
-        <form id="filter-form">
-            <label for="genre">Gênero:</label>
-            <select id="genre">
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+      <form class="search-bar" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Buscar livros, autores, gêneros...">
+        <button type="submit">🔍</button>
+        <ul id="suggestions"></ul>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalogo-section">
+      <div class="container catalogo-flex">
+        <aside class="filtros" id="filtros">
+          <h2>Filtros</h2>
+          <form id="filtros-form">
+            <div class="filtro-grupo">
+              <label for="genero">Gênero</label>
+              <select id="genero" name="genero">
                 <option value="">Todos</option>
-                <option value="ficcao">Ficção</option>
-                <option value="nao-ficcao">Não Ficção</option>
-                <option value="fantasia">Fantasia</option>
-                <option value="romance">Romance</option>
-            </select>
-
-            <label for="author">Autor:</label>
-            <input type="text" id="author" placeholder="Autor">
-
-            <label for="price">Preço:</label>
-            <input type="number" id="price-min" placeholder="Mínimo">
-            <input type="number" id="price-max" placeholder="Máximo">
-
-            <label for="rating">Avaliação:</label>
-            <select id="rating">
+                <option>Romance</option>
+                <option>Ficção</option>
+                <option>Clássico</option>
+                <option>Fantasia</option>
+                <option>Biografia</option>
+              </select>
+            </div>
+            <div class="filtro-grupo">
+              <label for="autor">Autor</label>
+              <input type="text" id="autor" name="autor" placeholder="Nome do autor">
+            </div>
+            <div class="filtro-grupo">
+              <label for="preco">Preço até</label>
+              <input type="number" id="preco" name="preco" min="0" placeholder="R$">
+            </div>
+            <div class="filtro-grupo">
+              <label for="avaliacao">Avaliação mínima</label>
+              <select id="avaliacao" name="avaliacao">
                 <option value="">Todas</option>
-                <option value="5">5 Estrelas</option>
-                <option value="4">4 Estrelas</option>
-                <option value="3">3 Estrelas</option>
-                <option value="2">2 Estrelas</option>
-                <option value="1">1 Estrela</option>
-            </select>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+              </select>
+            </div>
+            <div class="filtro-grupo">
+              <label for="idioma">Idioma</label>
+              <select id="idioma" name="idioma">
+                <option value="">Todos</option>
+                <option>Português</option>
+                <option>Inglês</option>
+                <option>Espanhol</option>
+              </select>
+            </div>
+            <div class="filtro-grupo">
+              <label for="capa">Tipo de capa</label>
+              <select id="capa" name="capa">
+                <option value="">Todos</option>
+                <option>Brochura</option>
+                <option>Capa dura</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary">Filtrar</button>
+            <button type="button" class="btn-secondary" id="limparFiltros">Limpar</button>
+          </form>
+        </aside>
+        <section class="catalogo-lista">
+          <h2>Catálogo de Livros</h2>
+          <div class="livros-grid" id="livrosGrid">
+            <!-- Cards de livros via JS ou HTML -->
+            <div class="livro-card">
+              <img src="images/livro1.jpg" alt="Capa Livro 1">
+              <div class="info">
+                <h3>O Sol é Para Todos</h3>
+                <p class="autor">Harper Lee</p>
+                <p class="preco">R$ 39,90</p>
+                <div class="avaliacao-card">★★★★★</div>
+                <button class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
+              </div>
+            </div>
+            <div class="livro-card">
+              <img src="images/livro2.jpg" alt="Capa Livro 2">
+              <div class="info">
+                <h3>1984</h3>
+                <p class="autor">George Orwell</p>
+                <p class="preco">R$ 29,90</p>
+                <div class="avaliacao-card">★★★★☆</div>
+                <button class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
+              </div>
+            </div>
+            <div class="livro-card">
+              <img src="images/livro3.jpg" alt="Capa Livro 3">
+              <div class="info">
+                <h3>Pequeno Príncipe</h3>
+                <p class="autor">Antoine de Saint-Exupéry</p>
+                <p class="preco">R$ 24,90</p>
+                <div class="avaliacao-card">★★★★★</div>
+                <button class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
+              </div>
+            </div>
+            <!-- ...mais cards -->
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
 
-            <button type="submit">Aplicar Filtros</button>
-        </form>
-    </nav>
-
-    <main id="book-catalog">
-        <h2>Livros Disponíveis</h2>
-        <div class="book-card">
-            <img src="images/livro1.jpg" alt="Capa do Livro 1">
-            <h3>Título do Livro 1</h3>
-            <p>Autor: Autor 1</p>
-            <p>Preço: R$ 29,90</p>
-            <p>Avaliação: ★★★★☆</p>
-            <button>Adicionar ao Carrinho</button>
-        </div>
-        <div class="book-card">
-            <img src="images/livro2.jpg" alt="Capa do Livro 2">
-            <h3>Título do Livro 2</h3>
-            <p>Autor: Autor 2</p>
-            <p>Preço: R$ 39,90</p>
-            <p>Avaliação: ★★★★★</p>
-            <button>Adicionar ao Carrinho</button>
-        </div>
-        <!-- Adicione mais cards de livros conforme necessário -->
-    </main>
-
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
