@@ -1,83 +1,97 @@
-// Lógica do carrinho de compras
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+// ecommerce-livros/js/carrinho.js
 
-// Função para atualizar o carrinho na interface
-function atualizarCarrinho() {
-    const carrinhoContainer = document.getElementById('carrinho-container');
-    carrinhoContainer.innerHTML = '';
+// Dados mockados do carrinho (preço fixo, quantidade variável)
+let carrinho = [
+  {
+    id: 1,
+    titulo: "O Sol é Para Todos",
+    autor: "Harper Lee",
+    preco: 39.90,
+    qtd: 1,
+    imagem: "images/livro1.jpg"
+  },
+  {
+    id: 2,
+    titulo: "1984",
+    autor: "George Orwell",
+    preco: 9.97, // Preço unitário fixo (exemplo: 59.80/6 = 9.97)
+    qtd: 6,
+    imagem: "images/livro2.jpg"
+  }
+];
 
-    if (carrinho.length === 0) {
-        carrinhoContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
-        return;
+// Salva e carrega do localStorage
+function salvarCarrinho() {
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+}
+function carregarCarrinho() {
+  const salvo = localStorage.getItem('carrinho');
+  if (salvo) carrinho = JSON.parse(salvo);
+}
+
+// Renderiza os itens do carrinho
+function renderCarrinho() {
+  const itensDiv = document.querySelector('.carrinho-itens');
+  itensDiv.innerHTML = '';
+  if (carrinho.length === 0) {
+    itensDiv.innerHTML = `<div class="carrinho-vazio">
+      Seu carrinho está vazio. <a href="catalogo.html">Explore o catálogo</a>!
+    </div>`;
+    atualizarResumo();
+    return;
+  }
+  carrinho.forEach((item, idx) => {
+    const div = document.createElement('div');
+    div.className = 'carrinho-item';
+    div.innerHTML = `
+      <img src="${item.imagem}" alt="${item.titulo}">
+      <div class="carrinho-info">
+        <h3>${item.titulo}</h3>
+        <p class="autor">${item.autor}</p>
+        <div class="carrinho-qtd">
+          <button class="qtd-btn" data-idx="${idx}" data-action="menos">-</button>
+          <input type="number" value="${item.qtd}" min="1" data-idx="${idx}" readonly>
+          <button class="qtd-btn" data-idx="${idx}" data-action="mais">+</button>
+        </div>
+      </div>
+      <div class="carrinho-preco">
+        <span>R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</span>
+        <button class="btn-remove" data-idx="${idx}" title="Remover do carrinho">✕</button>
+      </div>
+    `;
+    itensDiv.appendChild(div);
+  });
+  atualizarResumo();
+}
+
+// Atualiza o resumo do pedido
+function atualizarResumo() {
+  let subtotal = carrinho.reduce((s, item) => s + item.preco * item.qtd, 0);
+  let frete = carrinho.length > 0 ? 10 : 0;
+  document.querySelectorAll('.resumo-linha span:last-child')[0].textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+  document.querySelectorAll('.resumo-linha span:last-child')[1].textContent = `R$ ${frete.toFixed(2).replace('.', ',')}`;
+  document.querySelector('.preco-total').textContent = `R$ ${(subtotal + frete).toFixed(2).replace('.', ',')}`;
+}
+
+// Eventos dos botões
+document.addEventListener('click', function(e) {
+  // Aumentar/diminuir quantidade
+  if (e.target.classList.contains('qtd-btn')) {
+    const idx = parseInt(e.target.dataset.idx);
+    if (e.target.dataset.action === 'mais') {
+      carrinho[idx].qtd++;
+    } else if (e.target.dataset.action === 'menos' && carrinho[idx].qtd > 1) {
+      carrinho[idx].qtd--;
     }
-
-    carrinho.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('carrinho-item');
-        itemDiv.innerHTML = `
-            <img src="${item.imagem}" alt="${item.titulo}">
-            <h3>${item.titulo}</h3>
-            <p>Autor: ${item.autor}</p>
-            <p>Preço: R$ ${item.preco.toFixed(2)}</p>
-            <input type="number" value="${item.quantidade}" min="1" data-index="${index}" class="quantidade-input">
-            <button data-index="${index}" class="remover-btn">Remover</button>
-        `;
-        carrinhoContainer.appendChild(itemDiv);
-    });
-
-    const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-    const totalDiv = document.createElement('div');
-    totalDiv.classList.add('total');
-    totalDiv.innerHTML = `<h2>Total: R$ ${total.toFixed(2)}</h2>`;
-    carrinhoContainer.appendChild(totalDiv);
-}
-
-// Função para adicionar um livro ao carrinho
-function adicionarAoCarrinho(livro) {
-    const livroExistente = carrinho.find(item => item.id === livro.id);
-    if (livroExistente) {
-        livroExistente.quantidade++;
-    } else {
-        carrinho.push({ ...livro, quantidade: 1 });
-    }
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarCarrinho();
-}
-
-// Função para remover um livro do carrinho
-function removerDoCarrinho(index) {
-    carrinho.splice(index, 1);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarCarrinho();
-}
-
-// Função para alterar a quantidade de um livro no carrinho
-function alterarQuantidade(index, novaQuantidade) {
-    if (novaQuantidade < 1) {
-        removerDoCarrinho(index);
-    } else {
-        carrinho[index].quantidade = novaQuantidade;
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));
-        atualizarCarrinho();
-    }
-}
-
-// Event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    atualizarCarrinho();
-
-    document.getElementById('carrinho-container').addEventListener('click', (event) => {
-        if (event.target.classList.contains('remover-btn')) {
-            const index = event.target.dataset.index;
-            removerDoCarrinho(index);
-        }
-    });
-
-    document.getElementById('carrinho-container').addEventListener('input', (event) => {
-        if (event.target.classList.contains('quantidade-input')) {
-            const index = event.target.dataset.index;
-            const novaQuantidade = parseInt(event.target.value);
-            alterarQuantidade(index, novaQuantidade);
-        }
-    });
+    renderCarrinho();
+  }
+  // Remover item
+  if (e.target.classList.contains('btn-remove')) {
+    const idx = parseInt(e.target.dataset.idx);
+    carrinho.splice(idx, 1);
+    renderCarrinho();
+  }
 });
+
+// Inicialização
+renderCarrinho();
