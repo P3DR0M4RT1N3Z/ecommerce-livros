@@ -1,56 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Livro</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O Sol é Para Todos – Livraria Aurora</title>
+  <meta name="description" content="Detalhes do livro O Sol é Para Todos. Veja sinopse, ficha técnica, avaliações e compre na Livraria Aurora.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Detalhes do Livro</h1>
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="carrinho.html">Carrinho</a>
-            <a href="wishlist.html">Wishlist</a>
-            <a href="minha-conta.html">Minha Conta</a>
-        </nav>
-    </header>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section class="produto-detalhes">
-            <div class="imagem-livro">
-                <img src="images/capa-livro.jpg" alt="Capa do Livro" id="imagem-livro">
+  <main>
+    <section class="produto-section">
+      <div class="container produto-flex">
+        <div class="produto-capa">
+          <img src="images/livro1.jpg" alt="Capa do livro O Sol é Para Todos">
+          <button class="btn-secondary btn-leia-trecho" id="abrirTrecho">Leia um trecho</button>
+        </div>
+        <div class="produto-detalhes">
+          <h2>O Sol é Para Todos</h2>
+          <p class="autor">Harper Lee</p>
+          <div class="avaliacao">
+            <span class="estrelas">★★★★★</span>
+            <span class="nota">(4.8/5)</span>
+            <span class="qtd-avaliacoes">1234 avaliações</span>
+          </div>
+          <p class="sinopse">
+            Um clássico da literatura mundial, “O Sol é Para Todos” aborda temas como justiça, preconceito e empatia através dos olhos de uma criança no sul dos EUA dos anos 1930.
+          </p>
+          <ul class="ficha-tecnica">
+            <li><strong>Editora:</strong> José Olympio</li>
+            <li><strong>Idioma:</strong> Português</li>
+            <li><strong>Páginas:</strong> 364</li>
+            <li><strong>Tipo de capa:</strong> Brochura</li>
+            <li><strong>ISBN:</strong> 978-8503011516</li>
+          </ul>
+          <div class="produto-preco">
+            <span class="preco">R$ 39,90</span>
+            <span class="disponibilidade disponivel">Em estoque</span>
+          </div>
+          <form class="produto-compra">
+            <label for="quantidade">Qtd:</label>
+            <input type="number" id="quantidade" name="quantidade" min="1" value="1">
+            <button type="submit" class="btn-primary">Adicionar ao Carrinho</button>
+            <button type="button" class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="avaliacoes-section">
+      <div class="container">
+        <h3>Avaliações dos leitores</h3>
+        <div class="comentarios-lista">
+          <div class="comentario">
+            <div class="comentario-topo">
+              <span class="comentario-nome">Maria S.</span>
+              <span class="comentario-estrelas">★★★★★</span>
             </div>
-            <div class="informacoes-livro">
-                <h2 id="titulo-livro">Título do Livro</h2>
-                <p id="autor-livro">Autor: Nome do Autor</p>
-                <p id="sinopse-livro">Sinopse: Esta é uma breve descrição do livro.</p>
-                <p id="ficha-tecnica-livro">Ficha Técnica: Informações adicionais sobre o livro.</p>
-                <p id="preco-livro">Preço: R$ 29,90</p>
-                <p id="disponibilidade-livro">Disponibilidade: Em Estoque</p>
-                <div class="avaliacoes-livro">
-                    <p>Avaliações:</p>
-                    <span class="estrela">★</span>
-                    <span class="estrela">★</span>
-                    <span class="estrela">★</span>
-                    <span class="estrela">☆</span>
-                    <span class="estrela">☆</span>
-                </div>
-                <div class="quantidade">
-                    <label for="quantidade">Quantidade:</label>
-                    <input type="number" id="quantidade" name="quantidade" min="1" value="1">
-                </div>
-                <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
+            <p class="comentario-texto">Livro emocionante, leitura obrigatória! Recomendo muito.</p>
+          </div>
+          <div class="comentario">
+            <div class="comentario-topo">
+              <span class="comentario-nome">João P.</span>
+              <span class="comentario-estrelas">★★★★☆</span>
             </div>
-        </section>
-    </main>
+            <p class="comentario-texto">Reflexivo e sensível. Gostei bastante da narrativa.</p>
+          </div>
+        </div>
+        <form class="comentario-form">
+          <h4>Deixe sua avaliação</h4>
+          <label for="estrelas">Nota:</label>
+          <select id="estrelas" name="estrelas">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+          <label for="comentario">Comentário:</label>
+          <textarea id="comentario" name="comentario" rows="3" placeholder="Compartilhe sua opinião..."></textarea>
+          <button type="submit" class="btn-primary">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
+  <!-- Modal Leia um Trecho -->
+  <div id="modalTrecho" class="modal-trecho">
+    <div class="modal-trecho-conteudo">
+      <button class="modal-fechar" id="fecharTrecho">&times;</button>
+      <h3>Leia um trecho</h3>
+      <p>
+        “Quando ele finalmente voltou, era quase noite. Jem estava sentado na varanda, e eu estava deitada no colo de Atticus. O vento soprava suave, e as árvores sussurravam segredos antigos...”
+      </p>
+      <p>
+        “A coragem é quando você sabe que está derrotado antes de começar, mas começa mesmo assim e vai até o fim, custe o que custar.”
+      </p>
+    </div>
+  </div>
 
-    <script src="js/carrinho.js"></script>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Modal Leia um Trecho
+    const abrir = document.getElementById('abrirTrecho');
+    const fechar = document.getElementById('fecharTrecho');
+    const modal = document.getElementById('modalTrecho');
+    abrir.onclick = () => modal.style.display = 'flex';
+    fechar.onclick = () => modal.style.display = 'none';
+    window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+  </script>
 </body>
 </html>

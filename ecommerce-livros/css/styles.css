@@ -450,6 +450,317 @@ section {
   font-weight: bold;
 }
 
+/* --- Produto --- */
+
+.produto-section {
+  padding: 2.5rem 0 1.5rem 0;
+}
+
+.produto-flex {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.produto-capa {
+  flex: 1 1 260px;
+  max-width: 320px;
+  text-align: center;
+}
+
+.produto-capa img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  margin-bottom: 1.2rem;
+}
+
+.btn-leia-trecho {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.produto-detalhes {
+  flex: 2 1 340px;
+  background: var(--cor-card);
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  padding: 2rem 2rem 1.5rem 2rem;
+}
+
+.produto-detalhes h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cor-primaria);
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.produto-detalhes .autor {
+  color: #888;
+  font-size: 1.1em;
+  margin-bottom: 0.7rem;
+}
+
+.avaliacao {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 1rem;
+  font-size: 1.1em;
+}
+
+.estrelas {
+  color: var(--cor-destaque);
+  font-size: 1.2em;
+  letter-spacing: 1px;
+}
+
+.nota {
+  color: #888;
+}
+
+.qtd-avaliacoes {
+  color: #aaa;
+  font-size: 0.95em;
+}
+
+.sinopse {
+  margin-bottom: 1.2rem;
+  font-size: 1.1em;
+}
+
+.ficha-tecnica {
+  list-style: none;
+  margin-bottom: 1.2rem;
+  color: #555;
+  font-size: 1em;
+}
+
+.ficha-tecnica li {
+  margin-bottom: 0.3rem;
+}
+
+.produto-preco {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  margin-bottom: 1.2rem;
+}
+
+.preco {
+  color: var(--cor-destaque);
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.disponibilidade {
+  font-size: 1em;
+  font-weight: 700;
+  padding: 0.2em 0.8em;
+  border-radius: 1em;
+}
+
+.disponivel {
+  background: #e6f9e6;
+  color: #2e7d32;
+}
+
+.indisponivel {
+  background: #ffeaea;
+  color: #c62828;
+}
+
+.produto-compra {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-top: 0.5rem;
+}
+
+.produto-compra label {
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+.produto-compra input[type="number"] {
+  width: 60px;
+  padding: 0.5em;
+  border-radius: 1em;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  background: #faf9f6;
+}
+
+.produto-compra .btn-primary {
+  font-size: 1em;
+  padding: 0.6em 1.5em;
+}
+
+.produto-compra .btn-wishlist {
+  background: none;
+  border: none;
+  color: var(--cor-wishlist);
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.produto-compra .btn-wishlist:hover {
+  color: var(--cor-destaque);
+}
+
+/* Avaliações */
+.avaliacoes-section {
+  background: var(--cor-bg);
+  padding: 2rem 0 2.5rem 0;
+}
+
+.avaliacoes-section h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cor-primaria);
+  margin-bottom: 1.2rem;
+}
+
+.comentarios-lista {
+  margin-bottom: 2rem;
+}
+
+.comentario {
+  background: var(--cor-card);
+  border-radius: 1em;
+  box-shadow: var(--sombra);
+  padding: 1.2em 1em;
+  margin-bottom: 1em;
+}
+
+.comentario-topo {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 0.3em;
+}
+
+.comentario-nome {
+  font-weight: bold;
+  color: var(--cor-primaria);
+}
+
+.comentario-estrelas {
+  color: var(--cor-destaque);
+  font-size: 1.1em;
+}
+
+.comentario-texto {
+  color: #444;
+  font-size: 1em;
+}
+
+.comentario-form {
+  background: var(--cor-card);
+  border-radius: 1em;
+  box-shadow: var(--sombra);
+  padding: 1.2em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.comentario-form h4 {
+  color: var(--cor-primaria);
+  margin-bottom: 0.5em;
+}
+
+.comentario-form label {
+  font-weight: 700;
+  color: var(--cor-primaria);
+  text-align: left;
+}
+
+.comentario-form select,
+.comentario-form textarea {
+  border-radius: 1em;
+  border: 1px solid #ddd;
+  padding: 0.6em 1em;
+  font-size: 1em;
+  background: #faf9f6;
+}
+
+.comentario-form textarea {
+  resize: vertical;
+}
+
+.comentario-form .btn-primary {
+  align-self: flex-end;
+  margin-top: 0.5em;
+}
+
+/* Modal Leia um Trecho */
+.modal-trecho {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-trecho-conteudo {
+  background: var(--cor-card);
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra);
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  width: 90vw;
+  position: relative;
+  animation: modalShow 0.3s;
+}
+
+@keyframes modalShow {
+  from { transform: translateY(-30px); opacity: 0;}
+  to { transform: translateY(0); opacity: 1;}
+}
+
+.modal-fechar {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-fechar:hover {
+  color: var(--cor-destaque);
+}
+
+.modal-trecho-conteudo h3 {
+  color: var(--cor-primaria);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1em;
+}
+
+.modal-trecho-conteudo p {
+  margin-bottom: 1em;
+  color: #444;
+  font-size: 1.1em;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .produto-flex {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .produto-detalhes {
+    padding: 1.5rem 1rem;
+  }
+}
+
 @media (max-width: 800px) {
   .hero {
     flex-direction: column;
