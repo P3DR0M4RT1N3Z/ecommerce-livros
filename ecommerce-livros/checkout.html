@@ -1,62 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - E-commerce de Livros</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout – Livraria Aurora</title>
+  <meta name="description" content="Finalize sua compra na Livraria Aurora. Informe endereço, escolha o pagamento e confira seu pedido.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Finalização de Compra</h1>
-    </header>
-    <main>
-        <section id="checkout-form">
-            <h2>Endereço de Entrega</h2>
-            <form>
-                <label for="nome">Nome Completo:</label>
-                <input type="text" id="nome" required>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">2</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" required>
+  <main>
+    <section class="checkout-section">
+      <div class="container checkout-flex">
+        <section class="checkout-formulario">
+          <h2>Endereço de Entrega</h2>
+          <form class="endereco-form">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
 
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" required>
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" required placeholder="00000-000">
 
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" required>
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" name="endereco" required placeholder="Rua, número, complemento">
 
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" required>
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" name="cidade" required>
 
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" required>
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado" required>
 
-                <h2>Método de Pagamento</h2>
-                <div>
-                    <input type="radio" id="cartao" name="pagamento" value="cartao" required>
-                    <label for="cartao">Cartão de Crédito</label>
-                </div>
-                <div>
-                    <input type="radio" id="boleto" name="pagamento" value="boleto">
-                    <label for="boleto">Boleto</label>
-                </div>
-                <div>
-                    <input type="radio" id="pix" name="pagamento" value="pix">
-                    <label for="pix">Pix</label>
-                </div>
-                <div>
-                    <input type="radio" id="paypal" name="pagamento" value="paypal">
-                    <label for="paypal">PayPal</label>
-                </div>
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+          </form>
 
-                <button type="submit">Finalizar Compra</button>
-            </form>
+          <h2>Método de Pagamento</h2>
+          <form class="pagamento-form">
+            <div class="pagamento-opcoes">
+              <label class="pagamento-radio">
+                <input type="radio" name="pagamento" checked>
+                <span class="icone-pagamento pix"></span>
+                Pix
+              </label>
+              <label class="pagamento-radio">
+                <input type="radio" name="pagamento">
+                <span class="icone-pagamento cartao"></span>
+                Cartão de Crédito
+              </label>
+              <label class="pagamento-radio">
+                <input type="radio" name="pagamento">
+                <span class="icone-pagamento boleto"></span>
+                Boleto
+              </label>
+              <label class="pagamento-radio">
+                <input type="radio" name="pagamento">
+                <span class="icone-pagamento paypal"></span>
+                PayPal
+              </label>
+            </div>
+          </form>
+          <button class="btn-primary finalizar-btn">Finalizar Compra</button>
         </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
-    <script src="js/carrinho.js"></script>
+        <aside class="checkout-resumo">
+          <h2>Resumo do Pedido</h2>
+          <div class="resumo-itens">
+            <div class="resumo-item">
+              <img src="images/livro1.jpg" alt="O Sol é Para Todos">
+              <div>
+                <p class="titulo">O Sol é Para Todos</p>
+                <p class="qtd">Qtd: 1</p>
+                <p class="preco">R$ 39,90</p>
+              </div>
+            </div>
+            <div class="resumo-item">
+              <img src="images/livro2.jpg" alt="1984">
+              <div>
+                <p class="titulo">1984</p>
+                <p class="qtd">Qtd: 1</p>
+                <p class="preco">R$ 29,90</p>
+              </div>
+            </div>
+          </div>
+          <div class="resumo-total">
+            <span>Total:</span>
+            <span class="preco-total">R$ 69,80</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
