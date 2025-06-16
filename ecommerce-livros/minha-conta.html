@@ -1,65 +1,94 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Conta - E-commerce de Livros</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minha Conta – Livraria Aurora</title>
+  <meta name="description" content="Acompanhe seus pedidos, dados e histórico na Livraria Aurora.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Minha Conta</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="wishlist.html">Wishlist</a></li>
-                <li><a href="carrinho.html">Carrinho</a></li>
-                <li><a href="logout.html">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="main-header">
+    <div class="container">
+      <h1 class="logo">Livraria Aurora</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section>
-            <h2>Histórico de Pedidos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID do Pedido</th>
-                        <th>Data</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#001</td>
-                        <td>01/10/2023</td>
-                        <td>Entregue</td>
-                        <td>R$ 59,90</td>
-                    </tr>
-                    <tr>
-                        <td>#002</td>
-                        <td>15/09/2023</td>
-                        <td>Em Trânsito</td>
-                        <td>R$ 39,90</td>
-                    </tr>
-                    <tr>
-                        <td>#003</td>
-                        <td>20/08/2023</td>
-                        <td>Cancelado</td>
-                        <td>R$ 29,90</td>
-                    </tr>
-                </tbody>
+  <main>
+    <section class="minha-conta-section">
+      <div class="container minha-conta-flex">
+        <aside class="minha-conta-menu">
+          <div class="user-avatar">
+            <span>MS</span>
+          </div>
+          <p class="user-nome">Maria Silva</p>
+          <ul>
+            <li class="ativo"><a href="#">Pedidos</a></li>
+            <li><a href="#">Dados da Conta</a></li>
+            <li><a href="#">Endereços</a></li>
+            <li><a href="#">Sair</a></li>
+          </ul>
+        </aside>
+        <section class="minha-conta-conteudo">
+          <h2>Meus Pedidos</h2>
+          <div class="pedidos-table-wrap">
+            <table class="pedidos-table">
+              <thead>
+                <tr>
+                  <th>Nº Pedido</th>
+                  <th>Data</th>
+                  <th>Itens</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Detalhes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#1023</td>
+                  <td>12/06/2025</td>
+                  <td>O Sol é Para Todos, 1984</td>
+                  <td>R$ 69,80</td>
+                  <td><span class="status entregue">Entregue</span></td>
+                  <td><a href="#">Ver</a></td>
+                </tr>
+                <tr>
+                  <td>#1018</td>
+                  <td>28/05/2025</td>
+                  <td>Pequeno Príncipe</td>
+                  <td>R$ 24,90</td>
+                  <td><span class="status enviado">Enviado</span></td>
+                  <td><a href="#">Ver</a></td>
+                </tr>
+                <tr>
+                  <td>#1009</td>
+                  <td>10/05/2025</td>
+                  <td>Dom Casmurro</td>
+                  <td>R$ 19,90</td>
+                  <td><span class="status aguardando">Aguardando Pagamento</span></td>
+                  <td><a href="#">Ver</a></td>
+                </tr>
+              </tbody>
             </table>
+          </div>
         </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2023 E-commerce de Livros. Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="js/recomendacoes.js"></script>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Livraria Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
