@@ -67,92 +67,24 @@
     </div>
   </footer>
 
+  <script src="js/produtos.js"></script>
+  <script src="js/wishlist.js"></script>
   <script>
-    // Exemplo de livros mockados (substitua por dados reais ou backend)
-    const livros = [
-      {
-        id: 1,
-        titulo: "O Sol é Para Todos",
-        autor: "Harper Lee",
-        preco: 39.90,
-        imagem: "images/livro1.jpg"
-      },
-      {
-        id: 2,
-        titulo: "1984",
-        autor: "George Orwell",
-        preco: 29.90,
-        imagem: "images/livro2.jpg"
-      },
-      {
-        id: 3,
-        titulo: "Pequeno Príncipe",
-        autor: "Antoine de Saint-Exupéry",
-        preco: 24.90,
-        imagem: "images/livro3.jpg"
-      }
-    ];
-
-    // Funções para manipular wishlist no localStorage
-    function getWishlist() {
-      return JSON.parse(localStorage.getItem('wishlist')) || [];
-    }
-    function setWishlist(wishlist) {
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    }
-
-    // Funções para manipular carrinho no localStorage
-    function getCarrinho() {
-      return JSON.parse(localStorage.getItem('carrinho')) || [];
-    }
-    function setCarrinho(carrinho) {
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    }
-
-    // Atualiza visual dos botões de wishlist em toda a página
-    function atualizarBotoesWishlist() {
-      const wishlist = getWishlist();
-      document.querySelectorAll('.btn-wishlist').forEach(btn => {
-        const id = parseInt(btn.dataset.id);
-        if (wishlist.includes(id)) {
-          btn.classList.add('wishlist-ativo');
-          btn.textContent = '♥';
-          btn.setAttribute('aria-pressed', 'true');
-        } else {
-          btn.classList.remove('wishlist-ativo');
-          btn.textContent = '♡';
-          btn.setAttribute('aria-pressed', 'false');
-        }
-      });
-    }
-
-    // Adiciona ou remove da wishlist ao clicar no coração
-    function toggleWishlist(id) {
-      let wishlist = getWishlist();
-      if (wishlist.includes(id)) {
-        wishlist = wishlist.filter(livroId => livroId !== id);
-      } else {
-        wishlist.push(id);
-      }
-      setWishlist(wishlist);
-      atualizarBotoesWishlist();
-      renderWishlist();
-    }
-
-    // Renderiza a wishlist editável
+    // Renderiza wishlist apenas com produtos de produtos.js
     function renderWishlist() {
       const grid = document.querySelector('.wishlist-grid');
       if (!grid) return;
       grid.innerHTML = '';
-      const wishlistIds = getWishlist();
+      const wishlistIds = window.getWishlist ? getWishlist() : [];
       if (wishlistIds.length === 0) {
         grid.innerHTML = `<div class="wishlist-vazia">
           Sua lista de desejos está vazia. Explore o <a href="catalogo.html">catálogo</a> e salve seus livros favoritos!
         </div>`;
         return;
       }
-      livros.forEach(livro => {
-        if (wishlistIds.includes(livro.id)) {
+      wishlistIds.forEach(id => {
+        const livro = window.getProductById ? getProductById(id) : null;
+        if (livro) {
           const card = document.createElement('div');
           card.className = 'wishlist-card';
           card.innerHTML = `
@@ -160,7 +92,7 @@
             <div class="wishlist-info">
               <h3>${livro.titulo}</h3>
               <p class="autor">${livro.autor}</p>
-              <p class="preco">R$ ${livro.preco.toFixed(2).replace('.', ',')}</p>
+              <p class="preco">${formatPriceBRL ? formatPriceBRL(livro.preco) : 'R$ ' + livro.preco.toFixed(2).replace('.', ',')}</p>
               <div class="wishlist-actions">
                 <button class="btn-primary btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
                 <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">♥</button>

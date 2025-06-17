@@ -1,24 +1,31 @@
 // ecommerce-livros/js/carrinho.js
 
-// Dados mockados do carrinho (preço fixo, quantidade variável)
-let carrinho = [
-  {
-    id: 1,
-    titulo: "O Sol é Para Todos",
-    autor: "Harper Lee",
-    preco: 39.90,
-    qtd: 1,
-    imagem: "images/livro1.jpg"
-  },
-  {
-    id: 2,
-    titulo: "1984",
-    autor: "George Orwell",
-    preco: 9.97, // Preço unitário fixo (exemplo: 59.80/6 = 9.97)
-    qtd: 6,
-    imagem: "images/livro2.jpg"
+// Remover array mockado de carrinho e usar produtos.js
+let carrinho = [];
+
+document.write('<script src="js/produtos.js"></script>'); // Garante que produtos.js seja carregado se não estiver no HTML
+
+// Função para obter produto pelo ID usando produtos.js
+function getLivroById(id) {
+  if (typeof getProductById === 'function') {
+    return getProductById(id);
   }
-];
+  return null;
+}
+
+// Função para adicionar ao carrinho pelo ID do produto
+function adicionarAoCarrinho(id) {
+  const livro = getLivroById(id);
+  if (!livro) return;
+  let idx = carrinho.findIndex(item => item.id === id);
+  if (idx > -1) {
+    carrinho[idx].qtd++;
+  } else {
+    carrinho.push({ ...livro, qtd: 1 });
+  }
+  salvarCarrinho();
+  renderCarrinho();
+}
 
 // Salva e carrega do localStorage
 function salvarCarrinho() {
@@ -26,7 +33,20 @@ function salvarCarrinho() {
 }
 function carregarCarrinho() {
   const salvo = localStorage.getItem('carrinho');
-  if (salvo) carrinho = JSON.parse(salvo);
+  if (salvo) {
+    carrinho = JSON.parse(salvo);
+  } else {
+    carrinho = [];
+    salvarCarrinho();
+  }
+}
+
+// Atualiza o contador do carrinho no navbar
+function atualizarContadorCarrinho() {
+  const carrinho = window.getCarrinho ? getCarrinho() : (window.carrinho || []);
+  const total = carrinho.reduce((s, item) => s + (item.qtd || 1), 0);
+  const span = document.getElementById('cart-count');
+  if (span) span.textContent = total;
 }
 
 // Renderiza os itens do carrinho
@@ -73,6 +93,33 @@ function atualizarResumo() {
   document.querySelector('.preco-total').textContent = `R$ ${(subtotal + frete).toFixed(2).replace('.', ',')}`;
 }
 
+// Função para mostrar notificação ao remover produto
+function mostrarNotificacaoCarrinho(msg) {
+  let notif = document.getElementById('notificacao-carrinho');
+  if (!notif) {
+    notif = document.createElement('div');
+    notif.id = 'notificacao-carrinho';
+    notif.className = 'notificacao-carrinho';
+    notif.style.position = 'fixed';
+    notif.style.top = '20px';
+    notif.style.left = '50%';
+    notif.style.transform = 'translateX(-50%)';
+    notif.style.background = 'var(--cor-btn)';
+    notif.style.color = '#fff';
+    notif.style.padding = '0.8em 2em';
+    notif.style.borderRadius = '2em';
+    notif.style.fontSize = '1.1em';
+    notif.style.boxShadow = '0 2px 8px rgba(123,94,87,0.15)';
+    notif.style.zIndex = '1000';
+    document.body.appendChild(notif);
+  }
+  notif.textContent = msg;
+  notif.style.display = 'block';
+  setTimeout(() => {
+    notif.style.display = 'none';
+  }, 1500);
+}
+
 // Eventos dos botões
 document.addEventListener('click', function(e) {
   // Aumentar/diminuir quantidade
@@ -89,9 +136,17 @@ document.addEventListener('click', function(e) {
   if (e.target.classList.contains('btn-remove')) {
     const idx = parseInt(e.target.dataset.idx);
     carrinho.splice(idx, 1);
+    salvarCarrinho();
     renderCarrinho();
+    atualizarContadorCarrinho();
+    mostrarNotificacaoCarrinho('Produto removido do carrinho!');
   }
 });
 
+// Exemplo de integração: adicionar evento global para botões de adicionar ao carrinho
+window.addToCart = adicionarAoCarrinho;
+
 // Inicialização
+carregarCarrinho();
 renderCarrinho();
+atualizarContadorCarrinho();

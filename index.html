@@ -40,6 +40,13 @@
       </div>
     </section>
 
+    <section class="produtos-inicio">
+      <div class="container">
+        <h2>Produtos</h2>
+        <div id="produtos-home" class="livros-grid"></div>
+      </div>
+    </section>
+
     <section class="recomendados">
       <div class="container">
         <h2>Recomendados para você</h2>
@@ -54,27 +61,7 @@
       <div class="container">
         <h2>Destaques da Semana</h2>
         <div class="livros-grid">
-          <div class="livro-card">
-            <img src="images/livro4.jpg" alt="Capa Livro 4">
-            <div class="info">
-              <h3>Dom Casmurro</h3>
-              <p class="autor">Machado de Assis</p>
-              <p class="preco">R$ 19,90</p>
-              <button class="btn-add-carrinho" data-id="4">Adicionar ao Carrinho</button>
-              <button class="btn-wishlist" data-id="4" title="Adicionar à Wishlist">♡</button>
-            </div>
-          </div>
-          <div class="livro-card">
-            <img src="images/livro5.jpg" alt="Capa Livro 5">
-            <div class="info">
-              <h3>Orgulho e Preconceito</h3>
-              <p class="autor">Jane Austen</p>
-              <p class="preco">R$ 34,90</p>
-              <button class="btn-add-carrinho" data-id="5">Adicionar ao Carrinho</button>
-              <button class="btn-wishlist" data-id="5" title="Adicionar à Wishlist">♡</button>
-            </div>
-          </div>
-          <!-- Adicione mais livros conforme necessário -->
+          <!-- Os destaques agora serão carregados dinamicamente -->
         </div>
       </div>
     </section>
@@ -94,151 +81,83 @@
     </div>
   </footer>
 
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/wishlist.js"></script>
   <script src="js/busca.js"></script>
   <script src="js/recomendacoes.js"></script>
   <script>
-    // Exemplo de livros mockados (pode ser substituído por dados reais)
-    const livros = [
-      {
-        id: 1,
-        titulo: "O Sol é Para Todos",
-        autor: "Harper Lee",
-        preco: 39.90,
-        imagem: "images/livro1.jpg"
-      },
-      {
-        id: 2,
-        titulo: "1984",
-        autor: "George Orwell",
-        preco: 29.90,
-        imagem: "images/livro2.jpg"
-      },
-      {
-        id: 3,
-        titulo: "Pequeno Príncipe",
-        autor: "Antoine de Saint-Exupéry",
-        preco: 24.90,
-        imagem: "images/livro3.jpg"
-      },
-      {
-        id: 4,
-        titulo: "Dom Casmurro",
-        autor: "Machado de Assis",
-        preco: 19.90,
-        imagem: "images/livro4.jpg"
-      },
-      {
-        id: 5,
-        titulo: "Orgulho e Preconceito",
-        autor: "Jane Austen",
-        preco: 34.90,
-        imagem: "images/livro5.jpg"
-      }
-    ];
-
-    // Carrinho e wishlist simulados no localStorage
-    function getCarrinho() {
-      return JSON.parse(localStorage.getItem('carrinho')) || [];
-    }
-    function setCarrinho(carrinho) {
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    }
-    function getWishlist() {
-      return JSON.parse(localStorage.getItem('wishlist')) || [];
-    }
-    function setWishlist(wishlist) {
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    // Renderiza apenas os livros presentes em produtos.js
+    function renderProdutosHome() {
+      const grid = document.getElementById('produtos-home');
+      if (!grid) return;
+      grid.innerHTML = '';
+      const produtos = (typeof getAllProducts === 'function') ? getAllProducts() : [];
+      produtos.forEach(produto => {
+        const card = document.createElement('div');
+        card.className = 'livro-card product-card';
+        card.dataset.id = produto.id;
+        card.innerHTML = `
+          <img src="${produto.imagem}" alt="Capa ${produto.titulo}">
+          <div class="info">
+            <h3>${produto.titulo}</h3>
+            <p class="autor">${produto.autor}</p>
+            <p class="preco">${formatPriceBRL(produto.preco)}</p>
+            <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
+            <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist">♡</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      inicializarBotoesProdutosHome();
     }
 
-    // Atualiza contador do carrinho
-    function atualizarContadorCarrinho() {
-      const carrinho = getCarrinho();
-      const total = carrinho.reduce((s, item) => s + item.qtd, 0);
-      const span = document.getElementById('cart-count');
-      if (span) span.textContent = total;
-    }
-
-    // Adiciona ao carrinho
-    function adicionarAoCarrinho(id) {
-      let carrinho = getCarrinho();
-      const livro = livros.find(l => l.id === id);
-      const idx = carrinho.findIndex(item => item.id === id);
-      if (idx > -1) {
-        carrinho[idx].qtd++;
-      } else {
-        carrinho.push({ ...livro, qtd: 1 });
-      }
-      setCarrinho(carrinho);
-      atualizarContadorCarrinho();
-      alert('Livro adicionado ao carrinho!');
-    }
-
-    // Adiciona à wishlist
-    function adicionarWishlist(id, btn) {
-      let wishlist = getWishlist();
-      if (!wishlist.includes(id)) {
-        wishlist.push(id);
-        setWishlist(wishlist);
-        btn.classList.add('wishlist-ativo');
-        btn.textContent = '♥';
-        alert('Livro adicionado à Wishlist!');
-      } else {
-        wishlist = wishlist.filter(livroId => livroId !== id);
-        setWishlist(wishlist);
-        btn.classList.remove('wishlist-ativo');
-        btn.textContent = '♡';
-        alert('Livro removido da Wishlist!');
-      }
-    }
-
-    // Inicializa botões dos cards
-    function inicializarBotoesLivros() {
+    // Corrige inicialização dos botões para garantir funcionamento correto
+    function inicializarBotoesProdutosHome() {
       document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
-        btn.onclick = function() {
-          const id = parseInt(this.dataset.id);
-          adicionarAoCarrinho(id);
+        btn.onclick = function(e) {
+          e.preventDefault();
+          let id = this.dataset.id || (this.closest('.product-card') && this.closest('.product-card').dataset.id);
+          id = parseInt(id);
+          if (!isNaN(id)) {
+            addToCart(id);
+            atualizarContadorCarrinho();
+          }
         };
       });
       document.querySelectorAll('.btn-wishlist').forEach(btn => {
-        btn.onclick = function() {
-          const id = parseInt(this.dataset.id);
-          adicionarWishlist(id, this);
+        btn.onclick = function(e) {
+          e.preventDefault();
+          let id = this.dataset.id || (this.closest('.product-card') && this.closest('.product-card').dataset.id);
+          id = parseInt(id);
+          if (!isNaN(id)) {
+            toggleWishlist(id);
+          }
         };
         // Estado visual inicial
-        const id = parseInt(btn.dataset.id);
-        if (getWishlist().includes(id)) {
+        let id = btn.dataset.id || (btn.closest('.product-card') && btn.closest('.product-card').dataset.id);
+        id = parseInt(id);
+        if (!isNaN(id) && window.getWishlist && getWishlist().includes(id)) {
           btn.classList.add('wishlist-ativo');
           btn.textContent = '♥';
         }
       });
     }
 
-    // Exemplo de renderização dinâmica dos cards (opcional)
-    function renderLivrosHome() {
-      const grid = document.querySelector('.livros-grid');
-      if (!grid) return;
-      grid.innerHTML = '';
-      livros.forEach(livro => {
-        const card = document.createElement('div');
-        card.className = 'livro-card';
-        card.innerHTML = `
-          <img src="${livro.imagem}" alt="Capa ${livro.titulo}">
-          <div class="info">
-            <h3>${livro.titulo}</h3>
-            <p class="autor">${livro.autor}</p>
-            <p class="preco">R$ ${livro.preco.toFixed(2).replace('.', ',')}</p>
-            <button class="btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
-            <button class="btn-wishlist" data-id="${livro.id}" title="Adicionar à Wishlist">♡</button>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+    // Atualiza contador do carrinho
+    function atualizarContadorCarrinho() {
+      if (!window.getCarrinho) return;
+      const carrinho = getCarrinho();
+      const total = carrinho.reduce((s, item) => s + (item.qtd || 1), 0);
+      const span = document.getElementById('cart-count');
+      if (span) span.textContent = total;
     }
 
-    // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
-      renderLivrosHome(); // Se quiser renderização dinâmica
-      inicializarBotoesLivros();
+      // Remove todos os cards fixos da seção destaques da semana
+      const destaquesGrid = document.querySelector('.destaques-semana .livros-grid');
+      if (destaquesGrid) destaquesGrid.innerHTML = '';
+      renderProdutosHome();
       atualizarContadorCarrinho();
     });
   </script>

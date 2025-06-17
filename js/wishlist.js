@@ -2,45 +2,16 @@
 
 const wishlist = [];
 
-// Exemplo de livros mockados (adicione novos livros conforme necessário)
-const livros = [
-  {
-    id: 1,
-    titulo: "O Sol é Para Todos",
-    autor: "Harper Lee",
-    preco: 39.90,
-    imagem: "images/livro1.jpg"
-  },
-  {
-    id: 2,
-    titulo: "1984",
-    autor: "George Orwell",
-    preco: 29.90,
-    imagem: "images/livro2.jpg"
-  },
-  {
-    id: 3,
-    titulo: "Pequeno Príncipe",
-    autor: "Antoine de Saint-Exupéry",
-    preco: 24.90,
-    imagem: "images/livro3.jpg"
-  },
-  {
-    id: 4,
-    titulo: "Dom Casmurro",
-    autor: "Machado de Assis",
-    preco: 19.90,
-    imagem: "images/livro4.jpg"
-  },
-  {
-    id: 5,
-    titulo: "Orgulho e Preconceito",
-    autor: "Jane Austen",
-    preco: 34.90,
-    imagem: "images/livro5.jpg"
+// Remover array mockado de livros e usar produtos.js
+document.write('<script src="js/produtos.js"></script>'); // Garante que produtos.js seja carregado se não estiver no HTML
+
+// Função para obter produto pelo ID usando produtos.js
+function getLivroById(id) {
+  if (typeof getProductById === 'function') {
+    return getProductById(id);
   }
-  // Adicione mais livros aqui conforme necessário
-];
+  return null;
+}
 
 // Funções para manipular wishlist no localStorage
 function getWishlist() {
@@ -118,8 +89,9 @@ function renderWishlist() {
     </div>`;
     return;
   }
-  livros.forEach(livro => {
-    if (wishlistIds.includes(livro.id)) {
+  wishlistIds.forEach(id => {
+    const livro = getLivroById(id);
+    if (livro) {
       const card = document.createElement('div');
       card.className = 'wishlist-card';
       card.innerHTML = `
@@ -127,7 +99,7 @@ function renderWishlist() {
         <div class="wishlist-info">
           <h3>${livro.titulo}</h3>
           <p class="autor">${livro.autor}</p>
-          <p class="preco">R$ ${livro.preco.toFixed(2).replace('.', ',')}</p>
+          <p class="preco">${formatPriceBRL(livro.preco)}</p>
           <div class="wishlist-actions">
             <button class="btn-primary btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
             <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">♥</button>
@@ -163,7 +135,8 @@ function inicializarBotoesAddCarrinho() {
 
 // Adiciona livro ao carrinho e remove da wishlist
 function adicionarAoCarrinho(id) {
-  const livro = livros.find(l => l.id === id);
+  const livro = getLivroById(id);
+  if (!livro) return;
   let carrinho = getCarrinho();
   const idx = carrinho.findIndex(item => item.id === id);
   if (idx > -1) {

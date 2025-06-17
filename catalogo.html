@@ -85,38 +85,7 @@
         <section class="catalogo-lista">
           <h2>Catálogo de Livros</h2>
           <div class="livros-grid" id="livrosGrid">
-            <!-- Cards de livros via JS ou HTML -->
-            <div class="livro-card">
-              <img src="images/livro1.jpg" alt="Capa Livro 1">
-              <div class="info">
-                <h3>O Sol é Para Todos</h3>
-                <p class="autor">Harper Lee</p>
-                <p class="preco">R$ 39,90</p>
-                <div class="avaliacao-card">★★★★★</div>
-                <button class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
-              </div>
-            </div>
-            <div class="livro-card">
-              <img src="images/livro2.jpg" alt="Capa Livro 2">
-              <div class="info">
-                <h3>1984</h3>
-                <p class="autor">George Orwell</p>
-                <p class="preco">R$ 29,90</p>
-                <div class="avaliacao-card">★★★★☆</div>
-                <button class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
-              </div>
-            </div>
-            <div class="livro-card">
-              <img src="images/livro3.jpg" alt="Capa Livro 3">
-              <div class="info">
-                <h3>Pequeno Príncipe</h3>
-                <p class="autor">Antoine de Saint-Exupéry</p>
-                <p class="preco">R$ 24,90</p>
-                <div class="avaliacao-card">★★★★★</div>
-                <button class="btn-wishlist" title="Adicionar à Wishlist">♡</button>
-              </div>
-            </div>
-            <!-- ...mais cards -->
+            <!-- Cards de livros renderizados dinamicamente -->
           </div>
         </section>
       </div>
@@ -128,5 +97,50 @@
       <p>&copy; 2025 Livraria StoreBooks. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <script src="js/produtos.js"></script>
+  <script>
+    // Renderização dinâmica do catálogo apenas com produtos de produtos.js
+    function renderCatalogo() {
+      const grid = document.getElementById('livrosGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      const produtos = (typeof getAllProducts === 'function') ? getAllProducts() : [];
+      produtos.forEach(produto => {
+        const card = document.createElement('div');
+        card.className = 'livro-card product-card';
+        card.dataset.id = produto.id;
+        card.innerHTML = `
+          <img src="${produto.imagem}" alt="Capa ${produto.titulo}">
+          <div class="info">
+            <h3>${produto.titulo}</h3>
+            <p class="autor">${produto.autor}</p>
+            <p class="preco">${formatPriceBRL ? formatPriceBRL(produto.preco) : 'R$ ' + produto.preco.toFixed(2).replace('.', ',')}</p>
+            <div class="avaliacao-card">${'★'.repeat(Math.round(produto.avaliacao))}${'☆'.repeat(5-Math.round(produto.avaliacao))}</div>
+            <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist">♡</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      inicializarBotoesCatalogo();
+    }
+    function inicializarBotoesCatalogo() {
+      document.querySelectorAll('.btn-wishlist').forEach(btn => {
+        btn.onclick = function() {
+          const id = parseInt(this.closest('.product-card').dataset.id);
+          if (!isNaN(id) && window.toggleWishlist) toggleWishlist(id);
+        };
+        // Estado visual inicial
+        const id = parseInt(btn.closest('.product-card').dataset.id);
+        if (!isNaN(id) && window.getWishlist && getWishlist().includes(id)) {
+          btn.classList.add('wishlist-ativo');
+          btn.textContent = '♥';
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCatalogo();
+    });
+  </script>
 </body>
 </html>
