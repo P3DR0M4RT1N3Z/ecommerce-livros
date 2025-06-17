@@ -46,8 +46,8 @@ function atualizarBotoesWishlist() {
   });
 }
 
-// Função para mostrar notificação no topo central
-function mostrarNotificacao(mensagem) {
+// Notificação padrão para qualquer ação (wishlist ou carrinho)
+function mostrarNotificacaoPadrao(mensagem) {
   let notif = document.getElementById('notificacao-wishlist');
   if (!notif) {
     notif = document.createElement('div');
@@ -57,8 +57,12 @@ function mostrarNotificacao(mensagem) {
   }
   notif.textContent = mensagem;
   notif.style.display = 'block';
+  notif.classList.remove('fadeInOut');
+  void notif.offsetWidth;
+  notif.classList.add('fadeInOut');
   setTimeout(() => {
     notif.style.display = 'none';
+    notif.classList.remove('fadeInOut');
   }, 1800);
 }
 
@@ -67,10 +71,10 @@ function toggleWishlist(id) {
   let wishlist = getWishlist();
   if (wishlist.includes(id)) {
     wishlist = wishlist.filter(livroId => livroId !== id);
-    mostrarNotificacao('Removido da wishlist!');
+    mostrarNotificacaoPadrao('Removido da wishlist!');
   } else {
     wishlist.push(id);
-    mostrarNotificacao('Adicionado à wishlist!');
+    mostrarNotificacaoPadrao('Adicionado à wishlist!');
   }
   setWishlist(wishlist);
   atualizarBotoesWishlist();
@@ -153,7 +157,7 @@ function adicionarAoCarrinho(id) {
     atualizarBotoesWishlist();
     renderWishlist();
   }
-  alert('Livro adicionado ao carrinho!');
+  mostrarNotificacaoPadrao('Livro adicionado ao carrinho!');
 }
 
 // Inicialização

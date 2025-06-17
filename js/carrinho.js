@@ -93,31 +93,11 @@ function atualizarResumo() {
   document.querySelector('.preco-total').textContent = `R$ ${(subtotal + frete).toFixed(2).replace('.', ',')}`;
 }
 
-// Função para mostrar notificação ao remover produto
-function mostrarNotificacaoCarrinho(msg) {
-  let notif = document.getElementById('notificacao-carrinho');
-  if (!notif) {
-    notif = document.createElement('div');
-    notif.id = 'notificacao-carrinho';
-    notif.className = 'notificacao-carrinho';
-    notif.style.position = 'fixed';
-    notif.style.top = '20px';
-    notif.style.left = '50%';
-    notif.style.transform = 'translateX(-50%)';
-    notif.style.background = 'var(--cor-btn)';
-    notif.style.color = '#fff';
-    notif.style.padding = '0.8em 2em';
-    notif.style.borderRadius = '2em';
-    notif.style.fontSize = '1.1em';
-    notif.style.boxShadow = '0 2px 8px rgba(123,94,87,0.15)';
-    notif.style.zIndex = '1000';
-    document.body.appendChild(notif);
+// Substitui a notificação do carrinho para usar a padrão
+function mostrarNotificacaoCarrinho(msg = 'Produto adicionado ao carrinho!') {
+  if (window.mostrarNotificacaoPadrao) {
+    mostrarNotificacaoPadrao(msg);
   }
-  notif.textContent = msg;
-  notif.style.display = 'block';
-  setTimeout(() => {
-    notif.style.display = 'none';
-  }, 1500);
 }
 
 // Eventos dos botões

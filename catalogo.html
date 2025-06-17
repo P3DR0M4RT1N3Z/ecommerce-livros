@@ -92,6 +92,8 @@
     </section>
   </main>
 
+  <div id="notificacao-carrinho" class="notificacao-wishlist" style="display:none;">Produto adicionado ao carrinho!</div>
+
   <footer>
     <div class="container">
       <p>&copy; 2025 Livraria StoreBooks. Todos os direitos reservados.</p>
@@ -99,6 +101,8 @@
   </footer>
 
   <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/wishlist.js"></script>
   <script>
     // Renderização dinâmica do catálogo apenas com produtos de produtos.js
     function renderCatalogo() {
@@ -117,6 +121,7 @@
             <p class="autor">${produto.autor}</p>
             <p class="preco">${formatPriceBRL ? formatPriceBRL(produto.preco) : 'R$ ' + produto.preco.toFixed(2).replace('.', ',')}</p>
             <div class="avaliacao-card">${'★'.repeat(Math.round(produto.avaliacao))}${'☆'.repeat(5-Math.round(produto.avaliacao))}</div>
+            <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
             <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist">♡</button>
           </div>
         `;
@@ -125,13 +130,27 @@
       inicializarBotoesCatalogo();
     }
     function inicializarBotoesCatalogo() {
+      document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
+        btn.onclick = function(e) {
+          e.preventDefault();
+          const id = parseInt(this.dataset.id);
+          if (!isNaN(id) && window.adicionarAoCarrinho) {
+            adicionarAoCarrinho(id);
+            if (window.mostrarNotificacaoPadrao) mostrarNotificacaoPadrao('Produto adicionado ao carrinho!');
+            if (window.atualizarContadorCarrinho) atualizarContadorCarrinho();
+          }
+        };
+      });
       document.querySelectorAll('.btn-wishlist').forEach(btn => {
-        btn.onclick = function() {
-          const id = parseInt(this.closest('.product-card').dataset.id);
-          if (!isNaN(id) && window.toggleWishlist) toggleWishlist(id);
+        btn.onclick = function(e) {
+          e.preventDefault();
+          const id = parseInt(this.dataset.id);
+          if (!isNaN(id) && window.toggleWishlist) {
+            toggleWishlist(id);
+          }
         };
         // Estado visual inicial
-        const id = parseInt(btn.closest('.product-card').dataset.id);
+        const id = parseInt(btn.dataset.id);
         if (!isNaN(id) && window.getWishlist && getWishlist().includes(id)) {
           btn.classList.add('wishlist-ativo');
           btn.textContent = '♥';
@@ -140,6 +159,7 @@
     }
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalogo();
+      if (window.atualizarContadorCarrinho) atualizarContadorCarrinho();
     });
   </script>
 </body>

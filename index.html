@@ -107,148 +107,62 @@
   <script src="js/busca.js"></script>
   <script src="js/recomendacoes.js"></script>
   <script>
-    // Exemplo de livros mockados (pode ser substituído por dados reais)
-    const livros = [
-      {
-        id: 1,
-        titulo: "O Sol é Para Todos",
-        autor: "Harper Lee",
-        preco: 39.90,
-        imagem: "images/livro1.jpg"
-      },
-      {
-        id: 2,
-        titulo: "1984",
-        autor: "George Orwell",
-        preco: 29.90,
-        imagem: "images/livro2.jpg"
-      },
-      {
-        id: 3,
-        titulo: "Pequeno Príncipe",
-        autor: "Antoine de Saint-Exupéry",
-        preco: 24.90,
-        imagem: "images/livro3.jpg"
-      },
-      {
-        id: 4,
-        titulo: "Dom Casmurro",
-        autor: "Machado de Assis",
-        preco: 19.90,
-        imagem: "images/livro4.jpg"
-      },
-      {
-        id: 5,
-        titulo: "Orgulho e Preconceito",
-        autor: "Jane Austen",
-        preco: 34.90,
-        imagem: "images/livro5.jpg"
-      }
-    ];
-
-    // Carrinho e wishlist simulados no localStorage
-    function getCarrinho() {
-      return JSON.parse(localStorage.getItem('carrinho')) || [];
-    }
-    function setCarrinho(carrinho) {
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    }
-    function getWishlist() {
-      return JSON.parse(localStorage.getItem('wishlist')) || [];
-    }
-    function setWishlist(wishlist) {
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    // Renderiza os produtos na seção inicial usando produtos.js
+    function renderProdutosHome() {
+      const container = document.getElementById('produtos-home');
+      if (!container || typeof getAllProducts !== 'function' || typeof generateProductCardHTML !== 'function') return;
+      const produtos = getAllProducts();
+      container.innerHTML = produtos.map(produto => {
+        return `
+          <div class="product-card" data-id="${produto.id}">
+            <img src="${produto.imagem}" alt="${produto.titulo}" class="product-image">
+            <h3>${produto.titulo}</h3>
+            <p class="author">${produto.autor}</p>
+            <p class="price">${formatPriceBRL(produto.preco)}</p>
+            <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
+            <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist">♡</button>
+          </div>
+        `;
+      }).join('');
+      inicializarBotoesProdutosHome();
+      atualizarBotoesWishlist && atualizarBotoesWishlist();
     }
 
-    // Atualiza contador do carrinho
-    function atualizarContadorCarrinho() {
-      const carrinho = getCarrinho();
-      const total = carrinho.reduce((s, item) => s + item.qtd, 0);
-      const span = document.getElementById('cart-count');
-      if (span) span.textContent = total;
-    }
-
-    // Adiciona ao carrinho
-    function adicionarAoCarrinho(id) {
-      let carrinho = getCarrinho();
-      const livro = livros.find(l => l.id === id);
-      const idx = carrinho.findIndex(item => item.id === id);
-      if (idx > -1) {
-        carrinho[idx].qtd++;
-      } else {
-        carrinho.push({ ...livro, qtd: 1 });
-      }
-      setCarrinho(carrinho);
-      atualizarContadorCarrinho();
-      alert('Livro adicionado ao carrinho!');
-    }
-
-    // Adiciona à wishlist
-    function adicionarWishlist(id, btn) {
-      let wishlist = getWishlist();
-      if (!wishlist.includes(id)) {
-        wishlist.push(id);
-        setWishlist(wishlist);
-        btn.classList.add('wishlist-ativo');
-        btn.textContent = '♥';
-        alert('Livro adicionado à Wishlist!');
-      } else {
-        wishlist = wishlist.filter(livroId => livroId !== id);
-        setWishlist(wishlist);
-        btn.classList.remove('wishlist-ativo');
-        btn.textContent = '♡';
-        alert('Livro removido da Wishlist!');
-      }
-    }
-
-    // Corrige inicialização dos botões para garantir funcionamento correto
+    // Inicializa os botões dos cards de produto
     function inicializarBotoesProdutosHome() {
       document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
         btn.onclick = function(e) {
           e.preventDefault();
-          let id = this.dataset.id || (this.closest('.product-card') && this.closest('.product-card').dataset.id);
-          id = parseInt(id);
+          const id = parseInt(this.dataset.id);
           if (!isNaN(id)) {
-            addToCart(id);
+            adicionarAoCarrinho(id);
             atualizarContadorCarrinho();
+            mostrarNotificacaoCarrinho();
           }
         };
       });
       document.querySelectorAll('.btn-wishlist').forEach(btn => {
         btn.onclick = function(e) {
           e.preventDefault();
-          let id = this.dataset.id || (this.closest('.product-card') && this.closest('.product-card').dataset.id);
-          id = parseInt(id);
+          const id = parseInt(this.dataset.id);
           if (!isNaN(id)) {
             toggleWishlist(id);
           }
         };
-        // Estado visual inicial
-        let id = btn.dataset.id || (btn.closest('.product-card') && btn.closest('.product-card').dataset.id);
-        id = parseInt(id);
-        if (!isNaN(id) && window.getWishlist && getWishlist().includes(id)) {
-          btn.classList.add('wishlist-ativo');
-          btn.textContent = '♥';
-        }
       });
     }
 
-    // Atualiza contador do carrinho
-    function atualizarContadorCarrinho() {
-      if (!window.getCarrinho) return;
-      const carrinho = getCarrinho();
-      const total = carrinho.reduce((s, item) => s + (item.qtd || 1), 0);
-      const span = document.getElementById('cart-count');
-      if (span) span.textContent = total;
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
-      // Remove todos os cards fixos da seção destaques da semana
-      const destaquesGrid = document.querySelector('.destaques-semana .livros-grid');
-      if (destaquesGrid) destaquesGrid.innerHTML = '';
       renderProdutosHome();
-      atualizarContadorCarrinho();
+      atualizarContadorCarrinho && atualizarContadorCarrinho();
     });
+
+    // Substitui a notificação do carrinho para usar a padrão
+    function mostrarNotificacaoCarrinho(msg = 'Produto adicionado ao carrinho!') {
+      if (window.mostrarNotificacaoPadrao) {
+        mostrarNotificacaoPadrao(msg);
+      }
+    }
   </script>
 </body>
 </html>
