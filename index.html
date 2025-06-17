@@ -122,7 +122,9 @@
             <p class="author">${produto.autor}</p>
             <p class="price">${formatPriceBRL(produto.preco)}</p>
             <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
-            <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist">♡</button>
+            <div style="width:100%;display:flex;justify-content:center;position:relative;">
+              <button class="btn-wishlist btn-estrela" data-id="${produto.id}" title="Adicionar à Wishlist" aria-label="Favoritar">★</button>
+            </div>
           </div>
         `;
       }).join('');
