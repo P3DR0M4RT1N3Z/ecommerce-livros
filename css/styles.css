@@ -1664,6 +1664,63 @@ section {
   }
 }
 
+/* Estilo do modal de cadastro */
+#modal-cadastro {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+#modal-cadastro .g_id_signin {
+  width: 100% !important;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+}
+#modal-cadastro input[type="text"],
+#modal-cadastro input[type="email"] {
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.7em;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+}
+#modal-cadastro button[type="submit"] {
+  width: 100%;
+  margin-bottom: 1em;
+}
+#modal-cadastro #foto-perfil {
+  display: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 1em;
+  object-fit: cover;
+}
+#modal-cadastro h2 {
+  margin-bottom: 1.2em;
+}
+#modal-cadastro p {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 1em;
+}
+#fechar-modal-cadastro {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 /* ...existing code... */
 
 @media (max-width: 700px) {

@@ -56,36 +56,6 @@
       </div>
     </section>
 
-    <!-- Destaques da semana -->
-    <section class="destaques-semana">
-      <div class="container">
-        <h2>Destaques da Semana</h2>
-        <div class="livros-grid">
-          <div class="livro-card">
-            <img src="images/livro4.jpg" alt="Capa Livro 4">
-            <div class="info">
-              <h3>Dom Casmurro</h3>
-              <p class="autor">Machado de Assis</p>
-              <p class="preco">R$ 19,90</p>
-              <button class="btn-add-carrinho" data-id="4">Adicionar ao Carrinho</button>
-              <button class="btn-wishlist" data-id="4" title="Adicionar à Wishlist">♡</button>
-            </div>
-          </div>
-          <div class="livro-card">
-            <img src="images/livro5.jpg" alt="Capa Livro 5">
-            <div class="info">
-              <h3>Orgulho e Preconceito</h3>
-              <p class="autor">Jane Austen</p>
-              <p class="preco">R$ 34,90</p>
-              <button class="btn-add-carrinho" data-id="5">Adicionar ao Carrinho</button>
-              <button class="btn-wishlist" data-id="5" title="Adicionar à Wishlist">♡</button>
-            </div>
-          </div>
-          <!-- Adicione mais livros conforme necessário -->
-        </div>
-      </div>
-    </section>
-
     <section class="surprise-box">
       <div class="container">
         <h2>Caixa Surpresa Literária</h2>
@@ -101,6 +71,38 @@
     </div>
   </footer>
 
+  <!-- Modal de Cadastro -->
+  <div id="modal-cadastro" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;padding:2.5rem 2rem 2rem 2rem;border-radius:1.2em;max-width:350px;width:90%;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
+      <button id="fechar-modal-cadastro" style="position:absolute;top:10px;right:10px;background:none;border:none;font-size:1.5em;cursor:pointer;">&times;</button>
+      <h2 style="margin-bottom:1.2em;">Crie seu perfil</h2>
+      <form id="form-cadastro">
+        <img id="foto-perfil" src="" alt="Foto de perfil" style="display:none;width:60px;height:60px;border-radius:50%;margin-bottom:1em;object-fit:cover;"/>
+        <input id="nome" name="nome" type="text" placeholder="Nome completo" required style="width:100%;margin-bottom:1em;padding:0.7em;border-radius:0.5em;border:1px solid #ccc;" />
+        <input id="email" name="email" type="email" placeholder="E-mail" required style="width:100%;margin-bottom:1em;padding:0.7em;border-radius:0.5em;border:1px solid #ccc;" />
+        <button type="submit" class="btn-primary" style="width:100%;margin-bottom:1em;">Cadastrar</button>
+      </form>
+      <div id="g_id_onload"
+        data-client_id="261470842192-c23o3p2n6fvptcg7kd3q6u4n284ki7hq.apps.googleusercontent.com"
+        data-context="signup"
+        data-callback="handleCredentialResponse"
+        data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signup_with"
+        data-size="large"
+        data-logo_alignment="left">
+      </div>
+      <p style="font-size:0.9em;color:#888;margin-top:1em;">Seus dados são usados apenas para criar seu perfil.</p>
+    </div>
+  </div>
+  <!-- Fim Modal de Cadastro -->
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/cadastro-modal.js"></script>
   <script src="js/produtos.js"></script>
   <script src="js/carrinho.js"></script>
   <script src="js/wishlist.js"></script>
