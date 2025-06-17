@@ -274,60 +274,91 @@ section {
 /* Grid de livros */
 .livros-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 2rem;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-top: 1.2rem;
 }
 
 /* Estilo do card do livro */
-.livro-card {
-  background: var(--cor-card);
-  border-radius: 1.2rem;
-  box-shadow: var(--sombra);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  position: relative;
+.livro-card, .product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 200px;
+  min-width: 0;
+  padding: 0.6em 0.6em 1.2em 0.6em;
+  font-size: 1em;
+  height: auto;
+  min-height: 340px;
+  background: var(--cor-card);
+  border-radius: 1.2em;
+  box-shadow: var(--sombra);
+  overflow: visible;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+  animation: destaqueFadeIn 0.7s cubic-bezier(.39,.58,.57,1) both;
+}
+
+.livro-card:hover, .product-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 32px rgba(123,94,87,0.18);
+  z-index: 2;
+}
+
+@keyframes destaqueFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.livro-card img, .product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain; /* Alterado de cover para contain */
+  background: #f5f5f5; /* Fundo neutro para imagens menores */
+  border-radius: 0.7em 0.7em 0 0;
+  flex-shrink: 0;
+  margin-bottom: 0.5em;
+  box-shadow: 0 2px 8px rgba(123,94,87,0.07);
+}
+
+.livro-card .info, .product-card .info {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.4em 0.4em 0 0.4em;
+}
+
+.livro-card .info h3, .product-card .info h3 {
+  font-size: 1em;
+  margin: 0.1em 0 0.2em 0;
+  font-weight: bold;
+  color: var(--cor-primaria);
+  line-height: 1.1;
+}
+
+.livro-card .info p, .product-card .info p {
+  font-size: 0.85em;
+  margin: 0 0 0.1em 0;
+  color: var(--cor-texto);
+}
+
+.livro-card .btn-add-carrinho, .livro-card .btn-wishlist,
+.product-card .btn-add-carrinho, .product-card .btn-wishlist {
+  margin-top: 0.4em;
 }
 
 .livro-card:hover {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 6px 24px rgba(123,94,87,0.13);
-}
-
-.livro-card img {
-  width: 100%;
-  max-width: 160px;
-  margin: 1.2rem auto 0.5rem auto;
-  border-radius: 0.7rem;
-  box-shadow: 0 2px 8px rgba(123,94,87,0.10);
-}
-
-.livro-card .info {
-  padding: 1rem;
-  text-align: center;
-}
-
-.livro-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  color: var(--cor-primaria);
-  margin-bottom: 0.3rem;
-}
-
-.livro-card .autor {
-  font-size: 0.95em;
-  color: #888;
-  margin-bottom: 0.5rem;
-}
-
-.livro-card .preco {
-  font-size: 1.1em;
-  color: var(--cor-destaque);
-  font-weight: bold;
-  margin-bottom: 0.7rem;
 }
 
 .avaliacao-card {
@@ -370,6 +401,33 @@ section {
   background: var(--cor-destaque);
   color: #fff;
   border-color: var(--cor-destaque);
+}
+
+.btn-wishlist.btn-estrela {
+  border: none;
+  background: none;
+  color: #ffd700;
+  font-size: 2em;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.15s;
+}
+
+.btn-wishlist.btn-estrela.wishlist-ativo {
+  color: #ffb300;
+  text-shadow: 0 0 6px #ffd70099;
+}
+
+.btn-wishlist.btn-estrela:hover,
+.btn-wishlist.btn-estrela:focus {
+  color: #ffb300;
+  transform: scale(1.15);
 }
 
 /* Botão de adicionar ao carrinho estilizado */
@@ -1701,4 +1759,38 @@ section {
 .menu-filtros-btn svg, .menu-filtros-btn span {
   font-size: 1.3em;
   vertical-align: middle;
+}
+
+/* Padroniza os botões dos cards de produtos */
+.livro-card .btn-add-carrinho,
+.livro-card .btn-wishlist,
+.product-card .btn-add-carrinho,
+.product-card .btn-wishlist {
+  display: inline-block;
+  padding: 0.5em 1.1em;
+  border-radius: 2em;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  font-size: 0.95em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  border: none;
+  margin: 0.2em 0.2em 0 0;
+}
+.livro-card .btn-add-carrinho, .product-card .btn-add-carrinho {
+  background: var(--cor-btn);
+  color: #fff;
+}
+.livro-card .btn-add-carrinho:hover, .product-card .btn-add-carrinho:hover {
+  background: var(--cor-btn-hover);
+}
+.livro-card .btn-wishlist, .product-card .btn-wishlist {
+  background: var(--cor-card);
+  color: var(--cor-wishlist);
+  border: 2px solid var(--cor-wishlist);
+}
+.livro-card .btn-wishlist:hover, .product-card .btn-wishlist:hover {
+  background: var(--cor-wishlist);
+  color: #fff;
 }

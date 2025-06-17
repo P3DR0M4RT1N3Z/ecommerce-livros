@@ -36,11 +36,19 @@ function atualizarBotoesWishlist() {
     const id = parseInt(btn.dataset.id);
     if (wishlist.includes(id)) {
       btn.classList.add('wishlist-ativo');
-      btn.textContent = '♥';
+      if (btn.classList.contains('btn-estrela')) {
+        btn.textContent = '★';
+      } else {
+        btn.textContent = '♥';
+      }
       btn.setAttribute('aria-pressed', 'true');
     } else {
       btn.classList.remove('wishlist-ativo');
-      btn.textContent = '♡';
+      if (btn.classList.contains('btn-estrela')) {
+        btn.textContent = '☆';
+      } else {
+        btn.textContent = '♡';
+      }
       btn.setAttribute('aria-pressed', 'false');
     }
   });

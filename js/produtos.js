@@ -80,12 +80,14 @@ function formatPriceBRL(price) {
 function generateProductCardHTML(product) {
   return `
     <div class="product-card" data-id="${product.id}">
+      <button class="btn-wishlist btn-estrela" data-id="${product.id}" title="Adicionar à Wishlist" aria-label="Favoritar" style="position:absolute;top:0.7em;right:0.7em;z-index:3;">
+        ★
+      </button>
       <img src="${product.imagem}" alt="${product.titulo}" class="product-image">
       <h3>${product.titulo}</h3>
       <p class="author">${product.autor}</p>
       <p class="price">${formatPriceBRL(product.preco)}</p>
       <button onclick="addToCart(${product.id})">Adicionar ao Carrinho</button>
-      <button onclick="addToWishlist(${product.id})">❤ Wishlist</button>
     </div>
   `;
 }
@@ -96,3 +98,8 @@ window.getProductById = getProductById;
 window.filterProducts = filterProducts;
 window.formatPriceBRL = formatPriceBRL;
 window.generateProductCardHTML = generateProductCardHTML;
+
+// Após renderizar os produtos, inicializar eventos dos botões wishlist
+if (typeof inicializarBotoesWishlist === 'function') {
+  setTimeout(() => inicializarBotoesWishlist(), 0);
+}
