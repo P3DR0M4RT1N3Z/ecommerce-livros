@@ -19,18 +19,21 @@
           <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <form class="search-bar" autocomplete="off">
-        <input type="text" id="search-input" placeholder="Buscar livros, autores, gêneros...">
-        <button type="submit">🔍</button>
-        <ul id="suggestions"></ul>
-      </form>
     </div>
   </header>
+
+  <!-- Balão de filtro fixo no navbar do catálogo (desktop e mobile) -->
+  <div id="balao-filtro" class="filtro-balao-navbar" style="display:none; position:sticky; top:0; z-index:1002;"></div>
 
   <main>
     <section class="catalogo-section">
       <div class="container catalogo-flex">
+        <!-- Botão menu sanduíche para filtros (mobile) -->
+        <button type="button" class="menu-filtros-btn" id="abrirFiltros" aria-label="Abrir filtros">
+          ☰ Filtros
+        </button>
         <aside class="filtros" id="filtros">
+          <button type="button" id="fecharFiltros" aria-label="Fechar filtros" style="display:none;position:absolute;top:1.2em;right:1.2em;font-size:2em;background:none;border:none;color:var(--cor-primaria);z-index:1003;">&times;</button>
           <h2>Filtros</h2>
           <form id="filtros-form">
             <div class="filtro-grupo">
@@ -142,18 +145,90 @@
       inicializarBotoesCatalogo();
     }
 
+    // Exibe/esconde filtros no mobile
+    function checarMenuFiltros() {
+      const btn = document.getElementById('abrirFiltros');
+      const filtros = document.getElementById('filtros');
+      if (window.innerWidth <= 700) {
+        btn.style.display = 'flex';
+        filtros.classList.remove('aberto');
+      } else {
+        btn.style.display = 'none';
+        filtros.classList.remove('aberto');
+      }
+    }
+    window.addEventListener('resize', checarMenuFiltros);
+    document.addEventListener('DOMContentLoaded', checarMenuFiltros);
+    document.getElementById('abrirFiltros').onclick = function() {
+      const filtrosAside = document.getElementById('filtros');
+      filtrosAside.classList.toggle('aberto');
+      // Sempre que abrir, garante display:block
+      if (filtrosAside.classList.contains('aberto')) {
+        filtrosAside.style.display = 'block';
+      } else {
+        filtrosAside.style.display = 'none';
+      }
+    };
+    // Ativa botão X para fechar filtros (mobile)
+    function ativarFecharFiltros() {
+      const fecharBtn = document.getElementById('fecharFiltros');
+      if (!fecharBtn) return;
+      fecharBtn.style.display = window.innerWidth <= 700 ? 'block' : 'none';
+      fecharBtn.onclick = function() {
+        document.getElementById('filtros').classList.remove('aberto');
+        document.getElementById('filtros').style.display = 'none';
+      };
+    }
+    window.addEventListener('resize', ativarFecharFiltros);
+    document.addEventListener('DOMContentLoaded', ativarFecharFiltros);
+
+    // Fecha filtros ao filtrar (mobile)
     document.getElementById('filtros-form').onsubmit = function(e) {
       e.preventDefault();
       if (typeof filterProducts === 'function') {
         const filtros = getFiltrosSelecionados();
         let produtosFiltrados = filterProducts(filtros);
-        // Filtro de avaliação (>=)
         if (filtros.avaliacao) {
           produtosFiltrados = produtosFiltrados.filter(p => Math.round(p.avaliacao) >= filtros.avaliacao);
         }
         renderCatalogo(produtosFiltrados);
+        // Sempre recolhe o menu sanduíche ao aplicar filtros em telas pequenas
+        if (window.innerWidth <= 700) {
+          const filtrosAside = document.getElementById('filtros');
+          filtrosAside.style.display = 'none';
+          filtrosAside.classList.remove('aberto');
+        }
+        mostrarBalaoFiltro(filtros);
       }
     };
+    // Mostra balão de filtro no topo e controla exibição dos filtros
+    function mostrarBalaoFiltro(filtros) {
+      const balao = document.getElementById('balao-filtro');
+      let texto = '';
+      if (filtros.genero) texto = filtros.genero;
+      else if (filtros.autor) texto = filtros.autor;
+      else if (filtros.precoMax) texto = 'Até R$ ' + filtros.precoMax;
+      else if (filtros.idioma) texto = filtros.idioma;
+      else if (filtros.tipoCapa) texto = filtros.tipoCapa;
+      else if (filtros.avaliacao) texto = filtros.avaliacao + '+ estrelas';
+      if (texto) {
+        balao.innerHTML = texto + '<button class="remover-filtro" aria-label="Remover filtro">&times;</button>';
+        balao.style.display = 'flex';
+        balao.onclick = function(e) {
+          if (e.target.classList.contains('remover-filtro')) {
+            document.getElementById('filtros-form').reset();
+            renderCatalogo();
+            balao.style.display = 'none';
+          } else {
+            document.getElementById('filtros').classList.add('aberto');
+          }
+        };
+      } else {
+        balao.style.display = 'none';
+        balao.innerHTML = '';
+      }
+    }
+
     document.getElementById('limparFiltros').onclick = function() {
       document.getElementById('filtros-form').reset();
       renderCatalogo();
@@ -219,6 +294,26 @@
       const generos = getAllProducts().map(p => p.genero).filter((v, i, arr) => v && arr.indexOf(v) === i);
       generoSelect.innerHTML = '<option value="">Todos</option>' + generos.map(g => `<option value="${g}">${g}</option>`).join('');
     }
+
+    // Botão menu sanduíche para filtros (mobile)
+    const abrirFiltrosBtn = document.getElementById('abrirFiltros');
+    if (abrirFiltrosBtn) {
+      abrirFiltrosBtn.style.display = 'block';
+      abrirFiltrosBtn.onclick = function() {
+        const filtrosSection = document.querySelector('.filtros');
+        if (filtrosSection) {
+          const isVisible = filtrosSection.style.display !== 'none';
+          filtrosSection.style.display = isVisible ? 'none' : 'block';
+          abrirFiltrosBtn.classList.toggle('active', !isVisible);
+        }
+      };
+    }
+
+    // Botão X para fechar o menu sanduíche de filtros
+    document.getElementById('fecharFiltros').style.display = 'block';
+    document.getElementById('fecharFiltros').onclick = function() {
+      document.getElementById('filtros').classList.remove('aberto');
+    };
   </script>
 </body>
 </html>
