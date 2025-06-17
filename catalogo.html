@@ -104,12 +104,23 @@
   <script src="js/carrinho.js"></script>
   <script src="js/wishlist.js"></script>
   <script>
-    // Renderização dinâmica do catálogo apenas com produtos de produtos.js
-    function renderCatalogo() {
+    function getFiltrosSelecionados() {
+      return {
+        genero: document.getElementById('genero').value,
+        autor: document.getElementById('autor').value.trim(),
+        precoMax: document.getElementById('preco').value ? parseFloat(document.getElementById('preco').value) : undefined,
+        // Adiciona suporte a precoMin se quiser implementar depois
+        avaliacao: document.getElementById('avaliacao').value ? parseInt(document.getElementById('avaliacao').value) : undefined,
+        idioma: document.getElementById('idioma').value,
+        tipoCapa: document.getElementById('capa').value
+      };
+    }
+
+    function renderCatalogo(produtosFiltrados) {
       const grid = document.getElementById('livrosGrid');
       if (!grid) return;
       grid.innerHTML = '';
-      const produtos = (typeof getAllProducts === 'function') ? getAllProducts() : [];
+      const produtos = produtosFiltrados || (typeof getAllProducts === 'function' ? getAllProducts() : []);
       produtos.forEach(produto => {
         const card = document.createElement('div');
         card.className = 'livro-card product-card';
@@ -118,6 +129,7 @@
           <img src="${produto.imagem}" alt="Capa ${produto.titulo}">
           <div class="info">
             <h3>${produto.titulo}</h3>
+            <p class="genero"><strong>Gênero:</strong> ${produto.genero}</p>
             <p class="autor">${produto.autor}</p>
             <p class="preco">${formatPriceBRL ? formatPriceBRL(produto.preco) : 'R$ ' + produto.preco.toFixed(2).replace('.', ',')}</p>
             <div class="avaliacao-card">${'★'.repeat(Math.round(produto.avaliacao))}${'☆'.repeat(5-Math.round(produto.avaliacao))}</div>
@@ -129,38 +141,84 @@
       });
       inicializarBotoesCatalogo();
     }
-    function inicializarBotoesCatalogo() {
-      document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
-        btn.onclick = function(e) {
-          e.preventDefault();
-          const id = parseInt(this.dataset.id);
-          if (!isNaN(id) && window.adicionarAoCarrinho) {
-            adicionarAoCarrinho(id);
-            if (window.mostrarNotificacaoPadrao) mostrarNotificacaoPadrao('Produto adicionado ao carrinho!');
-            if (window.atualizarContadorCarrinho) atualizarContadorCarrinho();
-          }
-        };
-      });
-      document.querySelectorAll('.btn-wishlist').forEach(btn => {
-        btn.onclick = function(e) {
-          e.preventDefault();
-          const id = parseInt(this.dataset.id);
-          if (!isNaN(id) && window.toggleWishlist) {
-            toggleWishlist(id);
-          }
-        };
-        // Estado visual inicial
-        const id = parseInt(btn.dataset.id);
-        if (!isNaN(id) && window.getWishlist && getWishlist().includes(id)) {
-          btn.classList.add('wishlist-ativo');
-          btn.textContent = '♥';
+
+    document.getElementById('filtros-form').onsubmit = function(e) {
+      e.preventDefault();
+      if (typeof filterProducts === 'function') {
+        const filtros = getFiltrosSelecionados();
+        let produtosFiltrados = filterProducts(filtros);
+        // Filtro de avaliação (>=)
+        if (filtros.avaliacao) {
+          produtosFiltrados = produtosFiltrados.filter(p => Math.round(p.avaliacao) >= filtros.avaliacao);
         }
-      });
-    }
+        renderCatalogo(produtosFiltrados);
+      }
+    };
+    document.getElementById('limparFiltros').onclick = function() {
+      document.getElementById('filtros-form').reset();
+      renderCatalogo();
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalogo();
       if (window.atualizarContadorCarrinho) atualizarContadorCarrinho();
     });
+
+    // Auto-sugestão de autores no filtro
+    const autorInput = document.getElementById('autor');
+    if (autorInput) {
+      const autores = (typeof getAllProducts === 'function' ? getAllProducts() : []).map(p => p.autor).filter((v, i, arr) => v && arr.indexOf(v) === i);
+      const sugestoes = document.createElement('ul');
+      sugestoes.id = 'sugestoes-autor';
+      sugestoes.style.position = 'absolute';
+      sugestoes.style.background = '#fff';
+      sugestoes.style.border = '1px solid #ccc';
+      sugestoes.style.width = '100%';
+      sugestoes.style.zIndex = '100';
+      sugestoes.style.listStyle = 'none';
+      sugestoes.style.padding = '0';
+      sugestoes.style.margin = '0';
+      sugestoes.style.display = 'none';
+      autorInput.parentNode.style.position = 'relative';
+      autorInput.parentNode.appendChild(sugestoes);
+      autorInput.addEventListener('input', function() {
+        const termo = this.value.trim().toLowerCase();
+        sugestoes.innerHTML = '';
+        if (termo.length < 1) {
+          sugestoes.style.display = 'none';
+          return;
+        }
+        const filtrados = autores.filter(a => a.toLowerCase().includes(termo));
+        if (filtrados.length === 0) {
+          sugestoes.style.display = 'none';
+          return;
+        }
+        filtrados.forEach(a => {
+          const li = document.createElement('li');
+          li.textContent = a;
+          li.style.padding = '0.5em 1em';
+          li.style.cursor = 'pointer';
+          li.onmousedown = function() {
+            autorInput.value = a;
+            sugestoes.style.display = 'none';
+          };
+          sugestoes.appendChild(li);
+        });
+        sugestoes.style.display = 'block';
+      });
+      document.addEventListener('click', function(e) {
+        if (!sugestoes.contains(e.target) && e.target !== autorInput) {
+          sugestoes.style.display = 'none';
+        }
+      });
+    }
+
+    // Preenche o filtro de gêneros apenas com os gêneros dos produtos
+    const generoSelect = document.getElementById('genero');
+    if (generoSelect && typeof getAllProducts === 'function') {
+      const generos = getAllProducts().map(p => p.genero).filter((v, i, arr) => v && arr.indexOf(v) === i);
+      generoSelect.innerHTML = '<option value="">Todos</option>' + generos.map(g => `<option value="${g}">${g}</option>`).join('');
+    }
   </script>
 </body>
 </html>
