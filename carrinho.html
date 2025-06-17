@@ -53,6 +53,17 @@
     </section>
   </main>
 
+  <div class="carrinho-navbar-resumo" style="display:none;">
+    <span class="total">Total: <span id="navbar-preco-total">R$ 0,00</span></span>
+    <button class="btn-ver-mais" id="btn-ver-mais">^</button>
+  </div>
+  <div class="carrinho-navbar-detalhes" style="display:none;">
+    <button class="fechar-detalhes" id="fechar-detalhes">×</button>
+    <h3>Resumo da Compra</h3>
+    <div id="navbar-detalhes-conteudo"></div>
+    <a href="checkout.html" class="btn-primary btn-finalizar" style="margin-top:1.2em;display:block;">Finalizar Compra</a>
+  </div>
+
   <footer>
     <div class="container">
       <p>&copy; 2025 Livraria StoreBooks. Todos os direitos reservados.</p>
@@ -62,8 +73,61 @@
   <script src="js/produtos.js"></script>
   <script src="js/carrinho.js"></script>
   <script>
-    // O carrinho já é dinâmico e só mostra produtos de produtos.js via carrinho.js
-    // Não é necessário cards fixos no HTML
+    function atualizarResumoNavbar() {
+      // Pega valores do resumo
+      const precoTotal = document.querySelector('.preco-total')?.textContent || 'R$ 0,00';
+      document.getElementById('navbar-preco-total').textContent = precoTotal;
+      // Detalhes
+      const linhas = Array.from(document.querySelectorAll('.resumo-linha'));
+      let detalhes = '';
+      linhas.forEach(linha => {
+        const spans = linha.querySelectorAll('span');
+        if (spans.length === 2) {
+          detalhes += `<div style='display:flex;justify-content:space-between;margin-bottom:0.5em;'><span>${spans[0].textContent}</span><span>${spans[1].textContent}</span></div>`;
+        }
+      });
+      const total = document.querySelector('.resumo-total');
+      if (total) {
+        const spans = total.querySelectorAll('span');
+        if (spans.length === 2) {
+          detalhes += `<div style='display:flex;justify-content:space-between;font-weight:bold;font-size:1.1em;margin-top:1em;'><span>${spans[0].textContent}</span><span>${spans[1].textContent}</span></div>`;
+        }
+      }
+      document.getElementById('navbar-detalhes-conteudo').innerHTML = detalhes;
+    }
+    function toggleResumoNavbar(mostrar) {
+      const navbar = document.querySelector('.carrinho-navbar-resumo');
+      if (navbar) navbar.style.display = mostrar ? 'flex' : 'none';
+    }
+    function toggleDetalhesNavbar(mostrar) {
+      const detalhes = document.querySelector('.carrinho-navbar-detalhes');
+      if (detalhes) detalhes.style.display = mostrar ? 'block' : 'none';
+    }
+    // Exibe navbar em telas pequenas
+    function checarNavbarCarrinho() {
+      if (window.innerWidth <= 600) {
+        toggleResumoNavbar(true);
+      } else {
+        toggleResumoNavbar(false);
+        toggleDetalhesNavbar(false);
+      }
+    }
+    window.addEventListener('resize', checarNavbarCarrinho);
+    document.addEventListener('DOMContentLoaded', () => {
+      checarNavbarCarrinho();
+      atualizarResumoNavbar();
+      // Atualiza sempre que o carrinho mudar
+      const observer = new MutationObserver(() => atualizarResumoNavbar());
+      const resumo = document.querySelector('.carrinho-resumo');
+      if (resumo) observer.observe(resumo, { childList: true, subtree: true });
+      // Botão ver mais
+      document.getElementById('btn-ver-mais').onclick = function() {
+        toggleDetalhesNavbar(true);
+      };
+      document.getElementById('fechar-detalhes').onclick = function() {
+        toggleDetalhesNavbar(false);
+      };
+    });
   </script>
 </body>
 </html>

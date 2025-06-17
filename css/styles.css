@@ -1375,3 +1375,233 @@ section {
   top: 60px;
   pointer-events: auto;
 }
+
+/* Responsividade geral e melhorias visuais */
+@media (max-width: 700px) {
+  .main-header {
+    padding: 0.7rem 0;
+  }
+  .logo {
+    font-size: 1.3rem;
+  }
+  nav ul {
+    gap: 1rem;
+    font-size: 0.98em;
+  }
+  .search-bar {
+    max-width: 100%;
+    margin-top: 0.7rem;
+  }
+  .hero {
+    flex-direction: column;
+    padding: 1.5rem 0 1rem 0;
+    min-height: unset;
+    text-align: center;
+  }
+  .hero-img {
+    width: 180px;
+    margin: 1.2rem auto 0 auto;
+  }
+  .container {
+    padding: 0 0.7rem;
+  }
+  .catalogo-flex {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .filtros {
+    padding: 1rem 0.5rem;
+    margin-bottom: 1rem;
+    min-width: unset;
+    max-width: 100%;
+  }
+  .livros-grid, .catalogo-lista .livros-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .livro-card {
+    max-width: 100%;
+    min-width: 0;
+    padding: 0.5rem 0.2rem;
+  }
+  .livro-card img {
+    max-width: 100px;
+  }
+  .carrinho-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .carrinho-item img {
+    width: 60px;
+    height: 80px;
+  }
+  .carrinho-resumo {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .livros-grid, .catalogo-lista .livros-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-content h2 {
+    font-size: 1.3rem;
+  }
+  .btn-primary, .btn-secondary, .btn-add-carrinho {
+    font-size: 0.98em;
+    padding: 0.6em 1.2em;
+  }
+  .filtros {
+    padding: 0.7rem 0.2rem;
+  }
+}
+
+/* Melhoria visual para cards de livro */
+.livro-card {
+  border: 1.5px solid #f0e6e6;
+  background: linear-gradient(135deg, #fff 80%, #f8f6f2 100%);
+}
+.livro-card .genero {
+  font-size: 0.95em;
+  color: var(--cor-primaria);
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 900px) {
+  .carrinho-flex {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .carrinho-lista, .carrinho-resumo {
+    max-width: 100%;
+    min-width: unset;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .carrinho-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.7rem 0.3rem;
+  }
+  .carrinho-item img {
+    width: 60px;
+    height: 80px;
+  }
+  .carrinho-info h3 {
+    font-size: 1em;
+  }
+  .carrinho-preco {
+    align-items: flex-start;
+    min-width: unset;
+  }
+  .carrinho-qtd {
+    gap: 0.3em;
+  }
+  .btn-remove {
+    font-size: 0.98em;
+    padding: 0.4em 0.8em;
+  }
+}
+
+/* Navbar fixa de resumo do carrinho em telas pequenas */
+.carrinho-resumo {
+  display: none;
+}
+
+.carrinho-navbar-resumo {
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--cor-card);
+  box-shadow: 0 -2px 16px rgba(123,94,87,0.10);
+  border-radius: 1.2rem 1.2rem 0 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem 1.2rem 1.2rem;
+  font-size: 1.1em;
+  transition: box-shadow 0.2s;
+}
+
+.carrinho-navbar-resumo .total {
+  font-size: 1.2em;
+  color: var(--cor-destaque);
+  font-weight: bold;
+}
+
+.carrinho-navbar-resumo .btn-ver-mais {
+  background: var(--cor-destaque);
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  font-size: 1.2em;
+  padding: 0.3em 1.1em;
+  margin-left: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(181,131,141,0.10);
+  transition: background 0.2s;
+}
+
+.carrinho-navbar-resumo .btn-ver-mais:active {
+  background: var(--cor-btn-hover);
+}
+
+.carrinho-navbar-detalhes {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--cor-card);
+  box-shadow: 0 -2px 16px rgba(123,94,87,0.13);
+  border-radius: 1.2rem 1.2rem 0 0;
+  z-index: 10000;
+  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
+  font-size: 1em;
+  animation: slideUpResumo 0.3s;
+}
+
+@keyframes slideUpResumo {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.carrinho-navbar-detalhes .fechar-detalhes {
+  position: absolute;
+  top: 0.7em;
+  right: 1.2em;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: var(--cor-primaria);
+  cursor: pointer;
+}
+
+@media (min-width: 601px) {
+  .carrinho-resumo {
+    display: block !important;
+    position: sticky;
+    top: 6.5rem;
+    right: 0;
+    align-self: flex-start;
+    max-width: 340px;
+    min-width: 240px;
+    margin-left: auto;
+    margin-bottom: 0;
+    box-shadow: 0 4px 24px rgba(123,94,87,0.10);
+    border-radius: 1.2rem;
+    background: var(--cor-card);
+    z-index: 10;
+  }
+  .carrinho-navbar-resumo,
+  .carrinho-navbar-detalhes {
+    display: none !important;
+  }
+}
