@@ -78,20 +78,15 @@ function formatPriceBRL(price) {
 
 // Função utilitária: Gerar HTML do Card de Produto (usado no catálogo)
 function generateProductCardHTML(product) {
-  const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-  const isInWishlist = wishlist.includes(product.id);
   return `
     <div class="product-card" data-id="${product.id}">
       <div class="image-wrapper">
         <img src="${product.imagem}" alt="${product.titulo}" class="product-image">
-        <button class="btn-wishlist btn-estrela${isInWishlist ? ' wishlist-ativo' : ''}" data-id="${product.id}" title="Adicionar à Wishlist" aria-label="Favoritar">
-          ${isInWishlist ? '★' : '☆'}
-        </button>
       </div>
       <h3>${product.titulo}</h3>
       <p class="author">${product.autor}</p>
       <p class="price">${formatPriceBRL(product.preco)}</p>
-      <button onclick="addToCart(${product.id})">Adicionar ao Carrinho</button>
+      <!-- Botões removidos do card para mobile, agora só no produto.html -->
     </div>
   `;
 }
