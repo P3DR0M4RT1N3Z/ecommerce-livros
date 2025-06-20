@@ -1,11 +1,6 @@
 // Exemplo de livros mockados (substitua por dados reais ou carregue de um JSON)
-const livrosBusca = [
-  { id: 1, titulo: "O Sol é Para Todos", autor: "Harper Lee", categoria: "Clássico" },
-  { id: 2, titulo: "1984", autor: "George Orwell", categoria: "Ficção" },
-  { id: 3, titulo: "Pequeno Príncipe", autor: "Antoine de Saint-Exupéry", categoria: "Infantil" },
-  { id: 4, titulo: "Dom Casmurro", autor: "Machado de Assis", categoria: "Clássico" },
-  { id: 5, titulo: "Orgulho e Preconceito", autor: "Jane Austen", categoria: "Romance" }
-];
+// Utilize os produtos reais do sistema
+const livrosBusca = typeof getAllProducts === 'function' ? getAllProducts() : [];
 
 // Função para normalizar texto (remover acentos e deixar minúsculo)
 function normalizar(str) {
@@ -24,11 +19,11 @@ if (searchInput && suggestions) {
       suggestions.style.display = 'none';
       return;
     }
-    // Busca por título, autor ou categoria
+    // Busca por título, autor ou gênero
     const resultados = livrosBusca.filter(livro =>
       normalizar(livro.titulo).includes(termo) ||
       normalizar(livro.autor).includes(termo) ||
-      normalizar(livro.categoria).includes(termo)
+      (livro.genero && normalizar(livro.genero).includes(termo))
     ).slice(0, 5); // Limita a 5 sugestões
 
     if (resultados.length === 0) {

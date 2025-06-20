@@ -145,6 +145,19 @@
       inicializarBotoesCatalogo();
     }
 
+    function inicializarBotoesCatalogo() {
+      // Torna o card inteiro clicável para abrir a página do produto
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function (e) {
+          // Evita conflito com botões internos (carrinho/wishlist)
+          if (e.target.closest('button')) return;
+          const id = this.dataset.id;
+          window.location.href = `produto.html?id=${id}`;
+        });
+      });
+    }
+
     // Exibe/esconde filtros no mobile
     function checarMenuFiltros() {
       const btn = document.getElementById('abrirFiltros');

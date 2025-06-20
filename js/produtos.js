@@ -14,7 +14,9 @@ const products = [
     avaliacao: 4.8,
     estoqueDisponivel: 20,
     imagem: "images/dom-casmurro.jpg",
-    sinopse: "Uma das obras mais importantes da literatura brasileira, narrada por Bentinho e sua relação com Capitu."
+    sinopse: "Uma das obras mais importantes da literatura brasileira, narrada por Bentinho e sua relação com Capitu.",
+    frase: "Capitu, olhos de ressaca e mistérios do coração.",
+    trecho: "Capitu olhou para mim com aqueles olhos de ressaca, e eu soube que jamais decifraria seus segredos."
   },
   {
     id: 2,
@@ -27,7 +29,9 @@ const products = [
     avaliacao: 4.9,
     estoqueDisponivel: 15,
     imagem: "images/1984.jpg",
-    sinopse: "Um clássico sobre regimes totalitários e vigilância, que segue sendo atual décadas após sua publicação."
+    sinopse: "Um clássico sobre regimes totalitários e vigilância, que segue sendo atual décadas após sua publicação.",
+    frase: "Big Brother está de olho em você.",
+    trecho: "Se você quer uma imagem do futuro, imagine uma bota prensando um rosto humano — para sempre."
   },
   {
     id: 3,
@@ -40,7 +44,24 @@ const products = [
     avaliacao: 4.7,
     estoqueDisponivel: 30,
     imagem: "images/o-pequeno-principe.jpg",
-    sinopse: "Uma fábula poética sobre a vida, o amor e a amizade."
+    sinopse: "Uma fábula poética sobre a vida, o amor e a amizade.",
+    frase: "Tu te tornas eternamente responsável por aquilo que cativas.",
+    trecho: "O essencial é invisível aos olhos."
+  },
+  {
+    id: 4,
+    titulo: "O Sol é Para Todos",
+    autor: "Harper Lee",
+    genero: "Clássico",
+    idioma: "Português",
+    tipoCapa: "Brochura",
+    preco: 44.90,
+    avaliacao: 4.8,
+    estoqueDisponivel: 18,
+    imagem: "images/o-sol-e-para-todos.jpg",
+    sinopse: "Um clássico da literatura mundial, aborda temas como justiça, preconceito e empatia através dos olhos de uma criança no sul dos EUA dos anos 1930.",
+    frase: "Você só entende uma pessoa de verdade quando vê as coisas do ponto de vista dela.",
+    trecho: "A coragem é quando você sabe que está derrotado antes de começar, mas começa mesmo assim e vai até o fim, custe o que custar."
   }
   // 👉 Adicione mais livros conforme necessário
 ];

@@ -27,31 +27,24 @@
     <section class="produto-section">
       <div class="container produto-flex">
         <div class="produto-capa">
-          <img src="images/livro1.jpg" alt="Capa do livro O Sol é Para Todos">
+          <img src="" alt="Capa do livro" />
           <button class="btn-secondary btn-leia-trecho" id="abrirTrecho">Leia um trecho</button>
         </div>
         <div class="produto-detalhes">
-          <h2>O Sol é Para Todos</h2>
-          <p class="autor">Harper Lee</p>
+          <h2></h2>
+          <p class="autor"></p>
           <div class="avaliacao">
-            <span class="estrelas">★★★★★</span>
-            <span class="nota">(4.8/5)</span>
-            <span class="qtd-avaliacoes">1234 avaliações</span>
+            <span class="estrelas"></span>
+            <span class="nota"></span>
+            <span class="qtd-avaliacoes"></span>
           </div>
-          <p class="sinopse">
-            Um clássico da literatura mundial, “O Sol é Para Todos” aborda temas como justiça, preconceito e empatia através dos olhos de uma criança no sul dos EUA dos anos 1930.
-          </p>
-          <ul class="ficha-tecnica">
-            <li><strong>Editora:</strong> José Olympio</li>
-            <li><strong>Idioma:</strong> Português</li>
-            <li><strong>Páginas:</strong> 364</li>
-            <li><strong>Tipo de capa:</strong> Brochura</li>
-            <li><strong>ISBN:</strong> 978-8503011516</li>
-          </ul>
+          <p class="sinopse"></p>
+          <ul class="ficha-tecnica"></ul>
           <div class="produto-preco">
-            <span class="preco">R$ 39,90</span>
-            <span class="disponibilidade disponivel">Em estoque</span>
+            <span class="preco"></span>
+            <span class="disponibilidade"></span>
           </div>
+          <p class="frase-produto"></p>
           <form class="produto-compra">
             <label for="quantidade">Qtd:</label>
             <input type="number" id="quantidade" name="quantidade" min="1" value="1">
@@ -104,12 +97,7 @@
     <div class="modal-trecho-conteudo">
       <button class="modal-fechar" id="fecharTrecho">&times;</button>
       <h3>Leia um trecho</h3>
-      <p>
-        “Quando ele finalmente voltou, era quase noite. Jem estava sentado na varanda, e eu estava deitada no colo de Atticus. O vento soprava suave, e as árvores sussurravam segredos antigos...”
-      </p>
-      <p>
-        “A coragem é quando você sabe que está derrotado antes de começar, mas começa mesmo assim e vai até o fim, custe o que custar.”
-      </p>
+      <p class="trecho-dinamico"></p>
     </div>
   </div>
 
@@ -119,6 +107,8 @@
     </div>
   </footer>
 
+  <script src="js/produtos.js"></script>
+  <script src="js/produto.js"></script>
   <script>
     // Modal Leia um Trecho
     const abrir = document.getElementById('abrirTrecho');
