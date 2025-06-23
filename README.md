@@ -1,57 +1,59 @@
-# E-commerce de Livros
+# Livraria StoreBooks - Projeto de TCC
 
-Este projeto é um site profissional de e-commerce dedicado à venda de livros. O objetivo é proporcionar uma experiência de compra online sofisticada e intuitiva, inspirada em livrarias modernas.
+# Sobre o Projeto
 
-## Estrutura do Projeto
+Este site é o resultado do Trabalho de Conclusão de Curso (TCC) do Ensino Médio, com o objetivo de simular um e-commerce de livros moderno, acessível e funcional. O projeto foi desenvolvido para aplicar conhecimentos de programação web, design responsivo e experiência do usuário, integrando conceitos de HTML, CSS e JavaScript.
 
-O projeto é organizado da seguinte forma:
+# Objetivos
+- Construir uma loja virtual de livros com catálogo dinâmico.
+- Proporcionar uma experiência de navegação intuitiva e agradável.
+- Permitir busca, filtragem, wishlist, carrinho e visualização detalhada dos produtos.
+- Aplicar boas práticas de desenvolvimento web e design responsivo.
 
-- **index.html**: Página inicial que exibe uma vitrine de livros e recomendações personalizadas.
-- **catalogo.html**: Catálogo de livros em formato de cards, com filtros avançados.
-- **produto.html**: Detalhes completos de um livro, incluindo imagem, sinopse e avaliações.
-- **carrinho.html**: Página do carrinho de compras, permitindo a gestão de itens.
-- **checkout.html**: Simulação do fluxo de finalização de compra.
-- **login.html**: Tela de login com opções de autenticação simuladas.
-- **cadastro.html**: Tela de cadastro para novos usuários.
-- **wishlist.html**: Página que lista os livros salvos na lista de desejos.
-- **minha-conta.html**: Área do cliente com histórico de pedidos.
+# Funcionalidades
+- *Catálogo de Livros:* Visualização de todos os livros cadastrados, com filtros por gênero, autor, preço, idioma e avaliação.
+- *Busca Inteligente:* Auto sugestão de livros por título, autor ou gênero.
+- *Página de Produto:* Exibição detalhada do livro selecionado, com sinopse, ficha técnica, frase e trecho especial.
+- *Carrinho de Compras:* Adição e remoção de livros, cálculo de valor total e simulação de checkout.
+- *Wishlist:* Lista de desejos para salvar livros favoritos.
+- *Avaliações:* Seção para comentários e avaliações dos leitores.
+- *Design Responsivo:* Layout adaptado para desktop e dispositivos móveis.
 
-## Diretórios
-
-- **css/**: Contém o arquivo `styles.css` para estilos globais.
-- **js/**: Contém scripts JavaScript para funcionalidades como filtros, carrinho, busca, wishlist e recomendações.
-- **images/**: Diretório para armazenar as imagens das capas dos livros.
-- **fonts/**: Diretório para fontes personalizadas, incluindo as do Google Fonts.
-
-## Funcionalidades
-
-- Catálogo de livros com filtros avançados.
-- Busca inteligente com auto-sugestões.
-- Página de produto com detalhes completos.
-- Carrinho de compras e fluxo de checkout.
-- Sistema de avaliações e comentários.
-- Mock de login e cadastro.
-- Recomendações personalizadas.
-- Wishlist para salvar livros.
-- Métodos de pagamento simulados.
-- Área do cliente com histórico de pedidos.
-
-## Tecnologias Utilizadas
-
+# Tecnologias Utilizadas
 - HTML5
-- CSS3
-- JavaScript puro
+- CSS3 (com variáveis, responsividade e animações)
+- JavaScript (ES6+)
 
-## Como Usar
+# Estrutura de Pastas
+```
+├── css/
+│   └── styles.css
+├── images/
+│   └── (imagens dos livros)
+├── js/
+│   ├── busca.js
+│   ├── cadastro-modal.js
+│   ├── carrinho.js
+│   ├── filtros.js
+│   ├── minha-conta.js
+│   ├── produtos.js
+│   ├── recomendacoes.js
+│   └── wishlist.js
+├── index.html
+├── catalogo.html
+├── produto.html
+├── carrinho.html
+├── wishlist.html
+├── minha-conta.html
+├── cadastro.html
+├── checkout.html
+└── README.md
+```
 
-1. Clone o repositório ou baixe os arquivos.
-2. Abra o arquivo `index.html` em um navegador (recomendado: Google Chrome).
+# Como Executar
+1. Baixe ou clone este repositório.
+2. Abra o arquivo `index.html` em seu navegador.
 3. Navegue pelas páginas e explore as funcionalidades.
 
-## Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
-
-## Licença
-
-Este projeto é de uso livre.
+# Créditos
+Desenvolvido por [Seu Nome] para o TCC do Ensino Médio - 2025.
