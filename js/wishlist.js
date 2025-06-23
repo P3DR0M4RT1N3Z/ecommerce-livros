@@ -34,24 +34,33 @@ function atualizarBotoesWishlist() {
   const wishlist = getWishlist();
   document.querySelectorAll('.btn-wishlist').forEach(btn => {
     const id = parseInt(btn.dataset.id);
+    const icon = btn.querySelector('.icon-heart');
     if (wishlist.includes(id)) {
       btn.classList.add('wishlist-ativo');
-      if (btn.classList.contains('btn-estrela')) {
-        btn.textContent = '★';
-      } else {
-        btn.textContent = '♥';
+      if (icon) {
+        icon.textContent = '♥';
+        // Garante cor branca para coração ativo em cards de produto
+        if (btn.closest('.product-card')) {
+          icon.style.color = '#fff';
+        } else {
+          icon.style.color = 'var(--cor-wishlist)';
+        }
       }
       btn.setAttribute('aria-pressed', 'true');
     } else {
       btn.classList.remove('wishlist-ativo');
-      if (btn.classList.contains('btn-estrela')) {
-        btn.textContent = '☆';
-      } else {
-        btn.textContent = '♡';
+      if (icon) {
+        icon.textContent = '♡';
+        icon.style.color = 'var(--cor-wishlist)';
       }
       btn.setAttribute('aria-pressed', 'false');
     }
   });
+  // Corrige botão de wishlist da página de produto (sem data-id)
+  const btnProduto = document.querySelector('.produto-compra .btn-wishlist');
+  if (btnProduto && !btnProduto.querySelector('.icon-heart')) {
+    btnProduto.innerHTML = '<span class="icon-heart">♡</span>';
+  }
 }
 
 // Notificação padrão para qualquer ação (wishlist ou carrinho)
@@ -114,7 +123,9 @@ function renderWishlist() {
           <p class="preco">${formatPriceBRL(livro.preco)}</p>
           <div class="wishlist-actions">
             <button class="btn-primary btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
-            <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">♥</button>
+            <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">
+              <span class="icon-heart">♥</span>
+            </button>
           </div>
         </div>
       `;

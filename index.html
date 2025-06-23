@@ -117,14 +117,16 @@
       container.innerHTML = produtos.map(produto => {
         return `
           <div class="product-card" data-id="${produto.id}">
-            <img src="${produto.imagem}" alt="${produto.titulo}" class="product-image">
+            <div class="image-wrapper" style="position:relative;">
+              <img src="${produto.imagem}" alt="${produto.titulo}" class="product-image">
+              <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist" aria-label="Favoritar" style="position:absolute;top:0.5em;right:0.3em;z-index:2;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin:0;width:1.8em;height:1.8em;font-size:1.1em;padding:0;">
+                <span class="icon-heart">♡</span>
+              </button>
+            </div>
             <h3>${produto.titulo}</h3>
             <p class="author">${produto.autor}</p>
             <p class="price">${formatPriceBRL(produto.preco)}</p>
             <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
-            <div style="width:100%;display:flex;justify-content:center;position:relative;">
-              <button class="btn-wishlist btn-estrela" data-id="${produto.id}" title="Adicionar à Wishlist" aria-label="Favoritar">★</button>
-            </div>
           </div>
         `;
       }).join('');

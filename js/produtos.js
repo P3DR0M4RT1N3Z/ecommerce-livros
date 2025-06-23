@@ -101,6 +101,9 @@ function formatPriceBRL(price) {
 function generateProductCardHTML(product) {
   return `
     <div class="product-card" data-id="${product.id}">
+      <button class="btn-wishlist" data-id="${product.id}" title="Adicionar à Wishlist">
+        <span class="icon-heart">&#9829;</span>
+      </button>
       <div class="image-wrapper">
         <img src="${product.imagem}" alt="${product.titulo}" class="product-image">
       </div>
