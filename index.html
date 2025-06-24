@@ -6,6 +6,7 @@
   <title>Livraria StoreBooks – Sua Loja de Livros Online</title>
   <meta name="description" content="Descubra livros incríveis, recomendações personalizadas e ofertas exclusivas na Livraria StoreBooks. Seu universo literário começa aqui.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/wishlist-heart.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -114,24 +115,8 @@
       const container = document.getElementById('produtos-home');
       if (!container || typeof getAllProducts !== 'function' || typeof generateProductCardHTML !== 'function') return;
       const produtos = getAllProducts();
-      container.innerHTML = produtos.map(produto => {
-        return `
-          <div class="product-card" data-id="${produto.id}">
-            <div class="image-wrapper" style="position:relative;">
-              <img src="${produto.imagem}" alt="${produto.titulo}" class="product-image">
-              <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist" aria-label="Favoritar" style="position:absolute;top:0.5em;right:0.3em;z-index:2;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin:0;width:1.8em;height:1.8em;font-size:1.1em;padding:0;">
-                <span class="icon-heart">♡</span>
-              </button>
-            </div>
-            <h3>${produto.titulo}</h3>
-            <p class="author">${produto.autor}</p>
-            <p class="price">${formatPriceBRL(produto.preco)}</p>
-            <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
-          </div>
-        `;
-      }).join('');
-      inicializarBotoesProdutosHome();
-      atualizarBotoesWishlist && atualizarBotoesWishlist();
+      container.innerHTML = produtos.map(produto => generateProductCardHTML(produto)).join('');
+      if (typeof inicializarBotoesWishlist === 'function') inicializarBotoesWishlist();
     }
 
     // Inicializa os botões dos cards de produto
@@ -144,15 +129,6 @@
             adicionarAoCarrinho(id);
             atualizarContadorCarrinho();
             mostrarNotificacaoCarrinho();
-          }
-        };
-      });
-      document.querySelectorAll('.btn-wishlist').forEach(btn => {
-        btn.onclick = function(e) {
-          e.preventDefault();
-          const id = parseInt(this.dataset.id);
-          if (!isNaN(id)) {
-            toggleWishlist(id);
           }
         };
       });

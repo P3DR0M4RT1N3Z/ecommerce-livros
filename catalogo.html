@@ -6,6 +6,7 @@
   <title>Catálogo de Livros – Livraria Aurora</title>
   <meta name="description" content="Explore o catálogo completo da Livraria Aurora. Filtre por gênero, autor, preço, avaliação e mais.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/wishlist-heart.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -126,23 +127,13 @@
       const produtos = produtosFiltrados || (typeof getAllProducts === 'function' ? getAllProducts() : []);
       produtos.forEach(produto => {
         const card = document.createElement('div');
-        card.className = 'livro-card product-card';
+        card.innerHTML = generateProductCardHTML(produto);
+        card.className = 'product-card';
         card.dataset.id = produto.id;
-        card.innerHTML = `
-          <img src="${produto.imagem}" alt="Capa ${produto.titulo}">
-          <div class="info">
-            <h3>${produto.titulo}</h3>
-            <p class="genero"><strong>Gênero:</strong> ${produto.genero}</p>
-            <p class="autor">${produto.autor}</p>
-            <p class="preco">${formatPriceBRL ? formatPriceBRL(produto.preco) : 'R$ ' + produto.preco.toFixed(2).replace('.', ',')}</p>
-            <div class="avaliacao-card">${'★'.repeat(Math.round(produto.avaliacao))}${'☆'.repeat(5-Math.round(produto.avaliacao))}</div>
-            <button class="btn-add-carrinho" data-id="${produto.id}">Adicionar ao Carrinho</button>
-            <button class="btn-wishlist" data-id="${produto.id}" title="Adicionar à Wishlist">♡</button>
-          </div>
-        `;
-        grid.appendChild(card);
+        grid.appendChild(card.firstElementChild ? card.firstElementChild : card);
       });
       inicializarBotoesCatalogo();
+      if (typeof inicializarBotoesWishlist === 'function') inicializarBotoesWishlist();
     }
 
     function inicializarBotoesCatalogo() {

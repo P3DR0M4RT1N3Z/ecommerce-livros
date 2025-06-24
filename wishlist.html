@@ -95,25 +95,13 @@
               <p class="preco">${formatPriceBRL ? formatPriceBRL(livro.preco) : 'R$ ' + livro.preco.toFixed(2).replace('.', ',')}</p>
               <div class="wishlist-actions">
                 <button class="btn-primary btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
-                <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">♥</button>
               </div>
             </div>
           `;
           grid.appendChild(card);
         }
       });
-      inicializarBotoesWishlist();
       inicializarBotoesAddCarrinho();
-    }
-
-    // Inicializa botões de wishlist (adicionar/remover)
-    function inicializarBotoesWishlist() {
-      document.querySelectorAll('.btn-wishlist').forEach(btn => {
-        btn.onclick = function() {
-          const id = parseInt(this.dataset.id);
-          toggleWishlist(id);
-        };
-      });
     }
 
     // Inicializa botões de adicionar ao carrinho
@@ -142,7 +130,6 @@
       if (wishlist.includes(id)) {
         wishlist = wishlist.filter(livroId => livroId !== id);
         setWishlist(wishlist);
-        atualizarBotoesWishlist();
         renderWishlist();
       }
       alert('Livro adicionado ao carrinho!');
@@ -151,7 +138,6 @@
     // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
       renderWishlist();
-      atualizarBotoesWishlist();
     });
   </script>
 </body>

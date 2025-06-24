@@ -99,18 +99,21 @@ function formatPriceBRL(price) {
 
 // Função utilitária: Gerar HTML do Card de Produto (usado no catálogo)
 function generateProductCardHTML(product) {
+  const wishlist = (typeof getWishlist === 'function') ? getWishlist() : [];
+  const isFavorito = wishlist.includes(product.id);
   return `
     <div class="product-card" data-id="${product.id}">
-      <button class="btn-wishlist" data-id="${product.id}" title="Adicionar à Wishlist">
-        <span class="icon-heart">&#9829;</span>
-      </button>
-      <div class="image-wrapper">
+      <div class="image-wrapper" style="position:relative;">
         <img src="${product.imagem}" alt="${product.titulo}" class="product-image">
+        <button class="btn-wishlist${isFavorito ? ' wishlist-ativo' : ''}" data-id="${product.id}" title="Adicionar à Wishlist" aria-pressed="${isFavorito ? 'true' : 'false'}">
+          <span class="${isFavorito ? 'icon-heart-ativo' : 'icon-heart'}">
+            <img src="${isFavorito ? 'https://img.icons8.com/material-sharp/24/like--v1.png' : 'https://img.icons8.com/material-outlined/24/like--v1.png'}" alt="${isFavorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" style="width:1em;height:1em;vertical-align:middle;">
+          </span>
+        </button>
       </div>
       <h3>${product.titulo}</h3>
       <p class="author">${product.autor}</p>
       <p class="price">${formatPriceBRL(product.preco)}</p>
-      <!-- Botões removidos do card para mobile, agora só no produto.html -->
     </div>
   `;
 }

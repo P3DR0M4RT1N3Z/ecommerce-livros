@@ -34,32 +34,32 @@ function atualizarBotoesWishlist() {
   const wishlist = getWishlist();
   document.querySelectorAll('.btn-wishlist').forEach(btn => {
     const id = parseInt(btn.dataset.id);
-    const icon = btn.querySelector('.icon-heart');
+    const icon = btn.querySelector('.icon-heart, .icon-heart-ativo');
+    const img = icon ? icon.querySelector('img') : null;
     if (wishlist.includes(id)) {
       btn.classList.add('wishlist-ativo');
-      if (icon) {
-        icon.textContent = '♥';
-        // Garante cor branca para coração ativo em cards de produto
-        if (btn.closest('.product-card')) {
-          icon.style.color = '#fff';
-        } else {
-          icon.style.color = 'var(--cor-wishlist)';
-        }
+      btn.classList.add('favoritado');
+      if (icon && img) {
+        icon.className = 'icon-heart-ativo';
+        img.src = 'https://img.icons8.com/material-sharp/24/like--v1.png';
+        img.alt = 'Remover dos favoritos';
       }
       btn.setAttribute('aria-pressed', 'true');
     } else {
       btn.classList.remove('wishlist-ativo');
-      if (icon) {
-        icon.textContent = '♡';
-        icon.style.color = 'var(--cor-wishlist)';
+      btn.classList.remove('favoritado');
+      if (icon && img) {
+        icon.className = 'icon-heart';
+        img.src = 'https://img.icons8.com/material-outlined/24/like--v1.png';
+        img.alt = 'Adicionar aos favoritos';
       }
       btn.setAttribute('aria-pressed', 'false');
     }
   });
-  // Corrige botão de wishlist da página de produto (sem data-id)
+  // Corrige botões de wishlist da página de produto (sem data-id)
   const btnProduto = document.querySelector('.produto-compra .btn-wishlist');
   if (btnProduto && !btnProduto.querySelector('.icon-heart')) {
-    btnProduto.innerHTML = '<span class="icon-heart">♡</span>';
+    btnProduto.innerHTML = '<span class="icon-heart"><img src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="Adicionar aos favoritos" style="width:1em;height:1em;vertical-align:middle;"></span>';
   }
 }
 
@@ -124,7 +124,7 @@ function renderWishlist() {
           <div class="wishlist-actions">
             <button class="btn-primary btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
             <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">
-              <span class="icon-heart">♥</span>
+              <span class="icon-heart-ativo"><img src="https://img.icons8.com/material-sharp/24/like--v1.png" alt="Remover dos favoritos" style="width:1em;height:1em;vertical-align:middle;"></span>
             </button>
           </div>
         </div>
@@ -139,9 +139,14 @@ function renderWishlist() {
 // Inicializa botões de wishlist (adicionar/remover)
 function inicializarBotoesWishlist() {
   document.querySelectorAll('.btn-wishlist').forEach(btn => {
-    btn.onclick = function() {
+    btn.onclick = function(e) {
+      e.preventDefault();
       const id = parseInt(this.dataset.id);
-      toggleWishlist(id);
+      if (!isNaN(id)) {
+        this.classList.add('heart-animate');
+        setTimeout(() => this.classList.remove('heart-animate'), 250);
+        toggleWishlist(id);
+      }
     };
   });
 }
@@ -183,4 +188,5 @@ function adicionarAoCarrinho(id) {
 document.addEventListener('DOMContentLoaded', () => {
   renderWishlist();
   atualizarBotoesWishlist();
+  window.inicializarBotoesWishlist = inicializarBotoesWishlist;
 });

@@ -2021,17 +2021,12 @@ section {
   color: var(--cor-wishlist);
   font-size: 1.5em;
   pointer-events: none;
+  transition: color 0.2s;
 }
 
 .product-card .btn-wishlist.wishlist-ativo .icon-heart {
-  color: #fff !important;
+  color: #e29578 !important; /* cor de destaque preenchido */
   animation: heartFill 0.4s cubic-bezier(.4,1.4,.7,1) both;
-}
-
-.product-card .btn-wishlist.wishlist-ativo {
-  background: var(--cor-wishlist);
-  color: #fff;
-  border-color: var(--cor-wishlist);
 }
 
 @keyframes heartFill {
@@ -2041,19 +2036,15 @@ section {
   }
   40% {
     transform: scale(1.3);
-    color: #fff;
+    color: #e29578;
     text-shadow: 0 0 8px var(--cor-wishlist);
   }
   60% {
     transform: scale(1.1);
-    color: #fff;
+    color: #e29578;
   }
   100% {
     transform: scale(1);
-    color: #fff;
+    color: #e29578;
   }
-}
-
-.btn-wishlist.wishlist-ativo .icon-heart {
-  animation: heartFill 0.4s cubic-bezier(.4,1.4,.7,1) both;
 }
