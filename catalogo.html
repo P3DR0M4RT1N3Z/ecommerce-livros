@@ -6,7 +6,6 @@
   <title>Catálogo de Livros – Livraria Aurora</title>
   <meta name="description" content="Explore o catálogo completo da Livraria Aurora. Filtre por gênero, autor, preço, avaliação e mais.">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/wishlist-heart.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -106,7 +105,6 @@
 
   <script src="js/produtos.js"></script>
   <script src="js/carrinho.js"></script>
-  <script src="js/wishlist.js"></script>
   <script>
     function getFiltrosSelecionados() {
       return {
@@ -133,7 +131,6 @@
         grid.appendChild(card.firstElementChild ? card.firstElementChild : card);
       });
       inicializarBotoesCatalogo();
-      if (typeof inicializarBotoesWishlist === 'function') inicializarBotoesWishlist();
     }
 
     function inicializarBotoesCatalogo() {
@@ -141,8 +138,6 @@
       document.querySelectorAll('.product-card').forEach(card => {
         card.style.cursor = 'pointer';
         card.addEventListener('click', function (e) {
-          // Evita conflito com botões internos (carrinho/wishlist)
-          if (e.target.closest('button')) return;
           const id = this.dataset.id;
           window.location.href = `produto.html?id=${id}`;
         });

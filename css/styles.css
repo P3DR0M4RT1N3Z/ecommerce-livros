@@ -1,115 +1,116 @@
-/* Estilo global para o site de e-commerce de livros */
+/*
+  =============================
+  ARQUIVO PRINCIPAL DE ESTILOS
+  =============================
+  - Altere cores, fontes, espaçamentos, tamanhos e estilos aqui.
+  - Ideal para customizar o visual do site para qualquer nicho (livros, roupas, eletrônicos, etc).
+  - Cada bloco está comentado para facilitar futuras mudanças.
+*/
 
-/* Paleta de cores */
+/* Paleta de cores principal do site. Altere as variáveis para mudar o tema geral. */
 :root {
-  --cor-bg: #f8f6f2;
-  --cor-primaria: #7b5e57;
-  --cor-secundaria: #e9cba7;
-  --cor-destaque: #b5838d;
-  --cor-texto: #2d2d2d;
-  --cor-link: #7b5e57;
-  --cor-btn: #b5838d;
-  --cor-btn-hover: #7b5e57;
-  --cor-card: #fff;
-  --cor-wishlist: #e29578;
-  --sombra: 0 2px 8px rgba(123,94,87,0.08);
+  --cor-bg: #f8f6f2;           /* Cor de fundo geral do site */
+  --cor-primaria: #7b5e57;     /* Cor principal (títulos, botões, destaques) */
+  --cor-secundaria: #e9cba7;   /* Cor secundária (fundos suaves, detalhes) */
+  --cor-destaque: #b5838d;     /* Cor de destaque (preço, links, botões) */
+  --cor-texto: #2d2d2d;        /* Cor padrão dos textos */
+  --cor-link: #7b5e57;         /* Cor dos links */
+  --cor-btn: #b5838d;          /* Cor de fundo dos botões principais */
+  --cor-btn-hover: #7b5e57;    /* Cor de fundo dos botões ao passar o mouse */
+  --cor-card: #fff;            /* Cor de fundo dos cards */
+  --cor-wishlist: #e29578;     /* Cor do botão de favoritos (wishlist) */
+  --sombra: 0 2px 8px rgba(123,94,87,0.08); /* Sombra padrão dos elementos */
 }
 
-/* Reset básico */
+/* Reset básico: zera margens e paddings de todos os elementos. */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Estilo do corpo */
+/* Corpo do site: fonte, cor, tamanho base. */
 body {
-  background: var(--cor-bg);
-  color: var(--cor-texto);
-  font-family: 'Lora', serif;
-  font-size: 1rem;
-  line-height: 1.6;
+  background: var(--cor-bg); /* Altere para mudar o fundo geral */
+  color: var(--cor-texto);   /* Altere para mudar a cor dos textos */
+  font-family: 'Lora', serif; /* Fonte principal (altere para qualquer Google Fonts) */
+  font-size: 1rem;           /* Tamanho base dos textos */
+  line-height: 1.6;          /* Espaçamento entre linhas */
 }
 
-/* Container principal */
+/* Container centralizador: largura máxima e padding lateral. */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  max-width: 1200px;         /* Largura máxima do conteúdo */
+  margin: 0 auto;            /* Centraliza na tela */
+  padding: 0 1.5rem;         /* Espaçamento lateral */
 }
 
-/* Cabeçalho */
+/* Cabeçalho fixo: cor, sombra, altura. */
 .main-header {
-  background: var(--cor-card);
-  box-shadow: var(--sombra);
-  padding: 1.2rem 0;
-  position: sticky;
+  background: var(--cor-card); /* Fundo do cabeçalho */
+  box-shadow: var(--sombra);   /* Sombra sutil */
+  padding: 1.2rem 0;           /* Altura do cabeçalho */
+  position: sticky;            /* Fixa no topo ao rolar */
   top: 0;
   z-index: 10;
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  color: var(--cor-primaria);
-  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif; /* Fonte do logo (altere para personalizar) */
+  font-size: 2.2rem;                     /* Tamanho do logo */
+  color: var(--cor-primaria);             /* Cor do logo */
+  letter-spacing: 2px;                    /* Espaçamento entre letras */
   margin-bottom: 0.2rem;
 }
 
-/* Navegação */
+/* Navegação principal: espaçamento, cor dos links, hover. */
 nav ul {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2rem;              /* Espaço entre itens do menu */
   align-items: center;
 }
-
 nav a {
-  color: var(--cor-link);
+  color: var(--cor-link); /* Cor dos links do menu */
   text-decoration: none;
   font-weight: 700;
   transition: color 0.2s;
 }
-
 nav a:hover {
-  color: var(--cor-destaque);
+  color: var(--cor-destaque); /* Cor ao passar o mouse */
 }
 
-/* Link do carrinho */
-.cart-link {
-  position: relative;
-}
-
+/* Contador do carrinho: cor, tamanho, posição. */
 #cart-count {
-  background: var(--cor-destaque);
-  color: #fff;
+  background: var(--cor-destaque); /* Fundo do círculo */
+  color: #fff;                     /* Cor do número */
   border-radius: 50%;
   padding: 0.2em 0.6em;
   font-size: 0.9em;
   position: absolute;
   top: -10px;
-  right: -18px;
+  right: -18px; /* Altere para ajustar a posição do contador */
 }
 
-/* Barra de pesquisa */
+/* Barra de pesquisa: estilo do campo e botão. */
 .search-bar {
   margin-top: 1rem;
   display: flex;
   position: relative;
-  max-width: 400px;
+  max-width: 400px;         /* Largura máxima da barra de pesquisa */
 }
 
 .search-bar input {
   flex: 1;
   padding: 0.7em 1em;
   border: 1px solid #ddd;
-  border-radius: 2em 0 0 2em;
+  border-radius: 2em 0 0 2em; /* Bordas arredondadas */
   font-size: 1em;
   outline: none;
 }
 
 .search-bar button {
-  background: var(--cor-btn);
+  background: var(--cor-btn); /* Cor de fundo do botão de pesquisa */
   color: #fff;
   border: none;
   border-radius: 0 2em 2em 0;
@@ -120,10 +121,10 @@ nav a:hover {
 }
 
 .search-bar button:hover {
-  background: var(--cor-btn-hover);
+  background: var(--cor-btn-hover); /* Cor ao passar o mouse */
 }
 
-/* Sugestões de pesquisa */
+/* Sugestões de pesquisa: estilo da lista suspensa. */
 #suggestions {
   position: absolute;
   top: 110%;
@@ -135,7 +136,7 @@ nav a:hover {
   box-shadow: var(--sombra);
   z-index: 20;
   list-style: none;
-  display: none;
+  display: none;            /* Inicialmente oculta */
 }
 
 #suggestions li {
@@ -145,16 +146,16 @@ nav a:hover {
 }
 
 #suggestions li:hover {
-  background: var(--cor-secundaria);
+  background: var(--cor-secundaria); /* Cor ao passar o mouse nas sugestões */
 }
 
-/* Estilo do herói */
+/* Estilo do herói: imagem, texto e botões. */
 .hero {
   background: linear-gradient(90deg, var(--cor-secundaria) 60%, var(--cor-bg) 100%);
   padding: 3rem 0 2rem 0;
   display: flex;
   align-items: center;
-  min-height: 320px;
+  min-height: 320px;        /* Altura mínima da seção */
   text-align: left;
 }
 
@@ -177,18 +178,18 @@ nav a:hover {
 
 .hero h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-size: 2.5rem;        /* Tamanho do título principal */
   color: var(--cor-primaria);
   margin-bottom: 0.7rem;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.2rem;        /* Tamanho do texto descritivo */
   margin-bottom: 1.5rem;
 }
 
 .hero-img {
-  width: 260px;
+  width: 260px;             /* Largura da imagem do herói */
   margin-left: 2rem;
   border-radius: 1.2rem;
   box-shadow: var(--sombra);
@@ -200,7 +201,7 @@ nav a:hover {
   50% { transform: translateY(-10px);}
 }
 
-/* Botões primário e secundário */
+/* Botões primário e secundário: estilos e efeitos. */
 .btn-primary, .btn-secondary {
   display: inline-block;
   padding: 0.8em 2em;
@@ -215,12 +216,12 @@ nav a:hover {
 }
 
 .btn-primary {
-  background: var(--cor-btn);
+  background: var(--cor-btn); /* Cor de fundo do botão primário */
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: var(--cor-btn-hover);
+  background: var(--cor-btn-hover); /* Cor ao passar o mouse */
 }
 
 .btn-secondary {
@@ -234,7 +235,7 @@ nav a:hover {
   color: #fff;
 }
 
-/* Estilo das seções */
+/* Estilo das seções: margens e espaçamentos. */
 section {
   margin: 2.5rem 0;
 }
@@ -246,7 +247,7 @@ section {
   align-items: flex-start;
 }
 .filtros {
-  flex: 0 0 290px;
+  flex: 0 0 290px;          /* Largura fixa para a coluna de filtros */
 }
 .catalogo-lista {
   flex: 1 1 0;
@@ -289,7 +290,7 @@ section {
   padding: 0.6em 0.6em 1.2em 0.6em;
   font-size: 1em;
   height: auto;
-  min-height: 340px;
+  min-height: 340px;        /* Altura mínima dos cards */
   background: var(--cor-card);
   border-radius: 1.2em;
   box-shadow: var(--sombra);
@@ -318,7 +319,7 @@ section {
 
 .livro-card img, .product-card img {
   width: 100%;
-  height: 200px;
+  height: 200px;            /* Altura fixa para as imagens dos livros */
   object-fit: contain; /* Alterado de cover para contain */
   background: #f5f5f5; /* Fundo neutro para imagens menores */
   border-radius: 0.7em 0.7em 0 0;
@@ -1586,6 +1587,21 @@ section {
   margin-bottom: 0.2rem;
 }
 
+.product-card .price {
+  font-size: 1.35em;
+  font-weight: bold;
+  color: #b5838d;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  letter-spacing: 0.5px;
+  display: block;
+  background: rgba(245, 222, 233, 0.55);
+  border-radius: 0.5em;
+  padding: 0.18em 0.9em 0.18em 0.9em;
+  box-shadow: 0 2px 8px rgba(181,131,141,0.07);
+  width: fit-content;
+}
+
 @media (max-width: 900px) {
   .carrinho-flex {
     flex-direction: column;
@@ -2010,41 +2026,52 @@ section {
 .product-card .btn-wishlist {
   position: absolute;
   top: 0.7em;
-  right: 0.7em;
+  right: 0.2em;
   z-index: 3;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   margin: 0;
+  border: none;
+  width: 1.3em;
+  height: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0.82;
+  transition: background 0.2s, opacity 0.2s, box-shadow 0.2s, transform 0.15s;
+  cursor: pointer;
 }
-
+.product-card .btn-wishlist:hover,
+.product-card .btn-wishlist:focus {
+  background: rgba(226,149,120,0.18);
+  opacity: 1;
+  box-shadow: 0 4px 16px rgba(226,149,120,0.12);
+  transform: scale(1.08);
+}
 .product-card .btn-wishlist .icon-heart {
+  font-size: 0.92em;
   color: var(--cor-wishlist);
-  font-size: 1.5em;
   pointer-events: none;
-  transition: color 0.2s;
+  user-select: none;
+  transition: color 0.2s, text-shadow 0.2s;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.07));
 }
-
 .product-card .btn-wishlist.wishlist-ativo .icon-heart {
-  color: #e29578 !important; /* cor de destaque preenchido */
+  color: #e53935;
+  text-shadow: 0 0 8px #e29578;
   animation: heartFill 0.4s cubic-bezier(.4,1.4,.7,1) both;
 }
-
+.product-card .btn-wishlist.heart-animate .icon-heart {
+  animation: heartPop 0.25s cubic-bezier(.4,1.4,.7,1);
+}
 @keyframes heartFill {
-  0% {
-    transform: scale(1);
-    color: var(--cor-wishlist);
-  }
-  40% {
-    transform: scale(1.3);
-    color: #e29578;
-    text-shadow: 0 0 8px var(--cor-wishlist);
-  }
-  60% {
-    transform: scale(1.1);
-    color: #e29578;
-  }
-  100% {
-    transform: scale(1);
-    color: #e29578;
-  }
+  0% { transform: scale(1); color: var(--cor-wishlist); }
+  40% { transform: scale(1.3); color: #e53935; text-shadow: 0 0 8px var(--cor-wishlist); }
+  100% { transform: scale(1); color: #e53935; }
+}
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
 }

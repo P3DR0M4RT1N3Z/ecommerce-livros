@@ -1,7 +1,19 @@
 // /js/produtos.js
 // 📌 Módulo central para gerenciamento de produtos (Livros) no e-commerce
+//
+// =============================
+// COMO CUSTOMIZAR ESTE ARQUIVO
+// =============================
+// - Altere o array 'products' para mudar os itens do catálogo (pode ser qualquer nicho: livros, roupas, eletrônicos, etc).
+// - Cada campo do objeto pode ser renomeado ou removido conforme o tipo de produto.
+// - Para adicionar/remover campos visuais nos cards, edite a função generateProductCardHTML.
+// - Para mudar o formato do preço, altere a função formatPriceBRL.
+// - Para mudar a estrutura dos cards (imagem, título, botões, etc), edite o template HTML na função generateProductCardHTML.
+// - Para mudar a lógica de wishlist/carrinho, altere os arquivos wishlist.js e carrinho.js.
+// - Os estilos visuais (cores, tamanhos, fontes, espaçamentos) estão em css/styles.css.
 
 // Array de produtos (cada livro como um objeto completo)
+// Para outro nicho, basta trocar os campos e objetos deste array.
 const products = [
   {
     id: 1,
@@ -67,16 +79,19 @@ const products = [
 ];
 
 // Função: Retorna todos os produtos
+// Use para listar todos os itens na vitrine, catálogo, etc.
 function getAllProducts() {
   return products;
 }
 
 // Função: Retorna um produto específico pelo ID
+// Use para página de detalhes ou ações de wishlist/carrinho.
 function getProductById(id) {
   return products.find(product => product.id === id);
 }
 
 // Função: Filtra os produtos por múltiplos critérios
+// Altere os filtros conforme o nicho (ex: categoria, marca, tamanho, cor, etc).
 function filterProducts(filters) {
   return products.filter(product => {
     const matchGenero = !filters.genero || product.genero === filters.genero;
@@ -90,6 +105,7 @@ function filterProducts(filters) {
 }
 
 // Função: Formatar preço para BRL
+// Altere para outro formato de moeda se necessário.
 function formatPriceBRL(price) {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -98,6 +114,7 @@ function formatPriceBRL(price) {
 }
 
 // Função utilitária: Gerar HTML do Card de Produto (usado no catálogo)
+// Edite este template para mudar a estrutura visual dos cards (imagem, botões, textos, etc).
 function generateProductCardHTML(product) {
   const wishlist = (typeof getWishlist === 'function') ? getWishlist() : [];
   const isFavorito = wishlist.includes(product.id);
@@ -105,20 +122,20 @@ function generateProductCardHTML(product) {
     <div class="product-card" data-id="${product.id}">
       <div class="image-wrapper" style="position:relative;">
         <img src="${product.imagem}" alt="${product.titulo}" class="product-image">
+        <!-- Botão de favoritos: altere a classe, posição, ícone ou lógica conforme o nicho -->
         <button class="btn-wishlist${isFavorito ? ' wishlist-ativo' : ''}" data-id="${product.id}" title="Adicionar à Wishlist" aria-pressed="${isFavorito ? 'true' : 'false'}">
-          <span class="${isFavorito ? 'icon-heart-ativo' : 'icon-heart'}">
-            <img src="${isFavorito ? 'https://img.icons8.com/material-sharp/24/like--v1.png' : 'https://img.icons8.com/material-outlined/24/like--v1.png'}" alt="${isFavorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" style="width:1em;height:1em;vertical-align:middle;">
-          </span>
+          <span class="icon-heart">${isFavorito ? '♥' : '♡'}</span>
         </button>
       </div>
-      <h3>${product.titulo}</h3>
-      <p class="author">${product.autor}</p>
-      <p class="price">${formatPriceBRL(product.preco)}</p>
+      <h3>${product.titulo}</h3> <!-- Altere para exibir outro campo/título -->
+      <p class="author">${product.autor}</p> <!-- Altere/remova conforme o nicho -->
+      <p class="price">${formatPriceBRL(product.preco)}</p> <!-- Altere classe, cor, formato -->
     </div>
   `;
 }
 
 // Expondo funções no escopo global (caso necessário)
+// Use window.NOME_DA_FUNCAO para acessar de outros scripts.
 window.getAllProducts = getAllProducts;
 window.getProductById = getProductById;
 window.filterProducts = filterProducts;
@@ -126,6 +143,7 @@ window.formatPriceBRL = formatPriceBRL;
 window.generateProductCardHTML = generateProductCardHTML;
 
 // Após renderizar os produtos, inicializar eventos dos botões wishlist
+// Se mudar a lógica dos botões, ajuste aqui e em wishlist.js
 if (typeof inicializarBotoesWishlist === 'function') {
   setTimeout(() => inicializarBotoesWishlist(), 0);
 }

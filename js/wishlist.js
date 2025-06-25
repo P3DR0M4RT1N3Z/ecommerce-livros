@@ -34,32 +34,21 @@ function atualizarBotoesWishlist() {
   const wishlist = getWishlist();
   document.querySelectorAll('.btn-wishlist').forEach(btn => {
     const id = parseInt(btn.dataset.id);
-    const icon = btn.querySelector('.icon-heart, .icon-heart-ativo');
-    const img = icon ? icon.querySelector('img') : null;
+    const icon = btn.querySelector('.icon-heart');
     if (wishlist.includes(id)) {
       btn.classList.add('wishlist-ativo');
-      btn.classList.add('favoritado');
-      if (icon && img) {
-        icon.className = 'icon-heart-ativo';
-        img.src = 'https://img.icons8.com/material-sharp/24/like--v1.png';
-        img.alt = 'Remover dos favoritos';
-      }
       btn.setAttribute('aria-pressed', 'true');
+      if (icon) icon.textContent = '♥';
     } else {
       btn.classList.remove('wishlist-ativo');
-      btn.classList.remove('favoritado');
-      if (icon && img) {
-        icon.className = 'icon-heart';
-        img.src = 'https://img.icons8.com/material-outlined/24/like--v1.png';
-        img.alt = 'Adicionar aos favoritos';
-      }
       btn.setAttribute('aria-pressed', 'false');
+      if (icon) icon.textContent = '♡';
     }
   });
   // Corrige botões de wishlist da página de produto (sem data-id)
   const btnProduto = document.querySelector('.produto-compra .btn-wishlist');
   if (btnProduto && !btnProduto.querySelector('.icon-heart')) {
-    btnProduto.innerHTML = '<span class="icon-heart"><img src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="Adicionar aos favoritos" style="width:1em;height:1em;vertical-align:middle;"></span>';
+    btnProduto.innerHTML = '<span class="icon-heart">♡</span>';
   }
 }
 
