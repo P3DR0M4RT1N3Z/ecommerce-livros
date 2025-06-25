@@ -452,7 +452,6 @@ section {
   box-shadow: 0 2px 8px rgba(181,131,141,0.10);
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   outline: none;
-  display: inline-block;
 }
 
 .btn-add-carrinho:hover,
@@ -2026,7 +2025,7 @@ section {
 .product-card .btn-wishlist {
   position: absolute;
   top: 0.7em;
-  right: 0.2em;
+  right: -1.08em;
   z-index: 3;
   background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
