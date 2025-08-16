@@ -27,16 +27,16 @@
           <li><a href="carrinho.html" class="cart-link"><i class="fi fi-rr-shopping-cart"></i> Carrinho <span id="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <button class="btn menu-btn" aria-label="Abrir menu" type="button">☰</button>
-    </div>
-    <div class="menu">
-      <ul style="list-style:none; padding:0; margin:0;">
-        <li><a href="catalogo.html" class="btn2">Catálogo</a></li>
-        <li><a href="wishlist.html" class="btn2">Wishlist</a></li>
-        <li><a href="minha-conta.html" class="btn2">Minha Conta</a></li>
-      </ul>
     </div>
   </header>
+  <div class="menu">
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li><a href="catalogo.html" class="btn2">Catálogo</a></li>
+      <li><a href="wishlist.html" class="btn2">Wishlist</a></li>
+      <li><a href="minha-conta.html" class="btn2">Minha Conta</a></li>
+    </ul>
+  </div>
+  <button class="btn menu-btn" aria-label="Abrir menu" type="button" style="position:fixed;top:1.2rem;left:1.2rem;z-index:9999;">☰</button>
 
   <main>
     <section class="hero">
@@ -119,6 +119,8 @@
   <script src="js/busca.js"></script>
   <script src="js/recomendacoes.js"></script>
   <script src="js/menu-sanduiche.js"></script>
+  <script src="js/header-hide.js"></script>
+  <script src="js/menu-abrir.js"></script>
   <script>
     // Renderiza os produtos na seção inicial usando produtos.js
     function renderProdutosHome() {
