@@ -7,27 +7,36 @@
   <meta name="description" content="Descubra livros incríveis, recomendações personalizadas e ofertas exclusivas na Livraria StoreBooks. Seu universo literário começa aqui.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/wishlist-heart.css">
+  <link rel="stylesheet" href="css/menu-sanduiche.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="main-header">
-    <div class="container">
-      <h1 class="logo">Livraria StoreBooks</h1>
-      <nav>
-        <ul>
-          <li><a href="catalogo.html">Catálogo</a></li>
-          <li><a href="wishlist.html">Wishlist</a></li>
-          <li><a href="minha-conta.html">Minha Conta</a></li>
-          <li><a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count">0</span></a></li>
-        </ul>
-      </nav>
-      <form class="search-bar" autocomplete="off">
+    <div class="container" style="display: grid; grid-template-columns: 2fr 2.5fr 3fr; align-items: center; gap: 5.5rem; max-width: 1800px; width: 100%; margin: 0 auto;">
+      <h1 class="logo" style="grid-column: 1; justify-self: start;">Livraria StoreBooks</h1>
+      <form class="search-bar" autocomplete="off" style="grid-column: 2; justify-self: center; width: 100%; max-width: 600px;">
         <input type="text" id="search-input" placeholder="Buscar livros, autores, gêneros...">
         <button type="submit">🔍</button>
         <ul id="suggestions"></ul>
       </form>
+      <nav class="desktop-nav" style="grid-column: 3; justify-self: end;">
+        <ul style="display: flex; gap: 4rem; align-items: center;">
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+          <li><a href="minha-conta.html">Minha Conta</a></li>
+          <li><a href="carrinho.html" class="cart-link"><i class="fi fi-rr-shopping-cart"></i> Carrinho <span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
     </div>
   </header>
+  <div class="menu">
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li><a href="catalogo.html" class="btn2">Catálogo</a></li>
+      <li><a href="wishlist.html" class="btn2">Wishlist</a></li>
+      <li><a href="minha-conta.html" class="btn2">Minha Conta</a></li>
+    </ul>
+  </div>
+  <button class="btn menu-btn" aria-label="Abrir menu" type="button" style="position:fixed;top:1.2rem;left:1.2rem;z-index:9999;">☰</button>
 
   <main>
     <section class="hero">
@@ -109,6 +118,9 @@
   <script src="js/wishlist.js"></script>
   <script src="js/busca.js"></script>
   <script src="js/recomendacoes.js"></script>
+  <script src="js/menu-sanduiche.js"></script>
+  <script src="js/header-hide.js"></script>
+  <script src="js/menu-abrir.js"></script>
   <script>
     // Renderiza os produtos na seção inicial usando produtos.js
     function renderProdutosHome() {
@@ -137,6 +149,22 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderProdutosHome();
       atualizarContadorCarrinho && atualizarContadorCarrinho();
+      // Responsividade do menu sanduíche
+      function handleMenuDisplay() {
+        const desktopNav = document.querySelector('.desktop-nav');
+        const menuBtn = document.querySelector('.menu-btn');
+        if (window.innerWidth <= 900) {
+          if (desktopNav) desktopNav.style.display = 'none';
+          if (menuBtn) menuBtn.style.display = 'block';
+        } else {
+          if (desktopNav) desktopNav.style.display = 'block';
+          if (menuBtn) menuBtn.style.display = 'none';
+          const menu = document.querySelector('.menu');
+          if (menu) menu.style.left = '-250px';
+        }
+      }
+      window.addEventListener('resize', handleMenuDisplay);
+      handleMenuDisplay();
     });
 
     // Substitui a notificação do carrinho para usar a padrão
