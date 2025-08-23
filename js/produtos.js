@@ -209,8 +209,8 @@ const products = [
     sinopse: "Cinco garotos marcados por traumas se envolvem com uma garota que carrega sua própria fúria — e juntos, incendiarão o mundo",
     frase: "Furiosos, queimados, mas vivos — era tudo que tínhamos.",
     trecho: "Eles eram fogo, eu era gasolina. Era só uma questão de tempo."
-    },
-    {
+  },
+  {
     id: 14,
     titulo: "Possuída pela Sombra",
     autor: "Ruby Lace",
@@ -224,8 +224,8 @@ const products = [
     sinopse: "Entre o mundo real e o espiritual, ela foi marcada por uma entidade que a ama... de forma doentia e inevitável.",
     frase: "A sombra que me possui é a única que me entende.",
     trecho:"A sombra não me deixou — ela me amou até que eu fosse dela por completo."
-    },
-    {
+  },
+  {
     id: 15,
     titulo: "Assombrando Adeline",
     autor: "H. D. Carlson",
@@ -239,8 +239,8 @@ const products = [
     sinopse: "A sequência de 'Perseguindo Adeline' traz um enredo mais obscuro, onde os limites entre o medo e a paixão desaparecem.",
     frase: " No medo, encontrei o desejo mais profundo.",
     trecho:"A escuridão não apenas a rodeava — ela vivia dentro de mim."
-    },
-    {
+  },
+  {
     id: 16,
     titulo: "Twisted beauty",
     autor: "Camila Koengkan",
@@ -254,8 +254,8 @@ const products = [
     sinopse: "Ela foi amaldiçoada pela beleza, ele pela escuridão. Um romance impossível em um mundo cheio de segredos místicos.",
     frase: "Entre o sagrado e o profano, escolhi meu próprio destino.",
     trecho:"A beleza dela era uma prisão dourada, e eu era a chave."
-    },
-    {
+  },
+  {
     id: 17,
     titulo: "Dark manipulation",
     autor: "Dani Medina",
@@ -269,8 +269,22 @@ const products = [
     sinopse: "Um mestre da manipulação encontra uma garota imune aos seus jogos. Mas talvez, no fim, o manipulado seja ele.",
     frase: " No jogo do controle, ninguém é realmente livre.",
     trecho:"Quem controla tudo, nunca está preparado para ser controlado."
-    },
-
+  },
+  {
+    id: 18,
+    titulo: "Trevo negro",
+    autor: "Nina Queiroz",
+    genero: "Dark Romance",
+    idioma:  "Português",
+    tipoCapa: "Brochura",
+    preco: 54.15,
+    avaliacao: 3.5,
+    estoqueDisponivel: 23,
+    imagem: "images/trevo-negro.jpg",
+    sinopse: "Sorte? Talvez. Mas para ela, amar alguém como ele era maldição — e ela o desejava mesmo assim.",
+    frase: "A sorte é um jogo de azar que poucos ousam jogar.",
+    trecho:"Ele era meu trevo de quatro folhas, mas trazia tempestades."
+  },
   // 👉 Adicione mais livros conforme necessário
 ];
 
