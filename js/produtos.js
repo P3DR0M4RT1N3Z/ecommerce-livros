@@ -76,7 +76,7 @@ const products = [
     trecho: "Desejá-la era perigoso, mas negar-se era impossível."
   },
   {
-    id: 4,
+    id: 5,
     titulo: "Love In the dark 1",
     autor: "Ellie Morgan",
     genero: "Dark Romance", 
@@ -91,7 +91,7 @@ const products = [
     trecho: "Mesmo no breu, eu sentia o calor dos olhos dele queimando os meus segredos."
   },
   {
-    id: 5,
+    id: 6,
     titulo: "Perseguindo Adeline 1",
     autor: "H.D. Carlton",
     genero: "Dark Romance",
@@ -106,7 +106,7 @@ const products = [
     trecho: "Ele me caçou como fera, mas me olhou como um homem perdido."
   },
   {
-    id: 6,
+    id: 7,
     titulo: "Garotas Cruéis merecem pagar",
     autor: "R. Red",
     genero: "Dark Romance", 
@@ -121,7 +121,7 @@ const products = [
     trecho:"Nós éramos cruéis porque o mundo nos obrigou a ser."
   },
   {
-    id: 7,
+    id: 8,
     titulo: "Scarlet Devotion",
     autor: "Camila Koengkan",
     genero: "Dark Romance", 
@@ -136,7 +136,7 @@ const products = [
     trecho: "Ele disse que eu era sagrada, mas sangrou cada parte da minha alma."
   },
   {
-    id: 8,
+    id: 9,
     titulo: "Desenfreados 1",
     autor: "Kelly M.",
     genero: "Dark Romance",
@@ -151,7 +151,7 @@ const products = [
     trecho:"Desenfreado não era o amor — era tudo que ele fazia comigo." 
   },
   {
-    id: 9,
+    id: 10,
     titulo: "Desenfreados 2",
     autor: "Kelly M.",
     genero: "Dark Romance",
@@ -166,7 +166,7 @@ const products = [
     trecho:"Talvez amar fosse isso: correr de tudo para se perder um no outro."
   },
   {
-    id: 10,
+    id: 11,
     titulo: "Oblívio",
     autor: "Leonor Carvalho",
     genero: "Dark Romance",
@@ -181,7 +181,7 @@ const products = [
     trecho:"O esquecimento é um presente, mas ele me deu memórias como castigo."
   },
   {
-    id: 11,
+    id: 12,
     titulo: "Obsessão Sangria",
     autor: "S.M. Silveira",
     genero: "Dark Romance",
@@ -196,7 +196,7 @@ const products = [
     trecho:"Ele me fez provar o gosto do controle — e eu nunca mais fui a mesma."
   },
   {
-    id: 12,
+    id: 13,
     titulo: "Garotos Furiosos Queimam Você",
     autor: "R. Red",
     genero: "Dark Romance",
@@ -211,7 +211,7 @@ const products = [
     trecho: "Eles eram fogo, eu era gasolina. Era só uma questão de tempo."
     },
     {
-    id: 13,
+    id: 14,
     titulo: "Possuída pela Sombra",
     autor: "Ruby Lace",
     genero: "Dark Romance",
@@ -226,7 +226,7 @@ const products = [
     trecho:"A sombra não me deixou — ela me amou até que eu fosse dela por completo."
     },
     {
-    id: 14,
+    id: 15,
     titulo: "Assombrando Adeline",
     autor: "H. D. Carlson",
     genero: "Dark Romance",
@@ -241,7 +241,7 @@ const products = [
     trecho:"A escuridão não apenas a rodeava — ela vivia dentro de mim."
     },
     {
-    id: 15,
+    id: 16,
     titulo: "Twisted beauty",
     autor: "Camila Koengkan",
     genero: "Romance",
@@ -256,7 +256,7 @@ const products = [
     trecho:"A beleza dela era uma prisão dourada, e eu era a chave."
     },
     {
-    id: 16,
+    id: 17,
     titulo: "Dark manipulation",
     autor: "Dani Medina",
     genero: "Dark Romance",
@@ -270,7 +270,7 @@ const products = [
     frase: " No jogo do controle, ninguém é realmente livre.",
     trecho:"Quem controla tudo, nunca está preparado para ser controlado."
     },
-    
+
   // 👉 Adicione mais livros conforme necessário
 ];
 
