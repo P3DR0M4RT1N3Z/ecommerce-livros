@@ -285,6 +285,82 @@ const products = [
     frase: "A sorte é um jogo de azar que poucos ousam jogar.",
     trecho:"Ele era meu trevo de quatro folhas, mas trazia tempestades."
   },
+  {
+    id: 19,
+    titulo: "Incipit",
+    autor: "Leonor Carvalho",
+    genero: "Dark Romance",
+    idioma:  "Português",
+    tipoCapa: "Brochura",
+    preco: 58.90,
+    avaliacao: 4.0,
+    estoqueDisponivel: 66,
+    imagem: "images/incipit.jpg",
+    sinopse: "O início de tudo pode ser o fim de si mesma. Uma história sobre poder, submissão e identidade.",
+    frase: "O começo de tudo foi o ultimo fio de liberdade que me restava.",
+    trecho: "E se o começo fosse o meu último suspiro de liberdade?"
+  },
+  {
+    id: 20, 
+    titulo: "Todos os meus pecados",
+    autor: "Nina Queiroz",
+    genero: "Dark Romance",
+    idioma:  "Português",
+    tipoCapa: "Capa Dura",
+    preco: 69.90,
+    avaliacao: 4.0,
+    estoqueDisponivel: 23,
+    imagem: "images/todos-os-meus-pecados.jpg",
+    sinopse: "Uma mulher enfrenta os fantasmas do passado ao reencontrar o único homem que amou... e pecou por amar.",
+    frase: "O amor é o pecado que mais vale a pena cometer.",
+    trecho: "Não me arrependo dos meus pecados. Me arrependo dos momentos em que fui santa."
+  },
+  {
+    id: 21,
+    titulo: "Dark Demon",
+    autor: "Caroline Andrade",
+    genero: "Dark Romance",
+    idioma:  "Português",
+    tipoCapa: "Brochura",
+    preco: 44.90,
+    avaliacao: 4.0,
+    estoqueDisponivel: 63,
+    imagem: "images/dark-demon.jpg",
+    sinopse: "Um homem envolto em trevas e uma garota disposta a enfrentá-las por amor.",
+    frase: "Até as trevas mais profundas podem ser iluminadas pelo amor.",
+    trecho: "Um homem envolto em trevas e uma garota disposta a enfrentá-las por amor."
+  },
+  {
+    id: 22,
+    titulo: "Segundas intenções",
+    autor: "Nilton Bonder",
+    genero: "Romance",
+    idioma:  "Português",
+    tipoCapa: "Capa Dura",
+    preco: 44.90,
+    avaliacao: 3.0,
+    estoqueDisponivel: 23,
+    imagem: "images/segundas-intencoes.jpg",
+    sinopse: "Um advogado se vê no centro de uma trama envolvendo ética, desejo e segredos de família.",
+    frase: "Por trás de cada intenção, há um mundo de possibilidades.",
+    trecho: "Nem toda intenção oculta é má. Algumas apenas esperam a hora certa."
+  },
+  {
+    id: 23,
+    titulo: "Quebrando gelo",
+    autor: "Hanna Grace",
+    genero: "Dark Romance",
+    idioma:  "Português",
+    tipoCapa: "Brochura",
+    preco: 33.16,
+    avaliacao: 4.0,
+    estoqueDisponivel: 23,
+    imagem: "images/quebrando-gelo.jpg",
+    sinopse: "Quando duas pessoas opostas são forçadas a compartilhar o mesmo espaço no time de hóquei, as faíscas não vêm apenas do gelo.",
+    frase: "O gelo pode ser quebrado, mas o que está dentro de nós é indestrutível.",
+    trecho: "Ela era calor onde só havia gelo — e isso me derretia por dentro."
+  },
+  
   // 👉 Adicione mais livros conforme necessário
 ];
 
