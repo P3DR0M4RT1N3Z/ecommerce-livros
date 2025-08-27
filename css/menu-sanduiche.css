@@ -36,3 +36,48 @@
     font-size: 18px;
     z-index: 1;
 }
+
+@media (max-width: 900px) {
+  /* Estilização dos botões do menu sanduíche (Catálogo, Wishlist, Minha Conta) em telas menores */
+  .menu .btn2 {
+      /* Botão ocupa quase toda a largura do menu */
+      display: block;
+      width: 90%;
+      /* Espaçamento entre botões fixo */
+      margin-top: 0px;
+      margin-bottom: -4rem;
+      /* Padding interno para conforto visual */
+      padding: 0.8em 1.2em;
+      /* Tamanho e fonte igual ao padrão do site */
+      font-size: 1.1em;
+      font-family: 'Lora', serif;
+      /* Texto branco para contraste */
+      color: #fff;
+      background-color: #b5838d;
+      /* Sem borda, borda arredondada para visual moderno */
+      border: none;
+      border-radius: 8px;
+      /* Sombra leve para destaque */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      /* Cursor pointer para indicar ação */
+      cursor: pointer;
+      /* Transição suave no hover */
+      transition: background 0.2s;
+      /* Centraliza texto e remove sublinhado */
+      text-align: center;
+      text-decoration: none;
+    }
+    /* Espaçamento extra do primeiro botão em relação ao topo do menu */
+    .menu .btn2:first-child {
+      margin-top: 5rem;
+  }
+  /* Efeito hover: cor de destaque do site */
+  .menu .btn2:hover {
+    background: var(--cor-btn-hover, #7b5e57);
+    color: #fff;
+  }
+    /* Espaçamento do grupo de botões em relação ao topo do menu */
+    .menu-btn-group {
+      margin-top: 6rem;
+    }
+}
