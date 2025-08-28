@@ -21,6 +21,34 @@
   --cor-wishlist: #e29578;     /* Cor do botão de favoritos (wishlist) */
   --sombra: 0 2px 8px rgba(123,94,87,0.08); /* Sombra padrão dos elementos */
 }
+
+.dark-theme {
+  --cor-bg: #181818;
+  --cor-primaria: #e9cba7;
+  --cor-secundaria: #7b5e57;
+  --cor-destaque: #b5838d;
+  --cor-texto: #f8f6f2;
+  --cor-link: #f8f6f2;
+  --cor-btn: #7b5e57;
+  --cor-btn-hover: #b5838d;
+  --cor-card: #222;
+  --cor-wishlist: #b5838d;
+}
+
+body.dark-theme {
+  background: var(--cor-bg) !important;
+  color: var(--cor-texto) !important;
+}
+
+body.dark-theme a,
+body.dark-theme .btn2,
+body.dark-theme .menu-btn {
+  color: var(--cor-link) !important;
+}
+
+body.dark-theme .menu {
+  background-color: #222 !important;
+}
 @media (max-width: 900px) {
   .menu-btn {
     background-color: #b5838d !important;
