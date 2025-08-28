@@ -44,6 +44,16 @@
             <span class="disponibilidade"></span>
           </div>
           <p class="frase-produto"></p>
+            <script>
+              window.addEventListener("DOMContentLoaded", function() {
+                const savedTheme = localStorage.getItem("theme");
+                if (savedTheme === "dark") {
+                  document.body.classList.add("dark-theme");
+                } else {
+                  document.body.classList.remove("dark-theme");
+                }
+              });
+            </script>
           <form class="produto-compra">
             <label for="quantidade">Qtd:</label>
             <input type="number" id="quantidade" name="quantidade" min="1" value="1">

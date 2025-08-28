@@ -35,7 +35,16 @@
           <h2>Resumo</h2>
           <div class="resumo-linhas">
             <div class="resumo-linha">
-              <span>Subtotal</span>
+            <script>
+          window.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+              document.body.classList.add("dark-theme");
+            } else {
+              document.body.classList.remove("dark-theme");
+            }
+          });
+          </script>
               <span>R$ 0,00</span>
             </div>
             <div class="resumo-linha">

@@ -113,7 +113,7 @@ function renderWishlist() {
           <div class="wishlist-actions">
             <button class="btn-primary btn-add-carrinho" data-id="${livro.id}">Adicionar ao Carrinho</button>
             <button class="btn-wishlist wishlist-ativo" data-id="${livro.id}" title="Remover da Wishlist" aria-pressed="true">
-              <span class="icon-heart-ativo"><img src="https://img.icons8.com/material-sharp/24/like--v1.png" alt="Remover dos favoritos" style="width:1em;height:1em;vertical-align:middle;"></span>
+              <span class="icon-heart">♥</span>
             </button>
           </div>
         </div>

@@ -1490,10 +1490,31 @@ section {
     align-items: center;
     text-align: center;
     padding: 1rem 0.5rem;
+    position: relative !important;
   }
   .wishlist-card img {
     width: 70px;
     height: 100px;
+  }
+  .btn-wishlist {
+    display: flex !important;
+    position: absolute !important;
+    top: 0.7rem !important;
+    right: 0.7rem !important;
+    z-index: 20 !important;
+    background: var(--cor-wishlist) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    width: 2.2em !important;
+    height: 2.2em !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.3em !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    opacity: 1 !important;
   }
 }
 

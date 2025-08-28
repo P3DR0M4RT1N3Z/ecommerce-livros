@@ -22,7 +22,16 @@
     </div>
   </header>
 
-  <!-- Balão de filtro fixo no navbar do catálogo (desktop e mobile) -->
+      <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-theme");
+        } else {
+          document.body.classList.remove("dark-theme");
+        }
+      });
+      </script>
   <div id="balao-filtro" class="filtro-balao-navbar" style="display:none; position:sticky; top:0; z-index:1002;"></div>
 
   <main>

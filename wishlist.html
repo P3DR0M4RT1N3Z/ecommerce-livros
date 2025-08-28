@@ -38,7 +38,16 @@
                 <button class="btn-primary">Adicionar ao Carrinho</button>
                 <button class="btn-remove" title="Remover da Wishlist">✕</button>
               </div>
-            </div>
+          <script>
+          window.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+              document.body.classList.add("dark-theme");
+            } else {
+              document.body.classList.remove("dark-theme");
+            }
+          });
+          </script>
           </div>
           <div class="wishlist-card">
             <img src="images/livro2.jpg" alt="1984">
