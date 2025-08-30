@@ -981,6 +981,28 @@ section {
 }
 
 @media (max-width: 600px) {
+  .product-card .btn-wishlist, .livro-card .btn-wishlist {
+    display: flex !important;
+    position: absolute !important;
+    top: 0.7rem !important;
+    right: 0.7rem !important;
+    z-index: 20 !important;
+    background: var(--cor-wishlist) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    width: 2.2em !important;
+    height: 2.2em !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.3em !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
   .login-card {
     padding: 1.5rem 0.7rem;
   }

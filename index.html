@@ -140,8 +140,18 @@
       if (typeof inicializarBotoesWishlist === 'function') inicializarBotoesWishlist();
     }
 
-    // Inicializa os botões dos cards de produto
+    // Torna os cards de produto da home clicáveis para abrir a página de especificações
     function inicializarBotoesProdutosHome() {
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function (e) {
+          // Evita conflito com botões internos (wishlist, carrinho)
+          if (e.target.closest('.btn-add-carrinho') || e.target.closest('.btn-wishlist')) return;
+          const id = this.dataset.id;
+          if (id) window.location.href = `produto.html?id=${id}`;
+        });
+      });
+      // Mantém funcionalidade dos botões de adicionar ao carrinho
       document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
         btn.onclick = function(e) {
           e.preventDefault();
@@ -156,8 +166,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      renderProdutosHome();
-      atualizarContadorCarrinho && atualizarContadorCarrinho();
+  renderProdutosHome();
+  inicializarBotoesProdutosHome();
+  atualizarContadorCarrinho && atualizarContadorCarrinho();
       // Responsividade do menu sanduíche
       function handleMenuDisplay() {
         const desktopNav = document.querySelector('.desktop-nav');
