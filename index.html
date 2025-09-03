@@ -66,6 +66,13 @@
       </div>
     </section>
 
+    <section class="generos-home">
+      <div class="container">
+        <h2>Livros por Gênero</h2>
+        <div id="generos-secoes"></div>
+      </div>
+    </section>
+
     <section class="recomendados">
       <div class="container">
         <h2>Recomendados para você</h2>
@@ -165,10 +172,43 @@
       });
     }
 
+    // Renderiza sessões de livros separados por gênero
+    function renderLivrosPorGenero() {
+      if (typeof getAllProducts !== 'function' || typeof generateProductCardHTML !== 'function') return;
+      const produtos = getAllProducts();
+      const generos = {};
+      produtos.forEach(produto => {
+        if (!produto.genero) return;
+        if (!generos[produto.genero]) generos[produto.genero] = [];
+        generos[produto.genero].push(produto);
+      });
+      const container = document.getElementById('generos-secoes');
+      if (!container) return;
+      container.innerHTML = Object.entries(generos).map(([genero, livros]) => `
+        <div class="genero-bloco">
+          <h3>${genero}</h3>
+          <div class="livros-grid">
+            ${livros.map(livro => generateProductCardHTML(livro)).join('')}
+          </div>
+        </div>
+      `).join('');
+      if (typeof inicializarBotoesWishlist === 'function') inicializarBotoesWishlist();
+      // Torna os cards clicáveis
+      document.querySelectorAll('.genero-bloco .product-card').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('.btn-add-carrinho') || e.target.closest('.btn-wishlist')) return;
+          const id = this.dataset.id;
+          if (id) window.location.href = `produto.html?id=${id}`;
+        });
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-  renderProdutosHome();
-  inicializarBotoesProdutosHome();
-  atualizarContadorCarrinho && atualizarContadorCarrinho();
+      renderProdutosHome();
+      inicializarBotoesProdutosHome();
+      renderLivrosPorGenero();
+      atualizarContadorCarrinho && atualizarContadorCarrinho();
       // Responsividade do menu sanduíche
       function handleMenuDisplay() {
         const desktopNav = document.querySelector('.desktop-nav');

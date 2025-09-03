@@ -44,6 +44,19 @@
             <span class="disponibilidade"></span>
           </div>
           <p class="frase-produto"></p>
+          <button class="btn-wishlist btn-wishlist-desc" data-id="" title="Adicionar à Wishlist" aria-pressed="false" style="display:none;">
+          <!--
+            Botão secundário de favoritos (wishlist) para telas menores.
+            - Classe: btn-wishlist btn-wishlist-desc
+            - data-id: deve ser preenchido via JS com o id do produto
+            - Ícone: <span class="icon-heart">♡</span> (muda para ♥ quando ativo)
+            - Visível apenas em mobile pelo CSS
+            - Funcionalidade igual ao botão principal do card
+            - Pode ser movido para ao lado da imagem ou ajustado conforme necessidade
+          -->
+          <button class="btn-wishlist btn-wishlist-desc" data-id="" title="Adicionar à Wishlist" aria-pressed="false" style="display:none;">
+            <span class="icon-heart">♡</span>
+          </button>
             <script>
               window.addEventListener("DOMContentLoaded", function() {
                 const savedTheme = localStorage.getItem("theme");

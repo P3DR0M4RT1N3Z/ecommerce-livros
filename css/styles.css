@@ -1,3 +1,50 @@
+@media (max-width: 900px) {
+  /*
+    Estilização do botão secundário de favoritos (wishlist) para telas menores.
+    - Classe: .btn-wishlist-desc
+    - Altere margin para ajustar o espaçamento abaixo do cabeçalho ou ao lado da imagem
+    - Altere position para mudar o posicionamento (static, absolute, etc)
+    - width/height/font-size: ajuste o tamanho do botão
+    - background/color: personalize as cores
+    - Outros estilos seguem o botão principal
+  */
+  .btn-wishlist-desc {
+    display: flex !important;
+    margin: 9.5em auto 0 auto !important; /* Espaçamento vertical, altere conforme necessário */
+    position: static !important; /* Mude para absolute/fixed se quiser posicionar diferente */
+    background: var(--cor-wishlist) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    width: 2.2em !important;
+    height: 2.2em !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.1em !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+   
+  }
+  /*
+    Ícone do coração dentro do botão secundário
+    - Ajuste font-size para mudar o tamanho do emoji
+    - width/height para controlar o espaço do ícone
+  */
+  .btn-wishlist-desc .icon-heart {
+    font-size: 1em !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    width: 1em !important;
+    height: 1em !important;
+    text-align: center !important;
+    overflow: hidden !important;
+  }
+}
 /*
   =============================
   ARQUIVO PRINCIPAL DE ESTILOS
@@ -57,7 +104,7 @@ body.dark-theme .menu {
     position: fixed !important;
     top: 1.2rem !important;
     left: 1.2rem !important;
-    z-index: 9999 !important;
+    z-index: 99999 !important;
     margin-bottom: 0 !important;
     margin-left: 0 !important;
     transform: none !important;
@@ -72,7 +119,7 @@ body.dark-theme .menu {
     width: 250px !important;
     height: 100vh !important;
     background-color: #f8f6f2 !important;
-    z-index: 9999 !important;
+    z-index: 9000 !important;
     box-shadow: 0 2px 16px rgba(0,0,0,0.12);
     display: none !important;
     transition: transform 0.3s cubic-bezier(0.4,0,0.2,1) !important;
@@ -121,6 +168,7 @@ body {
   .main-header {
     padding-top: 0.7rem !important;
     padding-bottom: 0.7rem !important;
+    z-index: 9000 !important; /* Muito importante: cabeçalho sempre acima de tudo */
   }
   .menu-btn {
     position: fixed !important;
@@ -155,7 +203,7 @@ body {
     position: fixed !important;
     top: 1.2rem !important;
     left: 1.2rem !important;
-    z-index: 9999 !important;
+    z-index: 9000 !important;
     margin-bottom: 0 !important;
     margin-left: 0 !important;
     transform: none !important;
@@ -171,10 +219,18 @@ body {
     margin: 0 auto;
     margin-bottom: 0.5rem;
   }
+  /*
+    Menu do cabeçalho em grid horizontal para telas menores
+    - Itens ficam lado a lado
+    - Mantém espaçamento e estética dos botões
+  */
   nav ul {
-    flex-direction: column !important;
-    gap: 1.2rem !important;
-    align-items: flex-start !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem !important;
+    align-items: center !important;
+    justify-items: center !important;
+    padding: 0 !important;
   }
   .container {
     padding: 0 0.5rem !important;
@@ -557,14 +613,49 @@ section {
     max-width: 100%;
   }
   .livros-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 1.5rem !important;
-    justify-content: center !important;
-    align-items: stretch !important;
-    padding: 0 1rem !important;
-    width: 100vw !important;
-    box-sizing: border-box !important;
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1.5rem !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+      padding: 0 1rem !important;
+      width: 100vw !important;
+      box-sizing: border-box !important;
+    }
+    .livros-grid .card, .livro-card, .product-card {
+      position: relative !important;
+    }
+    .btn-wishlist {
+      display: flex !important;
+      position: absolute !important;
+      top: 0.7rem !important;
+      right: 0.7rem !important;
+      z-index: 30 !important;
+      background: var(--cor-wishlist) !important;
+      color: #fff !important;
+      border-radius: 50% !important;
+      width: 2.2em !important;
+      height: 2.2em !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 1.1em !important;
+      border: none !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+      cursor: pointer !important;
+      transition: background 0.2s !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+    .btn-wishlist .icon-heart {
+      font-size: 1em !important;
+      line-height: 1 !important;
+      display: inline-block !important;
+      vertical-align: middle !important;
+      width: 1em !important;
+      height: 1em !important;
+      text-align: center !important;
+      overflow: hidden !important;
   }
   .livros-grid .card {
     margin: 0 auto !important;
@@ -981,27 +1072,58 @@ section {
 }
 
 @media (max-width: 600px) {
+  .product-card, .livro-card {
+    position: relative ;
+  }
   .product-card .btn-wishlist, .livro-card .btn-wishlist {
-    display: flex !important;
-    position: absolute !important;
-    top: 0.7rem !important;
-    right: 0.7rem !important;
-    z-index: 20 !important;
-    background: var(--cor-wishlist) !important;
-    color: #fff !important;
-    border-radius: 50% !important;
-    width: 2.2em !important;
-    height: 2.2em !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 1.3em !important;
-    border: none !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
-    cursor: pointer !important;
-    transition: background 0.2s !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
+    display: flex ;
+    position: absolute ;
+    top: 0.7rem ;
+    right: 0.7rem ;
+    z-index: 20 ;
+    background: var(--cor-wishlist) ;
+    color: #fff ;
+    border-radius: 50% ;
+    width: 2.2em ;
+    height: 2.2em ;
+    align-items: center ;
+    justify-content: center ;
+    font-size: 1.2em ;
+    border: none ;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) ;
+    cursor: pointer ;
+    transition: background 0.2s ;
+    opacity: 1 ;
+    visibility: visible ;
+    pointer-events: auto ;
+  }
+  .product-card .btn-wishlist .icon-heart, .livro-card .btn-wishlist .icon-heart {
+    font-size: 1.1em ;
+    line-height: 1 ;
+    display: inline-block ;
+    vertical-align: middle ;
+  }
+  .product-card .btn-wishlist, .livro-card .btn-wishlist {
+    display: flex ;
+    position: absolute ;
+    top: 0.7rem ;
+    right: 0.7rem ;
+    z-index: 20 ;
+    background: var(--cor-wishlist) ;
+    color: #fff ;
+    border-radius: 50% ;
+    width: 2.2em ;
+    height: 2.2em ;
+    align-items: center ;
+    justify-content: center ;
+    font-size: 1.3em !;
+    border: none !;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !;
+    cursor: pointer ;
+    transition: background 0.2s !;
+    opacity: 1 ;
+    visibility: visible ;
+    pointer-events: auto ;
   }
   .login-card {
     padding: 1.5rem 0.7rem;
