@@ -244,7 +244,7 @@ const products = [
     id: 16,
     titulo: "Twisted beauty",
     autor: "Camila Koengkan",
-    genero: "Romance",
+    genero: "Dark Romance",
     idioma:  "Português",
     tipoCapa: "Brochura",
     preco: 62.90,
